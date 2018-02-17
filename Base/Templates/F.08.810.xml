@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" version="1.0.12" CRC="3343258172" javascriptDocumentClassName="F08810.FDocument">
+  <rules>
+    <!--Подключение правил и глобальных переменных-->
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSGroupSheet" sourceFile="MainLogic\GroupSheet.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F08_810\F08_810_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F08_810\F08_810_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F08_810\F08_810_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F08_810\F08_810_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F08_810\F08_810_Document.js" />
+  </rules>
+  <tables>
+    <!-- Справочники из файла Spr_Main.xml-->
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OrgTaxPrivilege" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="LandCategory" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="LandTaxPrivilege" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F08_810_R1_TopSum_SumValues]]></el>
+          <el><![CDATA[KOSGU_Data]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="OKATO" caption="Справочник ОКТМО">
+      <fields>
+        <field name="Key" datatype="integer" />
+        <field name="Code" datatype="string" size="50" caption="Код" uniqueLabel="1" isNull="false" />
+        <field name="Name" datatype="string" size="1000" caption="Наименование" uniqueLabel="1" isNull="false" />
+        <field name="Id" datatype="guid" />
+      </fields>
+    </table>
+    <!--Раздел 1-->
+    <table id="F08_810_R1_TopSum_SumTypes" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="5" />
+        <field name="SumTypesName" datatype="string" size="1000" caption="Наименование" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[00011]]></el>
+          <el><![CDATA[Уплата налога на имущество организаций]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[00012]]></el>
+          <el><![CDATA[Уплата земельного налога]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[00100]]></el>
+          <el><![CDATA[Корректировка в связи с округлением]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[99999]]></el>
+          <el><![CDATA[Всего]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F08_810_R1_TopSum_SumValues">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP1TopSum.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP1TopSum.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP1TopSum.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP1TopSum.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveTotalTable" event="OnSave" />
+      </rules>
+    </table>
+    <!--Раздел 2-->
+    <table id="F08_810_R2_V3">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OKATO_ID" caption="ОКТМО" syncKey="true" table="OKATO" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="OKATO_Code" keys="OKATO_ID" lookupTable="OKATO" lookupKeys="Key" lookupFields="Code" />
+        <field name="Y0" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="StrCode" datatype="string" size="5" />
+      </fields>
+    </table>
+    <table id="F08_810_R2_1_V2">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" caption="Год" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="OKATO_ID" caption="ОКТМО" isNull="false" uniqueLabel="1" table="OKATO" tableKeyField="Key" tableFields="Name;Code">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.OnOkatoKeyChangeEventHandler" event="OnChange" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="OKATO_Code" keys="OKATO_ID" lookupTable="OKATO" lookupKeys="Key" lookupFields="Code" />
+        <field name="g5" datatype="float" caption="всего" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G5G8ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g6" datatype="float" caption="в т.ч. недвижимое имущество" precision="2" />
+        <sourcefield name="PropertyTax_g7_ID" caption="Код льготы" isNull="false" table="OrgTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="PropertyTax_g7_Code" keys="PropertyTax_g7_ID" lookupTable="OrgTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g8" datatype="float" caption="Среднегодовая стоимость необлагаемого налогом имущества за налоговый период, руб" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G5G8ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g9" datatype="float" caption="Налоговая база, руб" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G9G11ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <sourcefield name="PropertyTax_g10_ID" caption="Код налоговой льготы (установленной в виде понижения налоговой ставки)" isNull="false" table="OrgTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="PropertyTax_g10_Code" keys="PropertyTax_g10_ID" lookupTable="OrgTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g11" datatype="float" precision="2" caption="Налоговая ставка, %">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G9G11ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g12" datatype="float" caption="Сумма налога за налоговый период, руб" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G12G14G15ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <sourcefield name="PropertyTax_g13_ID" caption="Код налоговой льготы (в виде уменьшения суммы налога, подлежащей уплате в бюджет)" isNull="false" table="OrgTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="PropertyTax_g13_Code" keys="PropertyTax_g13_ID" lookupTable="OrgTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g14" datatype="float" caption="Сумма налоговой льготы, уменьшающей сумму налога, подлежащую уплате в бюджет, руб" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G12G14G15ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g15" datatype="float" caption="Сумма налога, уплаченная за пределами Российской Федерации, руб" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.G12G14G15ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g16" datatype="float" caption="Сумма, руб" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP2Sp1.TotalChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="StrCode" datatype="string" size="5" />
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.TableP2Sp1.EditEventHandler" event="OnEdit" />
+        <rule name="%Doc%.TableP2Sp1.DeleteEventHandler" event="OnDelete" />
+        <rule name="%Doc%.TableP2Sp1.AfterDeleteEventHandler" event="OnAfterDelete" />
+      </rules>
+    </table>
+    <!--Раздел 3-->
+    <table id="F08_810_R3_V3">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" caption="Год" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="OKATO_ID" caption="ОКТМО" table="OKATO" tableKeyField="Key" tableFields="Code;Name" uniqueLabel="1" />
+        <lookupfield name="OKATO_Code" keys="OKATO_ID" lookupTable="OKATO" lookupKeys="Key" lookupFields="Code" />
+        <field name="CadastreNum" datatype="string" size="1000" caption="Кадастровый номер" uniqueLabel="1" />
+        <field name="Y0" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP3.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP3.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP3.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP3.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.TableP3.ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="StrCode" datatype="string" size="5" />
+      </fields>
+    </table>
+    <table id="F08_810_R3_1_V2" caption="3. Расчет на уплату земельного налога*">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" caption="Год" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="OKATO_ID" caption="ОКТМО" isNull="false" uniqueLabel="1" table="OKATO" tableKeyField="Key" tableFields="Name;Code">
+          <rules>
+            <rule name="%Doc%.TableP3Sp1.OnOkatoKeyChangeEventHandler" event="OnChange" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="OKATO_Code" keys="OKATO_ID" lookupTable="OKATO" lookupKeys="Key" lookupFields="Code" />
+        <field name="CadastreNum" datatype="string" size="1000" caption="Кадастровый номер" uniqueLabel="1" isNull="false">
+          <rules>
+            <rule name="%Doc%.TableP3Sp1.OnCadastreNumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <sourcefield name="CatLand_ID" caption="Категория земли" isNull="false" table="LandCategory" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="CatLand_Code" keys="CatLand_ID" lookupTable="LandCategory" lookupKeys="Key" lookupFields="Code" />
+        <field name="g7" datatype="float" size="20" caption="Кадастровая стоимость (доля кадастровой стоимости) земельного участка, руб" precision="2" />
+        <field name="g8" datatype="float" size="20" caption="Доля налогоплательщика в праве на земельный участок" />
+        <sourcefield name="LandTax_g9_ID" caption="Налоговая льгота в виде доли необлагаемой площади земельного участка" isNull="false" table="LandTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="LandTax_g9_Code" keys="LandTax_g9_ID" lookupTable="LandTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g10" datatype="float" size="20" caption="доля необлагаемой площади земельного участка" />
+        <field name="g11" datatype="float" size="20" caption="Налоговая база, руб" />
+        <field name="g12" datatype="float" size="20" caption="Налоговая ставка, %" />
+        <field name="g13" datatype="float" size="20" caption="Количество полных месяцев владения земельным участком в течение налогового периода" />
+        <field name="g14" datatype="float" size="20" caption="Коэффициент Кв" />
+        <field name="g15" datatype="float" size="20" caption="Сумма исчисленного налога, руб">
+          <rules>
+            <rule name="%Doc%.TableP3Sp1.G15G17ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g16" datatype="float" size="20" caption="Количество полных месяцев использования льготы" />
+        <field name="g17" datatype="float" size="20" caption="Коэффициент Кл">
+          <rules>
+            <rule name="%Doc%.TableP3Sp1.G15G17ChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <sourcefield name="LandTax_g18_ID" caption="Налоговая льгота в виде освобождения от налогообложения (п. 2 ст. 387 Кодекса)" isNull="false" table="LandTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="LandTax_g18_Code" keys="LandTax_g18_ID" lookupTable="LandTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g19" datatype="float" size="20" caption="сумма, руб гр20=гр16*(1-гр18)" />
+        <sourcefield name="LandTax_g20_ID" caption="Налоговая льгота в виде освобождения от налогообложения (ст. 395, ст. 7 Кодекса)" isNull="false" table="LandTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="LandTax_g20_Code" keys="LandTax_g20_ID" lookupTable="LandTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="LandTax_g20_Name" keys="LandTax_g20_ID" lookupTable="LandTaxPrivilege" lookupKeys="Key" lookupFields="Name" />
+        <field name="g21" datatype="float" size="20" caption="сумма, рубгр 22 = гр 16*(1-гр 18)" />
+        <sourcefield name="LandTax_g22_ID" caption="Налоговая льгота в виде уменьшения суммы налога (п. 2 ст. 387 Кодекса)" isNull="false" table="LandTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="LandTax_g22_Code" keys="LandTax_g22_ID" lookupTable="LandTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g23" datatype="float" size="20" caption="сумма, руб" />
+        <sourcefield name="LandTax_g24_ID" caption="Налоговая льгота в виде снижения налоговой ставки(п. 2 ст. 387 Кодекса)" isNull="false" table="LandTaxPrivilege" tableKeyField="Key" tableFields="Name;Code" />
+        <lookupfield name="LandTax_g24_Code" keys="LandTax_g24_ID" lookupTable="LandTaxPrivilege" lookupKeys="Key" lookupFields="Code" />
+        <field name="g25" datatype="float" size="20" caption="сумма, руб" />
+        <field name="g26" datatype="float" size="20" caption="Исчисленная сумма налога за налоговый период, руб">
+          <rules>
+            <rule name="%Doc%.TableP3Sp1.TotalChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="StrCode" datatype="string" size="5" />
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.TableP3Sp1.EditEventHandler" event="OnEdit" />
+        <rule name="%Doc%.TableP3Sp1.DeleteEventHandler" event="OnDelete" />
+        <rule name="%Doc%.TableP3Sp1.AfterDeleteEventHandler" event="OnAfterDelete" />
+      </rules>
+    </table>
+    <table id="KOSGU_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="SrcKey" datatype="integer" isDeltaValue="false" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet name="SHT_F08_810_R1" exportable="false" title="Раздел 1" isShowColumnNumbers="true" caption="1. Расходы в части уплаты налога на имущество организаций и земельного налога">
+      <view table="F08_810_R1_TopSum_SumTypes" readonly="true">
+        <col width="300" name="SumTypesName" align="left" caption="Наименование показателя" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+        <view table="F08_810_R1_TopSum_SumValues" masterKeys="StrKey" detailKeys="Key" readonly="false">
+          <view caption="Сумма">
+            <template>
+              <col width="150" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.SheetP1.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.SheetP1.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.SheetP1.EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="SHT_F08_810_R2" title="Раздел 2" isShowColumnNumbers="true" caption="2. Расходы на уплату налога на имущество организаций">
+      <view table="F08_810_R2_V3" levelModifier="1" readonly="true">
+        <col width="100" name="OKATO_Code" align="center" caption="Код ОКТМО, по которому подлежит уплате сумма налога" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+        <view caption="Сумма, руб">
+          <template>
+            <col width="150" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+            </rules>
+          </template>
+        </view>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.SheetP2.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.SheetP2.FormatEventHandler" event="OnGetFormat" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="Group_R2" caption="Раздел 2.1" />
+    <gridsheet name="SHT_F08_810_R2_1_Y1" groupSheet="Group_R2" exportable="false" title="Раздел 2.1.#Year" isShowColumnNumbers="true" caption="2.1. Детализация расходов на уплату налога на имущество организаций&#xD;&#xA;2.1.#Index. Детализация расходов на уплату налога на имущество организаций на #Year год">
+      <view table="F08_810_R2_1_V2" levelModifier="1" readonly="false">
+        <col width="100" name="OKATO_Code" align="center" caption="Код ОКТМО, по которому подлежит уплате сумма налога" readonly="true" />
+        <view caption="Среднегодовая стоимость имущества за налоговый период, руб" readonly="false">
+          <col width="100" name="g5" align="right" caption="всего" displayFormat=",0.00" />
+          <col width="125" name="g6" align="right" caption="в т.ч. недвижимое имущество" displayFormat=",0.00" />
+        </view>
+        <view caption="Стоимость льготируемого имущества">
+          <col width="100" name="PropertyTax_g7_Code" align="center" caption="код налоговой льготы" readonly="true" />
+          <col width="150" name="g8" align="right" caption="Среднегодовая стоимость необлагаемого налогом имущества за налоговый период, руб" displayFormat=",0.00" readonly="false" />
+        </view>
+        <col width="100" name="g9" align="right" caption="Налоговая база, руб&#xD;&#xA;(гр 2-гр 5)" displayFormat=",0.00" />
+        <col width="100" name="PropertyTax_g10_Code" align="center" caption="Код налоговой льготы (установленной в виде понижения налоговой ставки)" readonly="true" />
+        <col width="100" name="g11" align="right" caption="Налоговая ставка, %" readonly="false" displayFormat=",0.00" />
+        <col width="110" name="g12" align="right" caption="Сумма налога за налоговый период, руб&#xD;&#xA;(гр 6*гр 8)" displayFormat=",0.00" readonly="true" />
+        <view caption="Налоговая льгота  в виде уменьшения суммы налога, подлежащей уплате в бюджет">
+          <col width="100" name="PropertyTax_g13_Code" align="center" caption="код" readonly="true" />
+          <col width="100" name="g14" align="right" caption="сумма, руб" displayFormat=",0.00" readonly="false" />
+        </view>
+        <col width="100" name="g15" align="right" caption="Сумма налога, уплаченная за пределами Российской Федерации, руб" displayFormat=",0.00" readonly="false" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+        <col width="110" name="g16" align="right" caption="Сумма, руб&#xD;&#xA;(гр 9-гр 11+гр 12)" displayFormat=",0.00" readonly="true" />
+        <editors>
+          <editor id="F08_810_R2_1_Editor_L2" canAdd="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.SheetP2Sp1.ViewLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F08_810_R2_1_Editor_L2" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.SheetP2Sp1.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.SheetP2Sp1.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.SheetP2Sp1.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.SheetP2Sp1.CreateCaptionEventHandler" event="OnCreateTitle" />
+        <rule name="%Doc%.SheetP2Sp1.CreateCaptionEventHandler" event="OnCreateCaption" />
+        <rule name="%Doc%.SheetP2Sp1.ReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F08_810_R2_1_Y2" templateSheetName="SHT_F08_810_R2_1_Y1" />
+    <generatedsheet name="SHT_F08_810_R2_1_Y3" templateSheetName="SHT_F08_810_R2_1_Y1" />
+    <gridsheet name="SHT_F08_810_R3" title="Раздел 3" isShowColumnNumbers="true" caption="3. Расходы на уплату земельного налога">
+      <view table="F08_810_R3_V3" levelModifier="1" readonly="true">
+        <col width="150" name="OKATO_Code" align="center" caption="Код ОКТМО муниципального образования, на территории которого расположен земельный участок (доля земельного участка)" />
+        <col width="100" name="CadastreNum" align="center" caption="Кадастровый номер земельного участка" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+        <view caption="Сумма">
+          <template>
+            <col width="150" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+            </rules>
+          </template>
+        </view>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.SheetP3.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.SheetP3.FormatEventHandler" event="OnGetFormat" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="Group_R3" caption="Раздел 3.1" />
+    <gridsheet name="SHT_F08_810_R3_1_Y1" groupSheet="Group_R3" exportable="false" title="Раздел 3.1.#Year" isShowColumnNumbers="true" caption="3.1. Детализация расходов на уплату земельного налога&#xD;&#xA;3.1.#Index. Детализация расходов на уплату земельного налога на #Year год">
+      <view table="F08_810_R3_1_V2" levelModifier="1" readonly="false">
+        <col width="150" name="OKATO_Code" align="center" caption="Код ОКТМО муниципального образования, на территории которого расположен земельный участок (доля земельного участка)" />
+        <col width="100" name="CadastreNum" align="center" caption="Кадастровый номер земельного участка" readonly="true" />
+        <col width="100" name="CatLand_Code" align="center" caption="Категория земель (код)" readonly="true" />
+        <col width="100" name="g7" align="right" caption="Кадастровая стоимость (доля кадастровой стоимости) земельного участка, руб" displayFormat=",0.00" />
+        <col width="100" name="g8" align="right" caption="Доля налогоплательщика в праве на земельный участок" displayFormat=",0.00" />
+        <view caption="Налоговая льгота в виде доли необлагаемой площади земельного участка&#xD;&#xA;(п. 2 ст. 387 Налогового кодекса Российской Федерации (далее - Кодекс)">
+          <col width="100" name="LandTax_g9_Code" align="center" caption="код" readonly="true" />
+          <col width="200" name="g10" align="right" caption="сумма, руб" displayFormat=",0.00" />
+        </view>
+        <col width="100" name="g11" align="right" caption="Налоговая база, руб" displayFormat=",0.00" />
+        <col width="100" name="g12" align="right" caption="Налоговая ставка, %" displayFormat=",0.00" />
+        <col width="100" name="g13" align="right" caption="Количество полных месяцев владения земельным участком в течение налогового периода" displayFormat=",0.00" />
+        <col width="100" name="g14" align="right" caption="Коэффициент Кв" displayFormat=",0.00" />
+        <col width="100" name="g15" align="right" caption="Сумма исчисленного налога, руб" displayFormat=",0.00" />
+        <col width="100" name="g16" align="right" caption="Количество полных месяцев использования льготы" displayFormat=",0.00" />
+        <col width="100" name="g17" align="right" caption="Коэффициент Кл" displayFormat=",0.00" />
+        <view caption="Налоговая льгота в виде">
+          <view caption="в виде освобождения от налогообложения&#xD;&#xA;(п. 2 ст. 387 Кодекса)">
+            <col width="100" name="LandTax_g18_Code" align="center" caption="код" readonly="true" />
+            <col width="100" name="g19" align="right" caption="сумма, руб&#xD;&#xA;(гр 12*(1-гр 14))" readonly="true" displayFormat=",0.00" />
+          </view>
+          <view caption="в виде освобождения от налогообложения&#xD;&#xA;(ст. 395, ст. 7 Кодекса)">
+            <col width="100" name="LandTax_g20_Code" align="center" caption="код" readonly="true" />
+            <col width="100" name="g21" align="right" caption="сумма, руб&#xD;&#xA;(гр 12*(1-гр 14)" readonly="true" displayFormat=",0.00" />
+          </view>
+          <view caption=" в виде уменьшения суммы налога&#xD;&#xA;(п. 2 ст. 387 Кодекса)">
+            <col width="100" name="LandTax_g22_Code" align="center" caption="код" readonly="true" />
+            <col width="100" name="g23" align="right" caption="сумма, руб" displayFormat=",0.00" />
+          </view>
+          <view caption=" в виде снижения налоговой ставки&#xD;&#xA;(п. 2 ст. 387 Кодекса)">
+            <col width="100" name="LandTax_g24_Code" align="center" caption="код" readonly="true" />
+            <col width="100" name="g25" align="right" caption="сумма, руб" displayFormat=",0.00" />
+          </view>
+        </view>
+        <col width="50" name="StrCode" readonly="true" caption="Код строки" />
+        <col width="105" name="g26" align="right" caption="Исчисленная сумма налога за налоговый период, руб" displayFormat=",0.00" />
+        <editors>
+          <editor id="F08_810_R3_1_Editor_L2" canAdd="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.SheetP3Sp1.ViewLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F08_810_R3_1_Editor_L2" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.SheetP3Sp1.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.SheetP3Sp1.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.SheetP3Sp1.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.SheetP3Sp1.CreateCaptionEventHandler" event="OnCreateTitle" />
+        <rule name="%Doc%.SheetP3Sp1.CreateCaptionEventHandler" event="OnCreateCaption" />
+        <rule name="%Doc%.SheetP3Sp1.ReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F08_810_R3_1_Y2" templateSheetName="SHT_F08_810_R3_1_Y1" />
+    <generatedsheet name="SHT_F08_810_R3_1_Y3" templateSheetName="SHT_F08_810_R3_1_Y1" />
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+    </rules>
+  </sheets>
+  <editors>
+    <!--F08_810_R2_1_V2-->
+    <editor id="F08_810_R2_1_Editor_L2" caption="Расчет объемов на уплату налога на имущество организаций" width="700">
+      <fieldssheet title="Факторы расчета" name="F08_810_R2_1_Editor_L2_1" table="F08_810_R2_1_V2">
+        <field name="OKATO_ID" isShowAddEditButton="true" caption="ОКТМО:" />
+        <field name="PropertyTax_g7_ID" caption="Стоимость льготируемого имущества. Код льготы:" />
+        <field name="PropertyTax_g10_ID" caption="Код налоговой льготы (установленной в виде понижения налоговой ставки):" />
+        <field name="PropertyTax_g13_ID" caption="Код налоговой льготы (в виде уменьшения суммы налога, подлежащей уплате в бюджет):" />
+      </fieldssheet>
+    </editor>
+    <!--F08_810_R3_1_V2-->
+    <editor id="F08_810_R3_1_Editor_L2" caption="Расчет на уплату земельного налога" width="850" higth="700">
+      <fieldssheet title="Расчет на уплату земельного налога" name="F08_810_R3_1_Editor_L2_1" table="F08_810_R3_1_V2">
+        <field name="OKATO_ID" isShowAddEditButton="true" caption="ОКТМО:" />
+        <field name="CadastreNum" caption="Кадастровый номер:" />
+        <field name="CatLand_ID" caption="Категория земель (код):" />
+        <field name="LandTax_g9_ID" caption="Налоговая льгота в виде доли необлагаемой площади земельного участка (п. 2 ст. 387 Налогового кодекса Российской Федерации (далее - Кодекс):" />
+        <field name="LandTax_g18_ID" caption="Налоговая льгота в виде освобождения от налогообложения (п. 2 ст. 387 Кодекса):" />
+        <field name="LandTax_g20_ID" caption="Налоговая льгота в виде освобождения от налогообложения (ст. 395, ст. 7 Кодекса):" />
+        <field name="LandTax_g22_ID" caption="Налоговая льгота в виде уменьшения суммы налога (п. 2 ст. 387 Кодекса):" />
+        <field name="LandTax_g24_ID" caption="Налоговая льгота в виде снижения налоговой ставки (п. 2 ст. 387 Кодекса):" />
+      </fieldssheet>
+    </editor>
+    <editor id="OKATO" caption="ОКТМО">
+      <fieldssheet name="OKATO" table="OKATO" />
+    </editor>
+  </editors>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+</document>

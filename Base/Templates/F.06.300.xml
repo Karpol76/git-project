@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" version="1.0.7" CRC="3481825374" javascriptDocumentClassName="F06300.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSGroupSheet" sourceFile="MainLogic\GroupSheet.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F06_300\F06_300_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F06_300\F06_300_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F06_300\F06_300_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F06_300\F06_300_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F06_300\F06_300_Document.js" />
+  </rules>
+  <tables>
+    <!-- Справочники из файла Spr_Main.xml-->
+    <table id="Files">
+      <fields>
+        <field name="Key" datatype="integer" />
+        <field name="Name" datatype="string" size="600" isUnique="true" />
+        <field name="Start" datatype="integer" />
+        <field name="Length" datatype="integer" />
+        <field name="Guid" datatype="string" size="1000" />
+        <field name="Id" datatype="guid" />
+      </fields>
+    </table>
+    <table id="dual" readonly="true" canClear="false">
+      <fields>
+        <field name="Key" datatype="integer" size="1000" />
+        <field name="id" datatype="guid" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[{FC5921304E274F729733B16DD26F11C3}]]></el>
+        </row>
+      </data>
+    </table>
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPARegSpheres" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAStatuses" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="ServWork" sourceFile="MainData\Spr_Work.xml" />
+    <linkedtable id="WorkIndex" sourceFile="MainData\Spr_Work.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F06_300_R1_Values]]></el>
+          <el><![CDATA[KOSGU_Data]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F06_300_R1_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="IsTotal" datatype="integer" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="Name" datatype="string" size="200" />
+        <field name="BarsCode" datatype="string" size="5" caption="Код строки для выгрузки в БАРС" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[Оказание государственных услуг (выполнение работ)]]></el>
+          <el><![CDATA[01]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[Иные цели]]></el>
+          <el><![CDATA[02]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[Корректировка в связи с округлением]]></el>
+          <el><![CDATA[]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[900]]></el>
+          <el><![CDATA[Всего]]></el>
+          <el><![CDATA[total]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F06_300_R1_Values">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveTotalTable" event="OnSave" />
+      </rules>
+    </table>
+    <table id="F06_300_R2_1_L1">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" caption="Год" uniqueLabel="1" syncKey="true">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="ServWork_ID" caption="Государственная услуга" isNull="false" uniqueLabel="1" table="ServWork" tableKeyField="Key" tableFields="Name;Code" syncKey="true" />
+        <lookupfield name="ServWork_Code" caption="Код государственной услуги" keys="ServWork_ID" lookupTable="ServWork" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="ServWork_Name" caption="Наименование государственной услуги" keys="ServWork_ID" lookupTable="ServWork" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="UniqueNum" caption="Уникальный номер реестровой записи базового (отраслевого) перечня " keys="ServWork_ID" lookupTable="ServWork" lookupKeys="Key" lookupFields="Number" uniqueLabel="1" />
+        <lookupfield name="Indicators" caption="показатели, отражающие отраслевую специфику государственной услуги (работы) (содержание, условия (формы) оказания государственной услуги)" keys="ServWork_ID" lookupTable="ServWork" lookupKeys="Key" lookupFields="Indicators" />
+        <lookupfield name="ActivityType" caption="вид (услуга/работа)" keys="ServWork_ID" lookupTable="ServWork" lookupKeys="Key" lookupFields="ActivityType" />
+      </fields>
+    </table>
+    <table id="F06_300_R2_1_L2">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="10" />
+        <sourcefield name="OwnerKey" table="F06_300_R2_1_L1" syncKey="true" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="Year" caption="Год" uniqueLabel="1" keys="OwnerKey" lookupTable="F06_300_R2_1_L1" lookupKeys="Key" lookupFields="Year" />
+        <lookupfield name="ServWork_ID" caption="Государственная услуга" uniqueLabel="1" keys="OwnerKey" lookupTable="F06_300_R2_1_L1" lookupKeys="Key" lookupFields="ServWork_ID" />
+        <sourcefield name="WorkIndex_ID" uniqueLabel="1" isNull="false" caption="Показатель объема" table="WorkIndex" tableKeyField="Key" tableFields="Name;Code" syncKey="true" />
+        <lookupfield name="WorkIndex_Code" caption="Код" keys="WorkIndex_ID" lookupTable="WorkIndex" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="WorkIndex_Name" caption="Наименование" keys="WorkIndex_ID" lookupTable="WorkIndex" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="WorkIndex_Unit" caption="единица измерения" keys="WorkIndex_ID" lookupTable="WorkIndex" lookupKeys="Key" lookupFields="Unit" />
+        <field name="Volume" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="TotalCost" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtSum" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Ot" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtPayment" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtInsurance" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtOthers" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="MzTotal" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="MzOthers" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Ku" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Us" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tu" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Iz" datatype="float">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="TotalSum" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2ServiceWorkIndicatorTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2ServiceWorkIndicatorTable.AfterDeleteChildsEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2ServiceWorkIndicatorTable.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 2.2-->
+    <table id="F06_300_2_2" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="TargetSubsidieName" datatype="string" size="5000" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActAreaReg" datatype="string" size="250" />
+      </fields>
+    </table>
+    <table id="F06_300_R3_1">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="10" />
+        <field name="Year" datatype="integer" caption="Год" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Name" datatype="string" size="500" uniqueLabel="1" isNull="false" caption="Наименование" />
+        <field name="TotalCost" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtSum" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Ot" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtPayment" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtInsurance" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="OtOthers" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.OtPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Ku" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Us" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tu" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Sf" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Iz" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3SubsidieNameTable.CostPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P3SubsidieNameTable.AfterDeleteChildsEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P3SubsidieNameTable.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 3.2-->
+    <table id="F06_300_3_2" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="TargetSubsidieName" datatype="string" size="5000" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActAreaReg" datatype="string" size="250" />
+      </fields>
+    </table>
+    <table id="KOSGU_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="SrcKey" datatype="integer" isDeltaValue="false" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet title="Раздел 1" name="SHT_F06_300_r1" exportable="false" caption="1. Расходы на предоставление субсидий некоммерческим организациям" isShowColumnNumbers="true">
+      <view table="F06_300_R1_Rows" readonly="false">
+        <col width="350" caption="Наименование показателя" name="name" align="left" readonly="true" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+        <view table="F06_300_R1_Values" masterKeys="StrKey" detailKeys="F06_300_R1_Rows.Key">
+          <view width="600" caption="Сумма" canAdd="false">
+            <template>
+              <col width="150" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.P1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P1Sheet.EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R2_Group" caption="Раздел 2" />
+    <groupsheet name="SHT_F06_300_R2_1" caption="Раздел 2.1" groupSheet="R2_Group" />
+    <gridsheet name="SHT_F06_300_R2_1_Y1" groupSheet="SHT_F06_300_R2_1" title="Раздел 2.1.#Year" exportable="false" caption="2. Расходы на предоставление субсидий некоммерческим организациям&#xD;&#xA;2.1. Расчет расходов на предоставление субсидий некоммерческим организациям на оказание государственных услуг (выполнение работ)&#xD;&#xA;2.1.#Index Расчет расходов на предоставление субсидий некоммерческим организациям на оказание государственных услуг (выполнение работ) на #Year год" isShowColumnNumbers="true">
+      <view table="F06_300_R2_1_L1">
+        <col width="100" name="UniqueNum" align="center" readonly="true" isMergeCells="true" caption="Уникальный номер реестровой записи базового (отраслевого) перечня" />
+        <view caption="Государственная услуга (работа)">
+          <col width="400" caption="наименование" readonly="true" name="ServWork_Name" />
+          <col width="50" caption="вид (услуга/работа)" readonly="true" name="ActivityType" align="center" />
+          <col width="100" caption="показатели, отражающие отраслевую специфику государственной услуги (работы) (содержание, условия (формы) оказания государственной услуги)" readonly="true" name="Indicators" align="left" />
+        </view>
+        <view table="F06_300_R2_1_L2" masterKeys="OwnerKey" detailKeys="F06_300_R2_1_L1.Key">
+          <view caption="Показатель объема">
+            <col width="200" caption="наименование" readonly="true" name="WorkIndex_Name" />
+            <col width="70" caption="единица измерения" readonly="true" name="WorkIndex_Unit" align="left" />
+            <col width="70" caption="значение" name="Volume" displayFormat=",0.00" align="right" />
+          </view>
+          <view caption="Затраты на единицу государственной услуги (работы), руб">
+            <col width="70" caption="всего,&#xD;&#xA;(гр. 9 + гр. 14 + гр. 16 + гр. 17 + гр. 18 + гр. 19)" name="TotalCost" displayFormat=",0.00" align="right" readonly="true" />
+            <view caption="в том числе:">
+              <view caption="на оплату труда и начисления на выплаты по оплате труда">
+                <col width="70" name="OtSum" displayFormat=",0.00" align="right" caption="всего,&#xD;&#xA;(гр.10 + гр.11 + гр.12+ гр.13)" readonly="true" />
+                <view caption="в том числе">
+                  <col width="70" name="Ot" displayFormat=",0.00" align="right" caption="оплата труда" />
+                  <col width="100" name="OtPayment" displayFormat=",0.00" align="right" caption="выплаты, зависящие от размера оплаты труда" />
+                  <col width="120" name="OtInsurance" displayFormat=",0.00" align="right" caption="страховые взносы в государственные внебюджетные фонды" />
+                  <col width="100" name="OtOthers" displayFormat=",0.00" align="right" caption="иные расходы, не зависящие от размера оплаты труда" />
+                </view>
+              </view>
+              <view caption="на приобретение материальных запасов">
+                <col width="70" name="MzTotal" displayFormat=",0.00" align="right" caption="Всего" />
+                <view caption="из них:">
+                  <col width="120" name="MzOthers" displayFormat=",0.00" align="right" caption="горюче-смазочные материалы" />
+                </view>
+              </view>
+            </view>
+            <col width="100" name="Ku" displayFormat=",0.00" align="right" caption="на коммунальные услуги" />
+            <col width="110" name="Us" displayFormat=",0.00" align="right" caption="на приобретение услуг связи" />
+            <col width="110" name="Tu" displayFormat=",0.00" align="right" caption="на приобретение транспортных услуг" />
+            <col width="70" name="Iz" displayFormat=",0.00" align="right" caption="на иные затраты" />
+          </view>
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+          <col width="100" caption="Сумма, руб&#xD;&#xA;(гр. 7*гр. 8)" displayFormat=",0.00" name="TotalSum" readonly="true" align="right" />
+          <editors>
+            <editor id="F06_300_r2_1_Editor_L2" onAdd="true" onEdit="true" />
+          </editors>
+        </view>
+        <editors>
+          <editor id="F06_300_r2_1_Editor_L1" onAdd="true" onEdit="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.P2Sheet.ViewLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true" canAdd="false" canClear="false">
+        <editors>
+          <editor id="F06_300_r2_1_Editor_L1" onAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rules>
+          <rule name="%Doc%.P2Sheet.CalcEventHandler" event="OnCalc" />
+          <rule name="%Doc%.P2Sheet.FormatEventHandler" event="OnGetFormat" />
+          <rule name="%Doc%.P2Sheet.ActivateSheetEventHandler" event="OnActivateSheet" />
+          <rule name="%Doc%.P2Sheet.CreateCaptionEventHandler" event="OnCreateTitle" />
+          <rule name="%Doc%.P2Sheet.CreateCaptionEventHandler" event="OnCreateCaption" />
+          <rule name="%Doc%.P2Sheet.ReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        </rules>
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F06_300_R2_1_Y2" templateSheetName="SHT_F06_300_R2_1_Y1" />
+    <generatedsheet name="SHT_F06_300_R2_1_Y3" templateSheetName="SHT_F06_300_R2_1_Y1" />
+    <!--Раздел 2.2-->
+    <gridsheet name="SHT_F06_300_R2_2" title="Раздел 2.2" caption="2 Расходы на предоставление субсидий некоммерческим организациям&#xD;&#xA;2.2 Сведения о нормативных правовых (правовых) актах, устанавливающих порядок расчета объемов затрат и правила предоставления субсидий некоммерческим организациям на оказание государственных услуг (выполнение работ)" isShowColumnNumbers="true" groupSheet="R2_Group">
+      <view table="F06_300_2_2" canAdd="true" readonly="false">
+        <col width="350" caption="Наименование цели предоставления субсидии" name="TargetSubsidieName" align="left" readonly="true" />
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <col width="250" caption="сфера регулирования" name="ActAreaReg" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F06_300_2_2Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <groupsheet name="R3_Group" caption="Раздел 3" />
+    <groupsheet name="SHT_F06_300_R3_1" caption="Раздел 3.1" groupSheet="R3_Group" />
+    <gridsheet name="SHT_F06_300_R3_1_Y1" groupSheet="SHT_F06_300_R3_1" title="Раздел 3.1.#Year" exportable="false" caption="3. Расходы на предоставление субсидий некоммерческим организациям на иные цели&#xD;&#xA;3.1. Расчет расходов на предоставление субсидий некоммерческим организациям на иные цели&#xD;&#xA;3.1.#Index Расчет расходов на предоставление субсидий некоммерческим организациям на иные цели на #Year год" isShowColumnNumbers="true">
+      <view table="F06_300_R3_1">
+        <col width="300" caption="Наименование цели предоставления субсидии" readonly="true" name="Name" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+        <view caption="Сумма, руб">
+          <col caption="всего,&#xD;&#xA;(гр. 4 + гр. 9 + гр. 10 + гр. 11 + гр. 12 + гр. 13)" width="70" name="TotalCost" displayFormat=",0.00" align="right" readonly="true" />
+          <view caption="в том числе:">
+            <view caption="на оплату труда и начисления на выплаты по оплате труда">
+              <col caption="всего,&#xD;&#xA;(гр. 5 + гр. 6 + гр.7 + гр.8)" width="70" name="OtSum" displayFormat=",0.00" align="right" readonly="true" />
+              <view caption="в том числе">
+                <col name="Ot" width="100" displayFormat=",0.00" align="right" caption="оплата труда" />
+                <col name="OtPayment" width="100" displayFormat=",0.00" align="right" caption="выплаты, зависящие от размера оплаты труда" />
+                <col name="OtInsurance" width="150" displayFormat=",0.00" align="right" caption="страховые взносы в государственные внебюджетные фонды" />
+                <col name="OtOthers" width="100" displayFormat=",0.00" align="right" caption="иные расходы, не зависящие от размера оплаты труда" />
+              </view>
+            </view>
+            <col name="Ku" width="100" displayFormat=",0.00" align="right" caption="на коммунальные услуги" />
+            <col name="Us" width="100" displayFormat=",0.00" align="right" caption="на приобретение услуг связи" />
+            <col name="Tu" width="100" displayFormat=",0.00" align="right" caption="на приобретение транспортных услуг " />
+            <col name="Sf" width="100" displayFormat=",0.00" align="right" caption="на стипендиальный фонд" />
+            <col name="Iz" width="100" displayFormat=",0.00" align="right" caption="на иные затраты" />
+          </view>
+        </view>
+        <editors>
+          <editor id="F06_300_r3_1_Editor" onAdd="true" onEdit="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.P3Sheet.ViewLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true" canAdd="false" canClear="false">
+        <editors>
+          <editor id="F06_300_r3_1_Editor" onAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.P3Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P3Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P3Sheet.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.P3Sheet.CreateCaptionEventHandler" event="OnCreateTitle" />
+        <rule name="%Doc%.P3Sheet.CreateCaptionEventHandler" event="OnCreateCaption" />
+        <rule name="%Doc%.P3Sheet.ReadOnlyEventHandler" event="OnGetIsReadOnly" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F06_300_R3_1_Y2" templateSheetName="SHT_F06_300_R3_1_Y1" />
+    <generatedsheet name="SHT_F06_300_R3_1_Y3" templateSheetName="SHT_F06_300_R3_1_Y1" />
+    <!--Раздел 3.2-->
+    <gridsheet name="SHT_F06_300_R3_2" title="Раздел 3.2" caption="3. Расходы на предоставление субсидий некоммерческим организациям на иные цели&#xD;&#xA;3.2 Сведения о нормативных правовых (правовых) актах, устанавливающих порядок расчета объемов затрат и правила предоставления субсидий некоммерческим организациям на иные цели" isShowColumnNumbers="true" groupSheet="R3_Group">
+      <view table="F06_300_3_2" canAdd="true" readonly="false">
+        <col width="350" caption="Наименование цели предоставления субсидии" name="TargetSubsidieName" align="left" readonly="true" />
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <col width="250" caption="сфера регулирования" name="ActAreaReg" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F06_300_3_2Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+    </rules>
+  </sheets>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+  <editors>
+    <editor id="F06_300_r2_1_Editor_L1" caption="Государственная работа/услуга">
+      <fieldssheet name="F06_300_r2_1_Editor_L1" table="F06_300_R2_1_L1">
+        <field name="ServWork_ID" filterRule="ObasTableCollection.ServiceWorkSprTable.IsService" />
+        <field name="ServWork_Code" width="150" caption="Код" />
+        <field name="ServWork_Name" caption="Наименование" />
+        <field name="UniqueNum" />
+        <field name="Indicators" />
+      </fieldssheet>
+    </editor>
+    <editor id="F06_300_r2_1_Editor_L2" caption="Показатель объема">
+      <fieldssheet name="F06_300_r2_1_Editor_L2" table="F06_300_R2_1_L2">
+        <field name="WorkIndex_ID" />
+        <field name="WorkIndex_Code" width="150" caption="Код" />
+        <field name="WorkIndex_Name" caption="Наименование" />
+        <field name="WorkIndex_Unit" />
+      </fieldssheet>
+    </editor>
+    <editor id="F06_300_r3_1_Editor" caption="Цель предоставления субсидии">
+      <fieldssheet name="F06_300_r3_1_Editor1" table="F06_300_R3_1">
+        <field name="Name" />
+      </fieldssheet>
+    </editor>
+    <editor id="F06_300_2_2Editor" caption="Нормативный правовой (правовой) акт" width="650" height="335">
+      <fieldssheet name="VREditor1" table="F06_300_2_2">
+        <field name="TargetSubsidieName" caption="Наименование цели предоставления субсидии" />
+        <field name="ActKind" width="350" caption="Вид" />
+        <field name="ActDate" width="110" caption="Дата" />
+        <field name="ActNum" caption="Номер" />
+        <field name="ActName" caption="Наименование" />
+        <field name="ActAreaReg" caption="Сфера регулирования" />
+      </fieldssheet>
+    </editor>
+    <editor id="F06_300_3_2Editor" caption="Нормативный правовой (правовой) акт" width="650" height="335">
+      <fieldssheet name="VREditor1" table="F06_300_3_2">
+        <field name="TargetSubsidieName" caption="Наименование цели предоставления субсидии" />
+        <field name="ActKind" width="350" caption="Вид" />
+        <field name="ActDate" width="110" caption="Дата" />
+        <field name="ActNum" caption="Номер" />
+        <field name="ActName" caption="Наименование" />
+        <field name="ActAreaReg" caption="Сфера регулирования" />
+      </fieldssheet>
+    </editor>
+  </editors>
+  <files />
+</document>

@@ -1,0 +1,21 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var F05324;
+(function (F05324) {
+    var InterfaceRules = (function (_super) {
+        __extends(InterfaceRules, _super);
+        function InterfaceRules() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return InterfaceRules;
+    }(BaseInterfaceRules));
+    F05324.InterfaceRules = InterfaceRules;
+})(F05324 || (F05324 = {}));

@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" version="1.0.6" CRC="683453222" javascriptDocumentClassName="F04300.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F04_300\F04_300_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F04_300\F04_300_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F04_300\F04_300_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F04_300\F04_300_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F04_300\F04_300_Document.js" />
+  </rules>
+  <tables>
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OKVED" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F04_300_Total]]></el>
+          <el><![CDATA[KOSGU_Data]]></el>
+        </row>
+      </data>
+    </table>
+    <!--F04_300-->
+    <table id="F04_300_Total" caption="Итоги раздела 1">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.TableP1Total.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.TableP1Total.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.TableP1Total.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.TableP1Total.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveTotalTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F04_300_R1" caption="Факторы расчета">
+      <fields>
+        <field name="Key" datatype="integer" />
+        <field name="INN" datatype="float" caption="ИНН" isNull="false" uniqueLabel="1" />
+        <field name="KPP" datatype="integer" caption="КПП" isNull="false" uniqueLabel="1" />
+        <field name="Name" datatype="string" size="1000" caption="Наименование" isNull="false" uniqueLabel="1" />
+        <sourcefield name="OKVED_ID" caption="Код вида деятельности по ОКВЭД" isNull="false" table="OKVED" tableKeyField="Key" tableFields="Code;Name" />
+        <field name="G5" datatype="string" size="1000" caption="Цель взноса в уставный капитал" isNull="false" />
+        <field name="Y1" datatype="float" caption="на текущий финансовый год">
+          <rules>
+            <rule name="%Doc%.TableP1.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" caption="на очередной финансовый год">
+          <rules>
+            <rule name="%Doc%.TableP1.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" caption="на первый год планового периода">
+          <rules>
+            <rule name="%Doc%.TableP1.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" caption="на второй год планового периода">
+          <rules>
+            <rule name="%Doc%.TableP1.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Id" datatype="guid" />
+        <field name="StrCode" datatype="string" size="4" caption="Поле под код строки" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.TableP1.AfterDeleteChildsEventHandler" event="OnAfterDeleteChilds" />
+      </rules>
+    </table>
+    <!--раздел 2-->
+    <table id="F04_300_R2" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="LegalEntityINN" datatype="string" size="10" isNull="false" />
+        <field name="LegalEntityKPP" datatype="string" size="9" isNull="false" />
+        <field name="LegalEntityName" datatype="string" size="1000" isNull="false" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+      </fields>
+    </table>
+    <table id="KOSGU_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="SrcKey" datatype="integer" isDeltaValue="false" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet title="Раздел 1" name="SHT_F4_300_r1" exportable="false" caption="1. Расчет на предоставление бюджетных инвестиций" isShowColumnNumbers="true">
+      <view table="F04_300_R1">
+        <view caption="Юридическое лицо, в уставный капитал которого представляется взнос" readonly="true">
+          <col width="100" caption="ИНН" name="INN" align="center" errorMessage="ИНН должен содержать 10 знаков" />
+          <col width="100" caption="КПП" name="KPP" align="center" displayFormat="\d\d\d\d\d\d\d\d\d" errorMessage="КПП должен содержать 9 знаков" />
+          <col width="500" caption="наименование" name="Name" align="left" />
+        </view>
+        <col width="100" caption="Код вида деятельности по ОКВЭД" name="OKVED_ID" dropDownWidth="500" align="center" readonly="true" />
+        <col width="300" caption="Цель предоставления бюджетных инвестиций" name="G5" readonly="true" />
+        <col width="50" name="StrCode" align="center" caption="Код строки" />
+        <view caption="Сумма">
+          <template>
+            <col width="100" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+            </rules>
+          </template>
+        </view>
+        <editors>
+          <editor id="F04_300_R1_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F04_300_R1_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.P1Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P1Sheet.FormatEventHandler" event="OnGetFormat" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 2-->
+    <gridsheet name="SHT_F4_300_R2" title="Раздел 2" caption="2. Сведения о нормативных правовых (правовых) актах (проектах актов), являющихся основанием для осуществления бюджетных инвестиций" isShowColumnNumbers="true" groupSheet="R2_Group">
+      <view table="F04_300_R2" canAdd="true" readonly="false">
+        <view caption="Юридическое лицо, в уставный капитал которого представляется взнос">
+          <col width="100" caption="ИНН" name="LegalEntityINN" align="left" readonly="true" />
+          <col width="100" caption="КПП" name="LegalEntityKPP" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="LegalEntityName" align="left" readonly="true" />
+        </view>
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F04_300_2Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+    </rules>
+  </sheets>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+  <editors>
+    <editor id="F04_300_R1_Editor" table="F04_300_R1" caption="Факторы расчета объемов бюджетных инвестиций" width="500" height="268">
+      <fieldssheet name="F04_300_R1_Editor" table="F04_300_R1">
+        <field name="INN" width="90" editMask="\d{10}" errorMessage="ИНН должен содержать 10 знаков" />
+        <field name="KPP" width="90" editMask="\d{9}" errorMessage="КПП должен содержать 9 знаков" />
+        <field name="OKVED_ID" />
+        <field name="Name" breakLine="true" />
+        <field name="G5" />
+      </fieldssheet>
+    </editor>
+    <editor id="F04_300_2Editor" caption="Нормативный правовой (правовой) акт" width="650" height="380">
+      <fieldssheet name="VREditor1" table="F04_300_R2">
+        <group caption=" Юридическое лицо, в уставный капитал которого представляется взнос ">
+          <field name="LegalEntityINN" width="300" caption="ИНН" editMask="\d{10}" errorMessage="ИНН должен содержать 10 знаков" />
+          <field name="LegalEntityKPP" caption="КПП" editMask="\d{9}" errorMessage="КПП должен содержать 9 знаков" />
+          <field name="LegalEntityName" caption="Наименование" />
+        </group>
+        <group caption=" Нормативный правовой (правовой) акт ">
+          <field name="ActKind" width="350" caption="Вид" />
+          <field name="ActDate" width="110" caption="Дата" />
+          <field name="ActNum" caption="Номер" />
+          <field name="ActName" caption="Наименование" />
+        </group>
+      </fieldssheet>
+    </editor>
+  </editors>
+  <files />
+</document>

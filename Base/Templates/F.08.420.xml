@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" CRC="3481825374" version="1.0.6" javascriptDocumentClassName="F08420.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F08_420\F08_420_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F08_420\F08_420_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F08_420\F08_420_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F08_420\F08_420_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F08_420\F08_420_Document.js" />
+  </rules>
+  <tables>
+    <!-- Справочники из файла Spr_Main.xml-->
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPARegSpheres" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAStatuses" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <!--F08_400-->
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F08_400_R1_TopSum_V2]]></el>
+          <el><![CDATA[KOSGU_Data]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F08_400_R1" caption="1. Объем расходов на предоставление субсидий государственным корпорациям (компаниям) в виде имущественного взноса на иные цели, не связанные с капитальными вложениями">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="g1" datatype="string" size="200" isNull="false" isUnique="true" caption="Цель имущественного взноса" />
+        <field name="Y1" datatype="float" caption="на текущий финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" caption="на очередной финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" caption="на первый год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" caption="на второй год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="StrCode" datatype="string" size="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.P1Table.AfterDeleteChilds" event="OnAfterDeleteChilds" />
+      </rules>
+    </table>
+    <table id="F08_400_R1_TopSum_V2">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" caption="на текущий финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" caption="на очередной финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" caption="на первый год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" caption="на второй год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveTotalTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+    </table>
+    <!--раздел 2-->
+    <table id="F08_420_2" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActAreaReg" datatype="string" size="250" />
+      </fields>
+    </table>
+    <table id="KOSGU_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="SrcKey" datatype="integer" isDeltaValue="false" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet name="SHT_F08_400_R1" exportable="false" title="Раздел 1" caption="1. Объем расходов на предоставление субсидий государственным корпорациям (компаниям) в виде имущественного взноса на иные цели, не связанные с капитальными вложениями" isShowColumnNumbers="true">
+      <view table="F08_400_R1">
+        <col width="200" caption="Цель имущественного взноса" name="g1" align="left" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+        <view caption="Сумма">
+          <template>
+            <col width="150" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+            </rules>
+          </template>
+        </view>
+        <editors>
+          <editor id="F08_400_R1_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <view table="F08_400_R1_TopSum_V2">
+        <template>
+          <col name="Y{fieldName}" columnName="Y{columnName}" />
+          <rules>
+            <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+          </rules>
+        </template>
+        <editors>
+          <editor id="F08_400_R1_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.P1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P1Sheet.CalcEventHandler" event="OnCalc" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 2-->
+    <gridsheet name="SHT_F08_420_R2" title="Раздел 2" caption="2.  Сведения о нормативных правовых (правовых) актах, устанавливающих порядок расчета" isShowColumnNumbers="true">
+      <view table="F08_420_2" canAdd="true" readonly="false">
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <col width="250" caption="сфера регулирования" name="ActAreaReg" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F08_420_2Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+      <rule name="%Doc%.ImportRules.ImportBarsData" event="OnDataImport" />
+    </rules>
+  </sheets>
+  <editors>
+    <editor id="F08_400_R1_Editor" caption="Цель имущественного взноса">
+      <fieldssheet name="F08_400_R1_Editor_1" table="F08_400_R1">
+        <field name="g1" />
+      </fieldssheet>
+    </editor>
+    <editor id="F08_420_2Editor" caption="Нормативный правовой (правовой) акт" width="650" height="250">
+      <fieldssheet name="VREditor1" table="F08_420_2">
+        <field name="ActKind" width="350" caption="Вид" />
+        <field name="ActDate" width="110" caption="Дата" />
+        <field name="ActNum" caption="Номер" />
+        <field name="ActName" caption="Наименование" />
+        <field name="ActAreaReg" caption="Сфера регулирования" />
+      </fieldssheet>
+    </editor>
+  </editors>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+  <files />
+</document>

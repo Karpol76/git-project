@@ -1,0 +1,1085 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" version="1.0.3" CRC="3481825374" canOpen="false" javascriptDocumentClassName="F01290.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSSingleSheet" sourceFile="MainLogic\SingleSheet.js" />
+    <import id="JSInsuranceTable" sourceFile="MainLogic\InsuranceTable.js" />
+    <import id="JSInsuranceSheet" sourceFile="MainLogic\InsuranceSheet.js" />
+    <import id="JSGroupSheet" sourceFile="MainLogic\GroupSheet.js" />
+    <import id="JS012XXBasTable" sourceFile="MainLogic\F01_2XX_Base\F01_2XX_Base_TableRules.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F01_290\F01_290_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F01_290\F01_290_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F01_290\F01_290_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F01_290\F01_290_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F01_290\F01_290_Document.js" />
+  </rules>
+  <tables>
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="PostCategory" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="BaseInsurancePremiums" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="Indexation_Calced" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="Positions" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="InsuranceRows" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CorrectionFactors" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F01_290_1_1_Values]]></el>
+          <el><![CDATA[F01_290_KOSGU]]></el>
+        </row>
+      </data>
+    </table>
+    <!--Ф01.290-->
+    <!--Раздел 1-->
+    <table id="F01_290_1_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Name" datatype="string" size="1000" />
+        <field name="StrCode" datatype="string" size="2" caption="Код строки" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[Фонд оплаты труда и страховые взносы  в государственные внебюджетные фонды, всего]]></el>
+          <el><![CDATA[10]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[
+              в том числе:
+  фонд оплаты труда
+          ]]></el>
+          <el><![CDATA[11]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[ страховые взносы в государственные внебюджетные фонды]]></el>
+          <el><![CDATA[12]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[Изменение расчетов в связи с исполнением требований по исполнительным листам, всего]]></el>
+          <el><![CDATA[20]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[
+              в том числе:
+  фонд оплаты труда
+          ]]></el>
+          <el><![CDATA[21]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[ страховые взносы в государственные внебюджетные фонды]]></el>
+          <el><![CDATA[22]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[Корректировка с учетом сокращения (балансировки) предельных объемов]]></el>
+          <el><![CDATA[30]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[8]]></el>
+          <el><![CDATA[
+              в том числе:
+  фонд оплаты труда
+          ]]></el>
+          <el><![CDATA[31]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[9]]></el>
+          <el><![CDATA[ страховые взносы в государственные внебюджетные фонды]]></el>
+          <el><![CDATA[32]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Всего]]></el>
+          <el><![CDATA[90]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[
+              в том числе:
+  фонд оплаты труда
+          ]]></el>
+          <el><![CDATA[91]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[ страховые взносы в государственные внебюджетные фонды]]></el>
+          <el><![CDATA[92]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[Корректировка в связи с округлением]]></el>
+          <el><![CDATA[-]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_290_1_1_Values" canAdd="false" canDelete="false" canClear="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrKey" syncKey="true" datatype="integer" />
+        <field name="Y1" datatype="float" size="20" precision="2" caption="всего Y1">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2" caption="всего Y2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2" caption="всего Y3">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2" caption="всего Y4">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsTotal" syncKey="true" datatype="integer" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[8]]></el>
+          <el><![CDATA[8]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[9]]></el>
+          <el><![CDATA[9]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+    </table>
+    <!--Раздел 2-->
+    <table id="F01_290_2_1_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Name" datatype="string" size="1000" />
+        <field name="StrCode" datatype="string" size="5" caption="Код строки" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Председатель избирательной комиссии]]></el>
+          <el><![CDATA[001]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[Заместитель председателя избирательной комиссии]]></el>
+          <el><![CDATA[002]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[Секретарь избирательной комиссии]]></el>
+          <el><![CDATA[003]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[Работники аппарата избирательной комиссии]]></el>
+          <el><![CDATA[004]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[Итого]]></el>
+          <el><![CDATA[900]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_290_2_1_Values">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="StrKey" table="F01_290_2_1_Rows" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.TotalChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.TotalChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.TotalChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.TotalChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Number_Y1" datatype="float" size="20" precision="2" caption="Численность Y1">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Number_Y2" datatype="float" size="20" precision="2" caption="Численность Y2">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Number_Y3" datatype="float" size="20" precision="2" caption="Численность Y3">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Number_Y4" datatype="float" size="20" precision="2" caption="Численность Y4">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Wage_Y1" datatype="float" size="20" precision="2" caption="Среднемесячный ФОТ на одного работника Y1">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Wage_Y2" datatype="float" size="20" precision="2" caption="Среднемесячный ФОТ на одного работника Y2">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Wage_Y3" datatype="float" size="20" precision="2" caption="Среднемесячный ФОТ на одного работника Y3">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Wage_Y4" datatype="float" size="20" precision="2" caption="Среднемесячный ФОТ на одного работника Y4">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="FakeMonths_Y1" datatype="float" size="20" precision="2" caption="Количество месяцев Y1" />
+        <field name="FakeMonths_Y2" datatype="float" size="20" precision="2" caption="Количество месяцев Y2" />
+        <field name="FakeMonths_Y3" datatype="float" size="20" precision="2" caption="Количество месяцев Y3" />
+        <field name="FakeMonths_Y4" datatype="float" size="20" precision="2" caption="Количество месяцев Y4" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[10]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[11]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[12]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[13]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_290_2_2_Values" canAdd="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="StrKey" table="InsuranceRows" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <lookupfield name="Rate" keys="StrKey" lookupTable="InsuranceRows" lookupKeys="Key" lookupFields="Rate" />
+        <field name="Tax_Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tax_Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tax_Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tax_Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Fot_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Fot_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Fot_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Fot_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Count_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Count_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Count_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Count_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.TaxPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <lookupfield name="StrType" keys="StrKey" lookupTable="InsuranceRows" lookupKeys="Key" lookupFields="StrType" />
+        <lookupfield name="IsCalc" keys="StrKey" lookupTable="InsuranceRows" lookupKeys="Key" lookupFields="IsCalc" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[9]]></el>
+          <el><![CDATA[9]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[8]]></el>
+          <el><![CDATA[8]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_290_Months" canAdd="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Months_Y1" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.MonthsTable.MonthChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Months_Y2" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.MonthsTable.MonthChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Months_Y3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.MonthsTable.MonthChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Months_Y4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.MonthsTable.MonthChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[12]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_290_KOSGU">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <!--Раздел 1-->
+    <gridsheet title="Раздел 1" name="SHT_F01_290_1" caption="1. Фонд оплаты труда и страховые взносы в государственные внебюджетные фонды" isShowColumnNumbers="true">
+      <view table="F01_290_1_Rows" readonly="true">
+        <col width="500" caption="Наименование показателя" name="Name" align="left" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" />
+        <view table="F01_290_1_1_Values" readonly="false" masterKeys="StrKey" detailKeys="F01_290_1_Rows.Key">
+          <view caption="Сумма">
+            <template>
+              <col width="120" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <view caption="Количество месяцев" table="F01_290_Months" readonly="true">
+            <template>
+              <col width="75" name="Months_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.P1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P1Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P1Sheet.EditingCellEventHandler" event="OnEditingCell" />
+        <rule name="%Doc%.P1Sheet.EditCellEventHandler" event="OnEditCell" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 2-->
+    <groupsheet name="R2_Group" caption="Раздел 2" />
+    <gridsheet title="Раздел 2.1" name="SHT_F01_290_2_1" caption="2.1. Расчет фонда оплаты труда" isShowColumnNumbers="true" groupSheet="R2_Group">
+      <view table="F01_290_2_1_Rows" readonly="false">
+        <col width="400" caption="Категория должностей" name="Name" readonly="true" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" readonly="true" />
+        <view table="F01_290_2_1_Values">
+          <template>
+            <view caption="{caption}">
+              <col width="120" name="Number_Y{fieldName}" caption="Численность, ед." align="right" displayFormat=",0.00" />
+              <col width="120" name="Wage_Y{fieldName}" caption="Среднемесячный размер оплаты труда на одного работника, руб" align="right" displayFormat=",0.00" />
+              <col width="120" name="FakeMonths_Y{fieldName}" caption="Количество месяцев" align="right" displayFormat=",0.00" readonly="true" />
+              <col width="120" name="Y{fieldName}" caption="{caption}" align="right" displayFormat=",0.00" readonly="true" />
+            </view>
+            <rules>
+              <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              <rule name="%Doc%.P2Sp1Sheet.GetYearsCaptionEventHandler" event="OnGetCaption" />
+            </rules>
+          </template>
+          <view table="F01_290_Months" levelModifier="-1">
+            <template>
+              <col name="Months_Y{fieldName}" columnName="FakeMonths_Y{columnName}" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              </rules>
+            </template>
+          </view>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.P2Sp1Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P2Sp1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="ObasHelper.GetFalse" event="OnCanAdd" />
+        <rule name="ObasHelper.GetFalse" event="OnCanDelete" />
+      </rules>
+    </gridsheet>
+    <gridsheet title="Раздел 2.2" name="SHT_F01_290_2_2" caption="2.2 Расчет страховых взносов в государственные внебюджетные фонды" isShowColumnNumbers="true" groupSheet="R2_Group">
+      <view table="InsuranceRows">
+        <col width="200" caption="Наименование показателя" name="StrName" align="left" readonly="true" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" readonly="true" />
+        <view table="F01_290_2_2_Values" masterKeys="StrKey" detailKeys="InsuranceRows.Key">
+          <view width="600" caption="Размер базы для начисления страховых взносов, руб" readonly="true">
+            <template>
+              <col width="150" name="Tax_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <view width="600" caption="Сумма взноса, руб">
+            <template>
+              <col width="75" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                <rule name="%Doc%.CommonRules.GetYearsIsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+              </rules>
+            </template>
+          </view>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.P2Sp2Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P2Sp2Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P2Sp2Sheet.EditingCellEventHandler" event="OnEditingCell" />
+        <rule name="ObasHelper.GetFalse" event="OnCanAdd" />
+        <rule name="ObasHelper.GetFalse" event="OnCanDelete" />
+      </rules>
+    </gridsheet>
+    <gridsheet title="Раздел 3" name="SHT_F01_290_3" caption="3. Справочно. Количество месяцев" isShowColumnNumbers="true">
+      <view table="F01_290_Months" caption="Количество месяцев">
+        <template>
+          <col width="100" name="Months_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+          <rules>
+            <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+          </rules>
+        </template>
+      </view>
+      <rules>
+        <rule name="%Doc%.P3Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="ObasHelper.GetFalse" event="OnCanAdd" />
+        <rule name="ObasHelper.GetFalse" event="OnCanDelete" />
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+    </rules>
+  </sheets>
+  <menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+  <files />
+</document>

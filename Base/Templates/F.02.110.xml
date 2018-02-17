@@ -1,0 +1,1226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Расчет на закупку товаров, работ и услуг для государственных (муниципальных) нужд" version="1.0.12" CRC="4283581486" javascriptDocumentClassName="F02110.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSGroupSheet" sourceFile="MainLogic\GroupSheet.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F02_110\F02_110_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F02_110\F02_110_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F02_110\F02_110_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F02_110\F02_110_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F02_110\F02_110_Document.js" />
+  </rules>
+  <tables>
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OKEI" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="OKPD" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="SubgroupNormativeExpenses" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RateDollarActual" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="AddAnalysisFeature" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="VR_COSGUs" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRateDollarActual" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F02_100_R1_Values]]></el>
+          <el><![CDATA[KOSGU_Data]]></el>
+        </row>
+      </data>
+    </table>
+    <!--Разрез объектов закупки-->
+    <table id="PurchaseObjects" caption="Справочник объектов закупки">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Name" datatype="string" size="1000" caption="Наименование" isUnique="true" isNull="false" />
+      </fields>
+    </table>
+    <!--F01_200-->
+    <table id="F02_100_R1_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="g1a" datatype="string" size="1000" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[Закупки:
+федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[200]]></el>
+          <el><![CDATA[зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[800]]></el>
+          <el><![CDATA[Корректировака в связи с округлением]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[300]]></el>
+          <el><![CDATA[Всего]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F02_100_R1_Values" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.SaveTotalTableAndPartIndicateBudgetTables" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+    </table>
+    <!--Раздел 3. Справочно-->
+    <table id="F02_100_Ref_1_Kosgu">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="AddAnalysisFeature_ID" caption="Дополнительный аналитический признак" isNull="false" uniqueLabel="1" table="AddAnalysisFeature" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="KOSGU_ID" caption="КОСГУ" isNull="false" uniqueLabel="1" table="KOSGU" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="AddAnalysisFeature_Code" keys="AddAnalysisFeature_ID" lookupTable="AddAnalysisFeature" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="KOSGU_Code" caption="Код по КОСГУ" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Code" />
+      </fields>
+    </table>
+    <table id="F02_100_Ref_1_Okpd">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" table="F02_100_Ref_1_Kosgu" syncKey="true" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.Ref1OkpdTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="OKPD_ID" caption="ОКПД" syncKey="true" table="OKPD" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="OKPD_Code" keys="OKPD_ID" lookupTable="OKPD" lookupKeys="Key" lookupFields="Code" />
+        <field name="Code" datatype="string" size="100" caption="Код" />
+        <field name="Name" datatype="string" size="1000" caption="Наименование" />
+      </fields>
+    </table>
+    <table id="F02_100_Ref_1_Object">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" table="F02_100_Ref_1_Okpd" tableKeyField="Key" tableFields="Key" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="PurchaseObjects_ID" uniqueLabel="1" isNull="false" caption="Наименование ОЗ" table="PurchaseObjects" tableKeyField="Key" tableFields="Name">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.ObjectChangeEventHandler" event="OnChange" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="PurchaseObjects_Name" keys="PurchaseObjects_ID" lookupTable="PurchaseObjects" lookupKeys="Key" lookupFields="Name" />
+        <field name="Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y6" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref1ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y_R1_1" datatype="float" precision="2" />
+        <field name="Y_R1_2" datatype="float" precision="2" />
+        <field name="Y_R1_3" datatype="float" precision="2" />
+        <field name="Y_R1_4" datatype="float" precision="2" />
+        <field name="Y_R3_1" datatype="float" precision="2" />
+        <field name="Y_R3_2" datatype="float" precision="2" />
+        <field name="Y_R3_3" datatype="float" precision="2" />
+        <field name="Y_R3_4" datatype="float" precision="2" />
+        <field name="Year" datatype="integer" isNull="false" isDeltaValue="false" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.Ref1ObjTable.DeleteEventHandler" event="OnDelete" />
+        <rule name="%Doc%.Ref1ObjTable.AfterDeleteEventHandler" event="OnAfterDelete" />
+      </rules>
+    </table>
+    <table id="F02_100_Ref_1_ObjectDesc">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="PurchaseObjects_ID" isUnique="true" isNull="false" caption="Наименование ОЗ" table="PurchaseObjects" tableKeyField="Key" tableFields="Name" />
+        <sourcefield name="SubgroupNormativeExpenses_ID" syncKey="true" isNull="false" caption="Подгруппа нормативных затрат" table="SubgroupNormativeExpenses" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="SubgroupNormativeExpenses_Name" caption="Подгруппа нормативных затрат" keys="SubgroupNormativeExpenses_ID" lookupTable="SubgroupNormativeExpenses" lookupKeys="Key" lookupFields="Name" />
+        <field name="ProgName" datatype="string" size="1000" isNull="false" caption="Наименование государственной программы" />
+        <field name="ActionName" datatype="string" size="1000" isNull="false" caption="Наименование мероприятия" />
+        <field name="Result" datatype="string" size="1000" isNull="false" caption="Ожидаемый результат" />
+        <field name="Rationale" datatype="string" size="1000" isNull="false" caption="Обоснование" />
+        <field name="Info" datatype="string" size="1000" isNull="false" caption="Сведения о технической сложности" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+      </fields>
+    </table>
+    <table id="F02_100_Ref_2_Kosgu">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="AddAnalysisFeature_ID" caption="Дополнительный аналитический признак" isNull="false" uniqueLabel="1" table="AddAnalysisFeature" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="KOSGU_ID" caption="КОСГУ" isNull="false" uniqueLabel="1" table="KOSGU" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="AddAnalysisFeature_Code" keys="AddAnalysisFeature_ID" lookupTable="AddAnalysisFeature" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="KOSGU_Code" caption="Код по КОСГУ" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Code" />
+      </fields>
+    </table>
+    <table id="F02_100_Ref_2_Okpd">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" syncKey="true" table="F02_100_Ref_2_Kosgu" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.Ref2OkpdTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="OKPD_ID" caption="ОКПД" syncKey="true" table="OKPD" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="OKPD_Code" keys="OKPD_ID" lookupTable="OKPD" lookupKeys="Key" lookupFields="Code" />
+        <field name="Code" datatype="string" size="100" caption="Код" />
+        <field name="Name" datatype="string" size="1000" caption="Наименование" />
+      </fields>
+    </table>
+    <table id="F02_100_Ref_2_Object">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" table="F02_100_Ref_2_Okpd" tableKeyField="Key" tableFields="Key" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="PurchaseObjects_ID" uniqueLabel="1" isNull="false" caption="Наименование ОЗ" table="PurchaseObjects" tableKeyField="Key" tableFields="Name">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.ObjectChangeEventHandler" event="OnChange" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="PurchaseObjects_Name" keys="PurchaseObjects_ID" lookupTable="PurchaseObjects" lookupKeys="Key" lookupFields="Name" />
+        <field name="Usd_Y1" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_Y2" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_Y3" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_Y4" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_Y5" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R1_Y1" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R1_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R1_Y2" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R1_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R1_Y3" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R1_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R1_Y4" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R1_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R3_Y1" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R3_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R3_Y2" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R3_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R3_Y3" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R3_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R3_Y4" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Rub_R3_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Usd_R3_Y5" datatype="float" precision="5">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y6" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y_R1_1" datatype="float" precision="2" />
+        <field name="Y_R1_2" datatype="float" precision="2" />
+        <field name="Y_R1_3" datatype="float" precision="2" />
+        <field name="Y_R1_4" datatype="float" precision="2" />
+        <field name="Y_R3_1" datatype="float" precision="2" />
+        <field name="Y_R3_2" datatype="float" precision="2" />
+        <field name="Y_R3_3" datatype="float" precision="2" />
+        <field name="Y_R3_4" datatype="float" precision="2" />
+        <field name="Other_Rub_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R1_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R1_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R1_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R1_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R3_Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R3_Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R3_Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Other_Rub_R3_Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.Ref2ObjTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Year" datatype="integer" isDeltaValue="false" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.Ref2ObjTable.DeleteEventHandler" event="OnDelete" />
+        <rule name="%Doc%.Ref2ObjTable.AfterDeleteEventHandler" event="OnAfterDelete" />
+      </rules>
+    </table>
+    <table id="F02_100_Ref_2_ObjectDesc">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="PurchaseObjects_ID" isUnique="true" isNull="false" caption="Наименование ОЗ" table="PurchaseObjects" tableKeyField="Key" tableFields="Name" />
+        <sourcefield name="SubgroupNormativeExpenses_ID" syncKey="true" isNull="false" caption="Подгруппа нормативных затрат" table="SubgroupNormativeExpenses" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="SubgroupNormativeExpenses_Name" caption="Подгруппа нормативных затрат" keys="SubgroupNormativeExpenses_ID" lookupTable="SubgroupNormativeExpenses" lookupKeys="Key" lookupFields="Name" />
+        <field name="ProgName" datatype="string" size="1000" isNull="false" caption="Наименование государственной программы" />
+        <field name="ActionName" datatype="string" size="1000" isNull="false" caption="Наименование мероприятия" />
+        <field name="Result" datatype="string" size="1000" isNull="false" caption="Ожидаемый результат" />
+        <field name="Rationale" datatype="string" size="1000" isNull="false" caption="Обоснование" />
+        <field name="Info" datatype="string" size="1000" isNull="false" caption="Сведения о технической сложности" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+      </fields>
+    </table>
+    <table id="KOSGU_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="SrcKey" datatype="integer" isDeltaValue="false" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet name="R1" title="Раздел 1" exportable="false" caption="1. Расчет на закупку товаров, работ и услуг для обеспечения федеральных нужд" isShowColumnNumbers="true">
+      <view table="F02_100_R1_Rows" readonly="false">
+        <col width="280" name="g1a" caption="Наименование показателя" />
+        <col width="50" name="StrCode" caption="Код строки" align="center" />
+        <view table="F02_100_R1_Values" masterKeys="StrKey" detailKeys="Key">
+          <view caption="Сумма">
+            <template>
+              <col width="120" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <template>
+            <col width="150" name="Y{fieldName}" caption="Сумма, подлежащая исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            </rules>
+          </template>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.P1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P1Sheet.EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R2_Group" caption="Раздел 2" />
+    <gridsheet name="Sheet2" groupSheet="R2_Group" title="Раздел 2.1" caption="2. Расчет на закупку товаров, работ и услуг для обеспечения федеральных нужд&#xA;2.1. Расчет на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам федеральных органов исполнительной власти и иных государственных органов, а также  казенных учреждений" isShowColumnNumbers="true">
+      <view table="F02_100_Ref_1_Kosgu" readonly="true">
+        <col width="80" caption="Код по КОСГУ" name="KOSGU_Code" readonly="true" isMergeCells="true" align="center" />
+        <col width="150" caption="Дополнительный аналитический признак" name="AddAnalysisFeature_Code" isMergeCells="true" align="center" />
+        <view table="F02_100_Ref_1_Okpd" canAdd="true" canEdit="true">
+          <view width="379" caption="Товары, работы и услуги по ОКПД">
+            <col width="70" caption="код&#xA;(класс, подкласс, группа)" name="OKPD_Code" readonly="true" isMergeCells="true" align="center" />
+            <col width="308" caption="наименование" name="OKPD_ID" readonly="true" isMergeCells="true" />
+          </view>
+          <view table="F02_100_Ref_1_Object" readonly="true">
+            <col width="270" name="Year" caption="Год (планируемый год) размещения извещения об осуществлении закупки, направления приглашения принять участие в определении поставщика (подрядчика, исполнителя), заключения контракта с единственным поставщиком (подрядчиком, исполнителем)" readonly="true" />
+            <view caption="Сумма">
+              <template>
+                <col width="120" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                <rules>
+                  <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                  <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                </rules>
+              </template>
+            </view>
+            <template>
+              <col width="150" name="Y{fieldName}" caption="Сумма, подлежащая исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              </rules>
+            </template>
+          </view>
+        </view>
+        <view table="dual" readonly="true" />
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.P2Sp1Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P2Sp1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P2Sp1Sheet.EditCellEventHandler" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="Sheet3" groupSheet="R2_Group" title="Раздел 2.2" caption="2. Расчет на закупку товаров, работ и услуг для обеспечения федеральных нужд&#xA;2.2. Расчет на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов" isShowColumnNumbers="true">
+      <view table="F02_100_Ref_2_Kosgu" readonly="true">
+        <col width="79" caption="Код по КОСГУ" name="KOSGU_Code" readonly="true" isMergeCells="true" align="center" />
+        <col width="150" caption="Дополнительный аналитический признак" name="AddAnalysisFeature_Code" isMergeCells="true" align="center" />
+        <view table="F02_100_Ref_2_Okpd">
+          <view width="379" caption="Товары, работы и услуги по ОКПД">
+            <col width="70" caption="код" name="OKPD_Code" readonly="true" isMergeCells="true" align="center" />
+            <col width="308" caption="наименование" name="OKPD_ID" readonly="true" isMergeCells="true" />
+          </view>
+          <view table="F02_100_Ref_2_Object" readonly="true">
+            <col width="170" name="Year" caption="Год (планируемый год) осуществления закупки" readonly="true" />
+            <view caption="Сумма">
+              <view caption="в иностранной валюте,&#xA;долл США">
+                <template>
+                  <col width="100" name="Usd_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00000" readonly="true" />
+                  <rules>
+                    <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                    <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  </rules>
+                </template>
+              </view>
+              <view caption="в рублевом эквиваленте иностранной валюты по курсу долл США,&#xA;руб">
+                <template>
+                  <col width="120" name="Rub_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                  <rules>
+                    <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                    <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  </rules>
+                </template>
+              </view>
+              <view caption="в валюте Российской Федерации,&#xA;руб">
+                <template>
+                  <col width="100" name="Other_Rub_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                  <rules>
+                    <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                    <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  </rules>
+                </template>
+              </view>
+              <view caption="всего сумма,&#xA;руб">
+                <template>
+                  <col width="120" name="Y{fieldName}" caption="{caption}" align="right" displayFormat=",0.00" readonly="true" />
+                  <rules>
+                    <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                    <rule name="%Doc%.P2Sp2Sheet.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  </rules>
+                </template>
+              </view>
+            </view>
+            <template>
+              <col width="220" caption="Сумма, подлежащая исполнению за пределами планового периода" name="Y{fieldName}" displayFormat=",0.00" align="right" readonly="true" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              </rules>
+            </template>
+          </view>
+        </view>
+        <view table="dual" readonly="true" />
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.P2Sp2Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P2Sp2Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P2Sp2Sheet.EditCellEventHandler" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R3_Group" caption="Раздел 3" />
+    <groupsheet name="R3_1_Group" caption="Раздел 3.1" groupSheet="R3_Group" />
+    <gridsheet name="Sheet4" title="Раздел 3.1.1" groupSheet="R3_1_Group" caption="3. Справочно: Сведения о расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по объектам закупок&#xA;3.1. Справочно: Сведения о  расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений по объектам закупок&#xA;3.1.1. Сведения об объеме  расчета на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений по объектам закупок" isShowColumnNumbers="true">
+      <view table="F02_100_Ref_1_Kosgu" readonly="false">
+        <col width="80" caption="Код по КОСГУ" name="KOSGU_Code" readonly="true" isMergeCells="true" align="center" />
+        <col width="150" caption="Дополнительный аналитический признак" name="AddAnalysisFeature_Code" isMergeCells="true" align="center" />
+        <view table="F02_100_Ref_1_Okpd" readonly="false">
+          <view width="379" caption="Товары, работы и услуги по ОКПД">
+            <col width="70" caption="код&#xA;(класс, подкласс, группа)" name="OKPD_Code" readonly="true" isMergeCells="true" align="center" />
+            <col width="308" caption="наименование" name="OKPD_ID" readonly="true" isMergeCells="true" />
+          </view>
+          <view table="F02_100_Ref_1_Object" readonly="false">
+            <col width="308" caption="Наименование объекта закупки" name="PurchaseObjects_ID" readonly="true" />
+            <col width="250" name="Year" caption="Год (планируемый год) размещения извещения об осуществлении закупки, направления приглашения принять участие в определении поставщика (подрядчика, исполнителя), заключения контракта с единственным поставщиком (подрядчиком, исполнителем)" readonly="false" />
+            <view caption="Всего, рублей">
+              <template>
+                <col width="120" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                <rules>
+                  <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                  <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                </rules>
+              </template>
+            </view>
+            <view caption="из них сумма, рублей">
+              <view caption="расходы I раздела бюджетной сметы">
+                <template>
+                  <col width="120" name="Y_R1_{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                  <rules>
+                    <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                    <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  </rules>
+                </template>
+              </view>
+              <view caption="расходы III раздела бюджетной сметы">
+                <template>
+                  <col width="120" name="Y_R3_{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                  <rules>
+                    <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                    <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  </rules>
+                </template>
+              </view>
+            </view>
+            <template>
+              <col width="150" name="Y{fieldName}" caption="Сумма, подлежащая исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              </rules>
+            </template>
+            <editors>
+              <editor id="F02_100_Ref_1_Object_Editor" />
+            </editors>
+          </view>
+          <editors>
+            <editor id="Sheet4_OKPD_Editor" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true" />
+        <editors>
+          <editor id="F02_100_Ref_1_Kosgu_Editor" />
+        </editors>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F02_100_Ref_1_Kosgu_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.P3Sp1Sp1Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P3Sp1Sp1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="ObasHelper.ConstraintYearEditCellHandler" event="OnEditCell" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="Sheet5" title="Раздел 3.1.2" groupSheet="R3_1_Group" caption="3. Справочно: Сведения о расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по объектам закупок&#xA;3.1. Справочно: Сведения о  расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений по объектам закупок&#xA;3.1.2. Описание и обоснование объектов закупок" isShowColumnNumbers="true">
+      <view table="F02_100_Ref_1_ObjectDesc">
+        <col width="250" name="PurchaseObjects_ID" readonly="true" caption="Наименование объекта закупки" />
+        <col width="250" name="SubgroupNormativeExpenses_Name" readonly="true" caption="Подгруппа нормативных затрат" />
+        <view caption="Цель осуществления закупки">
+          <col width="350" name="ProgName" readonly="true" caption="Наименование государственной программы, ведомственной целевой программы, федеральной целевой программы, иного документа стратегического и программного планирования" />
+          <col width="350" name="ActionName" readonly="true" caption="Наименование мероприятия государственной программы Российской Федерации либо непрограммного направления деятельности (функции, полномочия), наименование международного договора Российской Федерации" />
+          <col width="250" name="Result" readonly="true" caption="Ожидаемый результат реализации мероприятия государственной программы Российской Федерации" />
+          <col width="350" name="Rationale" readonly="true" caption="Обоснование соответствия объекта закупки мероприятию государственной программы Российской Федерации, функциям, полномочиям и (или) международному договору Российской Федерации" />
+        </view>
+        <col width="250" name="Info" readonly="true" caption="Сведения о технической сложности, инновационности и специальном характере закупки" />
+        <view width="750" caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F02_100_Ref_1_ObjectDesc_Editor" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.Sheet5CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.Sheet5FormatEventHandler" event="OnGetFormat" />
+        <rule name="ObasHelper.GetFalse" event="OnCanAdd" />
+        <rule name="ObasHelper.GetFalse" event="OnCanDelete" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R3_2_Group" caption="Раздел 3.2" groupSheet="R3_Group" />
+    <gridsheet name="Sheet6" title="Раздел 3.2.1" groupSheet="R3_2_Group" caption="3. Справочно: Сведения о расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по объектам закупок&#xA;3.2. Справочно: Сведения о  расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов по объектам закупок&#xA;3.2.1. Сведения о  расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов по объектам закупок" isShowColumnNumbers="true">
+      <view table="F02_100_Ref_2_Kosgu" readonly="false">
+        <col width="80" caption="Код по КОСГУ" name="KOSGU_Code" readonly="true" isMergeCells="true" align="center" />
+        <col width="150" caption="Дополнительный аналитический признак" name="AddAnalysisFeature_Code" isMergeCells="true" align="center" />
+        <view table="F02_100_Ref_2_Okpd" readonly="false">
+          <view width="379" caption="Товары, работы и услуги по ОКПД" align="center">
+            <col width="70" caption="код&#xA;(класс, подкласс, группа)" name="OKPD_Code" readonly="true" isMergeCells="true" />
+            <col width="308" caption="наименование" name="OKPD_ID" readonly="true" isMergeCells="true" />
+          </view>
+          <view table="F02_100_Ref_2_Object" readonly="false">
+            <col width="308" caption="Наименование объекта закупки" name="PurchaseObjects_ID" readonly="true" />
+            <col width="170" name="Year" caption="Год (планируемый год) осуществления закупки" readonly="false" />
+            <view caption="Сумма">
+              <view caption="в иностранной валюте,&#xA;долл США">
+                <view caption="Всего, долл США">
+                  <template>
+                    <col width="100" name="Usd_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00000" />
+                    <rules>
+                      <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                      <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                    </rules>
+                  </template>
+                </view>
+                <view caption="из них сумма, долл США">
+                  <view caption=" расходы I раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Usd_R1_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00000" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                  <view caption=" расходы III раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Usd_R3_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00000" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                </view>
+              </view>
+              <view caption="в рублевом эквиваленте иностранной валюты по курсу долл США,&#xA;руб">
+                <view caption="Всего, рублей">
+                  <template>
+                    <col width="100" name="Rub_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                    <rules>
+                      <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                      <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                    </rules>
+                  </template>
+                </view>
+                <view caption="из них сумма, рублей">
+                  <view caption=" расходы I раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Rub_R1_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                  <view caption=" расходы III раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Rub_R3_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                </view>
+              </view>
+              <view caption="в валюте Российской Федерации,&#xA;руб">
+                <view caption="Всего, рублей">
+                  <template>
+                    <col width="100" name="Other_Rub_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                    <rules>
+                      <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                      <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                    </rules>
+                  </template>
+                </view>
+                <view caption="из них сумма, рублей">
+                  <view caption=" расходы I раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Other_Rub_R1_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                  <view caption=" расходы III раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Other_Rub_R3_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                </view>
+              </view>
+              <view caption="всего сумма,&#xA;руб">
+                <view caption="Всего, рублей">
+                  <template>
+                    <col width="100" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                    <rules>
+                      <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                      <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                    </rules>
+                  </template>
+                </view>
+                <view caption="из них сумма, рублей">
+                  <view caption=" расходы I раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Y_R1_{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                  <view caption=" расходы III раздела бюджетной сметы">
+                    <template>
+                      <col width="100" name="Y_R3_{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+                      <rules>
+                        <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                        <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                      </rules>
+                    </template>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <template>
+              <col width="220" caption="Сумма, подлежащая исполнению за пределами планового периода" name="Y{fieldName}" displayFormat=",0.00" align="right" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              </rules>
+            </template>
+            <editors>
+              <editor id="F02_100_Ref_2_Object_Editor" />
+            </editors>
+          </view>
+          <editors>
+            <editor id="Sheet6_OKPD_Editor" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true" />
+        <editors>
+          <editor id="F02_100_Ref_2_Kosgu_Editor" />
+        </editors>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F02_100_Ref_2_Kosgu_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.P3Sp2Sp1Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P3Sp2Sp1Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="ObasHelper.ConstraintYearEditCellHandler" event="OnEditCell" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="Sheet7" title="Раздел 3.2.2" groupSheet="R3_2_Group" caption="3. Справочно: Сведения о расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по объектам закупок&#xA;3.2. Справочно: Сведения о  расчете на закупку товаров, работ и услуг для обеспечения федеральных нужд по закупкам зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов по объектам закупок&#xA;3.2.2. Описание и обоснование объектов закупок" isShowColumnNumbers="true">
+      <view table="F02_100_Ref_2_ObjectDesc">
+        <col width="250" name="PurchaseObjects_ID" readonly="true" caption="Наименование объекта закупки" />
+        <col width="250" name="SubgroupNormativeExpenses_Name" readonly="true" caption="Подгруппа нормативных затрат" />
+        <view caption="Цель осуществления закупки">
+          <col width="350" name="ProgName" readonly="true" caption="Наименование государственной программы, ведомственной целевой программы, федеральной целевой программы, иного документа стратегического и программного планирования" />
+          <col width="350" name="ActionName" readonly="true" caption="Наименование мероприятия государственной программы Российской Федерации либо непрограммного направления деятельности (функции, полномочия), наименование международного договора Российской Федерации" />
+          <col width="250" name="Result" readonly="true" caption="Ожидаемый результат реализации мероприятия государственной программы Российской Федерации" />
+          <col width="350" name="Rationale" readonly="true" caption="Обоснование соответствия объекта закупки мероприятию государственной программы Российской Федерации, функциям, полномочиям и (или) международному договору Российской Федерации" />
+        </view>
+        <col width="250" name="Info" readonly="true" caption="Сведения о технической сложности, инновационности и специальном характере закупки" />
+        <view width="750" caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F02_100_Ref_2_ObjectDesc_Editor" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.Sheet5CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.Sheet5FormatEventHandler" event="OnGetFormat" />
+        <rule name="ObasHelper.GetFalse" event="OnCanAdd" />
+        <rule name="ObasHelper.GetFalse" event="OnCanDelete" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="Info" exportable="false" title="Раздел 4" caption="4. Справочно: курс доллара США, учтенный при сметном расчете, руб за 1 долл США" isShowColumnNumbers="true">
+      <view table="tRateDollarActual" readonly="true">
+        <template>
+          <col width="100" name="Val{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+          <rules>
+            <rule name="%Doc%.AddYearsHelper.GetDollarRateYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+          </rules>
+        </template>
+        <template>
+          <col width="100" name="Val{fieldName}" caption="за пределами планового периода" align="right" displayFormat=",0.00" />
+          <rules>
+            <rule name="%Doc%.AddYearsHelper.GetAddDollarRateYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+          </rules>
+        </template>
+      </view>
+      <rules>
+        <rule name="%Doc%.CommonRules.GetDollarRateFormat" event="OnGetFormat" />
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+    </rules>
+  </sheets>
+  <editors>
+    <editor id="F02_100_Ref_1_Kosgu_Editor" caption="КОСГУ">
+      <fieldssheet name="F02_100_Ref_1_Kosgu_Editor_1" table="F02_100_Ref_1_Kosgu">
+        <field name="KOSGU_ID" caption="Код по КОСГУ:" filterRule="%Doc%.CommonRules.FilterKosgu" />
+        <field name="AddAnalysisFeature_ID" caption="Дополнительный аналитический признак:" />
+      </fieldssheet>
+    </editor>
+    <editor id="Sheet4_OKPD_Editor" caption="Добавление элемента ОКПД">
+      <fieldssheet name="F02_100_Ref_1_OKPD_Editor_1" table="F02_100_Ref_1_Okpd">
+        <group caption="Товары, работы и услуги по ОКПД">
+          <field name="OKPD_Code" width="70" caption="Код" filterRule="%Doc%.InterfaceRules.P3FilterOkpd">
+            <rules>
+              <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+            </rules>
+          </field>
+          <field name="OKPD_ID" caption="Название" filterRule="%Doc%.InterfaceRules.P3FilterOkpd">
+            <rules>
+              <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+            </rules>
+          </field>
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F02_100_Ref_1_Object_Editor" caption="Объект закупки">
+      <fieldssheet name="F02_100_Ref_1_Object_Editor_1" table="F02_100_Ref_1_Object">
+        <field name="PurchaseObjects_ID" caption="Наименование объекта закупки" isShowAddEditButton="true" />
+      </fieldssheet>
+    </editor>
+    <editor id="F02_100_Ref_1_ObjectDesc_Editor" caption="Цель осуществления закупки">
+      <fieldssheet title="Цель осуществления закупки" name="F02_100_Ref_1_ObjectDesc_Editor_1" table="F02_100_Ref_1_ObjectDesc">
+        <field name="SubgroupNormativeExpenses_ID" caption="Подгруппа нормативных затрат" />
+        <field name="ProgName" caption="Наименование программы" />
+        <field name="ActionName" caption="Наименование мероприятия программы" />
+        <field name="Result" caption="Ожидаемый результат" />
+        <field name="Rationale" caption="Обоснование соответствия" />
+        <field name="Info" caption="Сведения о технической сложности" />
+        <group caption=" Нормативный правовой (правовой) акт ">
+          <field name="ActKind" width="350" caption="Вид" />
+          <field name="ActDate" width="110" caption="Дата" />
+          <field name="ActNum" caption="Номер" />
+          <field name="ActName" caption="Наименование" />
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F02_100_Ref_2_Kosgu_Editor" caption="КОСГУ">
+      <fieldssheet name="F02_100_Ref_2_Kosgu_Editor_1" table="F02_100_Ref_2_Kosgu">
+        <field name="KOSGU_ID" caption="Код по КОСГУ:" filterRule="%Doc%.CommonRules.FilterKosgu" />
+        <field name="AddAnalysisFeature_ID" caption="Дополнительный аналитический признак:" />
+      </fieldssheet>
+    </editor>
+    <editor id="Sheet6_OKPD_Editor" caption="Добавление элемента ОКПД">
+      <fieldssheet name="F02_100_Ref_2_OKPD_Editor_1" table="F02_100_Ref_2_Okpd">
+        <group caption="Товары, работы и услуги по ОКПД">
+          <field name="OKPD_Code" width="70" caption="Код" filterRule="%Doc%.InterfaceRules.P3FilterOkpd">
+            <rules>
+              <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+            </rules>
+          </field>
+          <field name="OKPD_ID" caption="Название" filterRule="%Doc%.InterfaceRules.P3FilterOkpd">
+            <rules>
+              <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+            </rules>
+          </field>
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F02_100_Ref_2_Object_Editor" caption="Объект закупки">
+      <fieldssheet name="F02_100_Ref_2_Object_Editor_1" table="F02_100_Ref_2_Object">
+        <field name="PurchaseObjects_ID" caption="Наименование объекта закупки" isShowAddEditButton="true" />
+      </fieldssheet>
+    </editor>
+    <editor id="F02_100_Ref_2_ObjectDesc_Editor" caption="Цель осуществления закупки">
+      <fieldssheet title="Цель осуществления закупки" name="F02_100_Ref_2_ObjectDesc_Editor_1" table="F02_100_Ref_2_ObjectDesc">
+        <field name="SubgroupNormativeExpenses_ID" caption="Подгруппа нормативных затрат" />
+        <field name="ProgName" caption="Наименование программы" />
+        <field name="ActionName" caption="Наименование мероприятия программы" />
+        <field name="Result" caption="Ожидаемый результат" />
+        <field name="Rationale" caption="Обоснование соответствия" />
+        <field name="Info" caption="Сведения о технической сложности" />
+        <group caption=" Нормативный правовой (правовой) акт ">
+          <field name="ActKind" width="350" caption="Вид" />
+          <field name="ActDate" width="110" caption="Дата" />
+          <field name="ActNum" caption="Номер" />
+          <field name="ActName" caption="Наименование" />
+        </group>
+      </fieldssheet>
+    </editor>
+  </editors>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+</document>

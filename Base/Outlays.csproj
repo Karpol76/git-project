@@ -1,0 +1,1295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{86C287E5-C861-448E-88C3-3DE6DCCBA49E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GroupTemplate.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\OutlayExchangeData.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\Spr_Main_User.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OutlayAttach1Template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OutlayAttach2Template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\handlebars-v4.0.5.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.290.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.02.120.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.310.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.320.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.212.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.120.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.105.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.304.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.307.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.303.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.310.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.311.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.306.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.321.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.323.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.314.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.305.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.401.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.309.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.05.315.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.317.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.05.316.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.320.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.322.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.319.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.318.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.05.325.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.330.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.329.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.328.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.05.327.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.308.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.312.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.06.250.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.210.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.200.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.122.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.121.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.05.102.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.05.302.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.326.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.324.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.06.300.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.05.301.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.07.100.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.910.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.500.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.700.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Бюджетные сметы.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="MainData\Department.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\PLAN_STAGE1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\RRO_STAGE1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="MainData\Spr_Forms_STAGE1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\Spr_Main.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="MainData\Spr_Ped.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\Spr_Spr_01.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\Spr_Temp.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainData\Spr_Work.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\bxml\BaseOrgTemplate.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\bxml\BaseTemplate.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\bxml\InnerTemplate.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.110.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.01.211.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.01.212.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.222.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.01.280.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.285.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.01.302.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.400.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.409.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.01.500.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.02.110.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.02.200.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.02.242.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.110.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.211.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.220.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.400.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.03.500.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.04.111.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.04.120.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.04.300.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.06.100.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.06.200.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.100.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.410.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.420.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.600.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.810.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.821.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.822.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.08.920.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Templates\F.09.100.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\F.10.120.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="..\..\..\EditorPro\Build\JS\BaseDocument.d.ts">
+      <Link>Scripts\Typings\BaseDocument.d.ts</Link>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="MainLogic\AddAnalysisIndicatorSheets.ts" />
+    <TypeScriptCompile Include="MainLogic\AddAnalysisIndicatorTables.ts" />
+    <TypeScriptCompile Include="MainLogic\BaseAnalyticsDocument.ts" />
+    <TypeScriptCompile Include="MainLogic\BaseDocumentObject.ts" />
+    <TypeScriptCompile Include="MainLogic\CommonRules.ts" />
+    <TypeScriptCompile Include="MainLogic\DocumentSettings.ts" />
+    <TypeScriptCompile Include="MainLogic\Events.ts" />
+    <TypeScriptCompile Include="MainLogic\F01_2XX_Base\F01_2XX_Base_Document.ts" />
+    <TypeScriptCompile Include="MainLogic\F01_2XX_Base\F01_2XX_Base_ExportRules.ts" />
+    <TypeScriptCompile Include="MainLogic\F01_2XX_Base\F01_2XX_Base_InterfaceRules.ts" />
+    <TypeScriptCompile Include="MainLogic\F01_2XX_Base\F01_2XX_Base_TableRules.ts" />
+    <TypeScriptCompile Include="MainLogic\F01_2XX_Base\F01_2XX_Base_UpdateRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FGroup\FGroup_Document.ts" />
+    <TypeScriptCompile Include="MainLogic\FGroup\FGroup_InterfaceRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FGroup\FGroup_TableRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FMain\FMain_Document.ts" />
+    <TypeScriptCompile Include="MainLogic\FMain\FMain_EditorRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FMain\FMain_InterfaceRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FMain\FMain_TableRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FMain\FMain_UpdateRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FOutlayAttach\FOutlayAttach_Document.ts" />
+    <TypeScriptCompile Include="MainLogic\FOutlayAttach\FOutlayAttach_ExportRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FOutlayAttach\FOutlayAttach_InterfaceRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FOutlayAttach\FOutlayAttach_TableRules.ts" />
+    <TypeScriptCompile Include="MainLogic\FSubsidiesSubventions\FSubsidiesSubvetionsSheet.ts" />
+    <TypeScriptCompile Include="MainLogic\FSubsidiesSubventions\FSubsidiesSubvetionsTable.ts" />
+    <TypeScriptCompile Include="MainLogic\GroupSheet.ts" />
+    <TypeScriptCompile Include="MainLogic\InsuranceSheet.ts" />
+    <TypeScriptCompile Include="MainLogic\InsuranceTable.ts" />
+    <TypeScriptCompile Include="MainLogic\Interfaces.ts" />
+    <TypeScriptCompile Include="MainLogic\ObasDocumentCollection.ts" />
+    <TypeScriptCompile Include="MainLogic\ObasHelper.ts" />
+    <TypeScriptCompile Include="MainLogic\ObasStageSettings.ts" />
+    <TypeScriptCompile Include="MainLogic\ObasTableCollection.ts" />
+    <TypeScriptCompile Include="MainLogic\ObasTableWithKeys.ts" />
+    <TypeScriptCompile Include="MainLogic\Patching\PatchDual.ts" />
+    <TypeScriptCompile Include="MainLogic\Patching\PatchPaymentType.ts" />
+    <TypeScriptCompile Include="MainLogic\Patching\PatchRateDollarActual.ts" />
+    <TypeScriptCompile Include="MainLogic\RROTables.ts" />
+    <TypeScriptCompile Include="MainLogic\Rro_Document.ts" />
+    <TypeScriptCompile Include="MainLogic\SheetFormatCollection.ts" />
+    <TypeScriptCompile Include="MainLogic\SingleSheet.ts" />
+    <TypeScriptCompile Include="MainLogic\SprTables.ts" />
+    <TypeScriptCompile Include="MainLogic\TableFieldInfo.ts" />
+    <TypeScriptCompile Include="MainLogic\TableInfo.ts" />
+    <TypeScriptCompile Include="Scripts\Typings\handlebars\handlebars.d.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_110\F01_110_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_110\F01_110_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_110\F01_110_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_110\F01_110_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_110\F01_110_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_211\F01_211_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_211\F01_211_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_211\F01_211_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_211\F01_211_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_211\F01_211_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_212\F01_212_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_212\F01_212_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_212\F01_212_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_212\F01_212_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_212\F01_212_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_222\F01_222_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_222\F01_222_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_222\F01_222_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_222\F01_222_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_222\F01_222_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_280\F01_280_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_280\F01_280_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_280\F01_280_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_280\F01_280_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_280\F01_280_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_285\F01_285_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_285\F01_285_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_285\F01_285_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_285\F01_285_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_285\F01_285_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_290\F01_290_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_290\F01_290_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_290\F01_290_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_290\F01_290_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_290\F01_290_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_302\F01_302_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_302\F01_302_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_302\F01_302_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_302\F01_302_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_302\F01_302_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_400\F01_400_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_400\F01_400_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_400\F01_400_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_400\F01_400_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_400\F01_400_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_409\F01_409_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_409\F01_409_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_409\F01_409_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_409\F01_409_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_409\F01_409_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_500\F01_500_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_500\F01_500_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_500\F01_500_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_500\F01_500_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F01_500\F01_500_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_310\F03_310_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_310\F03_310_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_310\F03_310_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_310\F03_310_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_310\F03_310_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_120\F02_120_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_120\F02_120_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_120\F02_120_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_120\F02_120_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_120\F02_120_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_110\F02_110_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_110\F02_110_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_110\F02_110_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_110\F02_110_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_110\F02_110_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_200\F02_200_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_200\F02_200_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_200\F02_200_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_200\F02_200_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_200\F02_200_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_242\F02_242_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_242\F02_242_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_242\F02_242_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_242\F02_242_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F02_242\F02_242_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_320\F03_320_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_320\F03_320_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_320\F03_320_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_320\F03_320_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_320\F03_320_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_212\F03_212_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_212\F03_212_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_212\F03_212_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_212\F03_212_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_212\F03_212_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_120\F03_120_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_120\F03_120_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_120\F03_120_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_120\F03_120_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_120\F03_120_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_110\F03_110_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_110\F03_110_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_110\F03_110_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_110\F03_110_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_110\F03_110_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_211\F03_211_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_211\F03_211_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_211\F03_211_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_211\F03_211_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_211\F03_211_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_220\F03_220_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_220\F03_220_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_220\F03_220_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_220\F03_220_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_220\F03_220_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_400\F03_400_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_400\F03_400_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_400\F03_400_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_400\F03_400_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_400\F03_400_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_105\F05_105_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_105\F05_105_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_105\F05_105_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_105\F05_105_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_105\F05_105_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_304\F05_304_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_304\F05_304_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_304\F05_304_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_304\F05_304_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_304\F05_304_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_305\F05_305_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_305\F05_305_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_305\F05_305_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_305\F05_305_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_305\F05_305_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_307\F05_307_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_307\F05_307_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_307\F05_307_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_307\F05_307_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_307\F05_307_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_303\F05_303_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_303\F05_303_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_303\F05_303_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_303\F05_303_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_303\F05_303_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_309\F05_309_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_310\F05_310_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_310\F05_310_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_310\F05_310_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_310\F05_310_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_310\F05_310_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_311\F05_311_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_311\F05_311_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_311\F05_311_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_311\F05_311_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_311\F05_311_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_306\F05_306_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_306\F05_306_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_306\F05_306_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_306\F05_306_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_306\F05_306_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_314\F05_314_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_314\F05_314_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_314\F05_314_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_314\F05_314_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_314\F05_314_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_317\F05_317_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_317\F05_317_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_317\F05_317_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_317\F05_317_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_317\F05_317_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_308\F05_308_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_308\F05_308_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_308\F05_308_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_308\F05_308_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_308\F05_308_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_309\F05_309_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_309\F05_309_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_309\F05_309_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_309\F05_309_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_318\F05_318_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_318\F05_318_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_318\F05_318_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_318\F05_318_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_318\F05_318_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_321\F05_321_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_321\F05_321_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_321\F05_321_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_321\F05_321_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_321\F05_321_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_323\F05_323_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_323\F05_323_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_323\F05_323_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_323\F05_323_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_323\F05_323_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_325\F05_325_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_325\F05_325_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_325\F05_325_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_325\F05_325_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_325\F05_325_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_328\F05_328_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_328\F05_328_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_328\F05_328_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_328\F05_328_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_328\F05_328_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_312\F05_312_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_312\F05_312_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_312\F05_312_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_312\F05_312_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_312\F05_312_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_320\F05_320_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_320\F05_320_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_320\F05_320_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_320\F05_320_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_320\F05_320_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_327\F05_327_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_327\F05_327_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_327\F05_327_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_327\F05_327_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_327\F05_327_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_401\F05_401_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_401\F05_401_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_401\F05_401_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_401\F05_401_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_401\F05_401_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_250\F06_250_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_250\F06_250_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_250\F06_250_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_250\F06_250_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_250\F06_250_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_210\F05_210_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_210\F05_210_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_210\F05_210_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_210\F05_210_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_210\F05_210_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_200\F05_200_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_200\F05_200_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_200\F05_200_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_200\F05_200_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_200\F05_200_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_122\F05_122_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_122\F05_122_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_122\F05_122_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_122\F05_122_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_122\F05_122_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_121\F05_121_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_121\F05_121_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_121\F05_121_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_121\F05_121_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_121\F05_121_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_500\F03_500_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_500\F03_500_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_500\F03_500_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_500\F03_500_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F03_500\F03_500_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_111\F04_111_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_111\F04_111_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_111\F04_111_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_111\F04_111_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_111\F04_111_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_120\F04_120_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_120\F04_120_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_120\F04_120_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_120\F04_120_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_120\F04_120_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_300\F04_300_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_300\F04_300_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_300\F04_300_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_300\F04_300_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F04_300\F04_300_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_301\F05_301_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_301\F05_301_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_301\F05_301_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_301\F05_301_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_301\F05_301_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_302\F05_302_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_302\F05_302_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_302\F05_302_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_302\F05_302_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_302\F05_302_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_324\F05_324_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_324\F05_324_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_324\F05_324_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_324\F05_324_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_324\F05_324_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_300\F06_300_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_300\F06_300_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_300\F06_300_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_300\F06_300_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_300\F06_300_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_100\F06_100_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_100\F06_100_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_100\F06_100_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_100\F06_100_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_100\F06_100_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_200\F06_200_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_200\F06_200_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_200\F06_200_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_200\F06_200_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_200\F06_200_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_303\F06_303_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_303\F06_303_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_303\F06_303_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_303\F06_303_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F06_303\F06_303_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_100\F08_100_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_100\F08_100_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_100\F08_100_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_100\F08_100_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_100\F08_100_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_410\F08_410_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_410\F08_410_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_410\F08_410_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_410\F08_410_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_410\F08_410_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F07_100\F07_100_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F07_100\F07_100_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F07_100\F07_100_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F07_100\F07_100_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F07_100\F07_100_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_910\F08_910_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_910\F08_910_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_910\F08_910_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_910\F08_910_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_910\F08_910_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_500\F08_500_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_500\F08_500_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_500\F08_500_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_500\F08_500_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_500\F08_500_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_420\F08_420_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_420\F08_420_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_420\F08_420_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_420\F08_420_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_420\F08_420_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_600\F08_600_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_600\F08_600_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_600\F08_600_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_600\F08_600_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_600\F08_600_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_810\F08_810_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_810\F08_810_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_810\F08_810_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_810\F08_810_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_810\F08_810_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_821\F08_821_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_821\F08_821_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_821\F08_821_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_821\F08_821_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_821\F08_821_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_822\F08_822_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_822\F08_822_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_822\F08_822_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_822\F08_822_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_822\F08_822_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_700\F08_700_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_700\F08_700_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_700\F08_700_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_700\F08_700_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_700\F08_700_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_920\F08_920_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_920\F08_920_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_920\F08_920_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_920\F08_920_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F08_920\F08_920_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_102\F05_102_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_102\F05_102_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_102\F05_102_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_102\F05_102_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F05_102\F05_102_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F09_100\F09_100_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F09_100\F09_100_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F09_100\F09_100_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F09_100\F09_100_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F09_100\F09_100_UpdateRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F10_120\F10_120_Document.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F10_120\F10_120_ExportRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F10_120\F10_120_InterfaceRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F10_120\F10_120_TableRules.ts" />
+    <TypeScriptCompile Include="Templates\Logic\Current\F10_120\F10_120_UpdateRules.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.110.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.211.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.212.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.222.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.280.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.285.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.302.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.400.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.409.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.01.500.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.02.110.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.02.200.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.02.242.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.03.110.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.03.211.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.03.220.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.03.400.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.03.500.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.04.111.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.04.120.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.04.300.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.06.100.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.06.200.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.100.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.410.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.420.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.600.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.810.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.821.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.822.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.08.920.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.09.100.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.10.120.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="arch_empty.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="arch.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClearTestData.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.06.300.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="xls\OutlayAttach1.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateBundle.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PublishBundle.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.102.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UpdateFiles\CreateUpdate.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UpdateFiles\settings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.08.500.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.03.120.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.03.212.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.03.320.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.08.700.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.121.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.08.910.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.301.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.03.310.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.02.120.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.07.100.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.324.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.122.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.326.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.200.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.06.250.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.210.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.308.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.327.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.315.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.316.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\F.06.303.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.06.303.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.328.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.329.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.330.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.105.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.319.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.401.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.318.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.320.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.321.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.322.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.323.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.325.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.05.302.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.303.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.304.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.305.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.306.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.307.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.309.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.310.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.311.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.312.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.314.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\xls\F.05.317.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.120.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.290.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.272.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.271.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.242.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.241.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.232.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.231.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.214.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.140.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Templates\xls\F.01.130.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Outlays</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release-Bundle'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir>bin\</TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59910</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59910/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir>bin\</TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir>bin\</TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release-Bundle (
+powershell -command "set-executionpolicy unrestricted"
+powershell -file "$(TargetDir)ClearTestData.ps1"
+Call "$(TargetDir)\arch.bat"
+)
+TIME /t</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="AfterClean">
+    <Exec Command="del $(OutputPath)*.* /F /Q" />
+    <Exec Command="rd $(OutputPath) /S /Q" />
+  </Target>
+</Project>

@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document guid="GD6A6DFA06DEC4058B3A9FEA2E2801567" caption="Модуль формирования и ведения бюджетных смет" version="1.0.13" userVersion="2018.1" timeZoneBias="-180" javascriptDocumentClassName="FMain.FDocument" canOpen="true" isDefaultExportEnabled="false" versionOld="1.0.13" isDocumentUpdated="true">
+	<interface>
+	</interface>
+	<rules>
+		<import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js"/>
+		<import id="JSDocumentSettings" sourceFile="MainLogic\DocumentSettings.js"/>
+		<import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js"/>
+		<import id="JSEvents" sourceFile="MainLogic\Events.js"/>
+		<import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js"/>
+		<import id="JSRROTables" sourceFile="MainLogic\RROTables.js"/>
+		<import id="JSSprTables" sourceFile="MainLogic\SprTables.js"/>
+		<import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js"/>
+		<import id="JSObasDocumentCollection" sourceFile="MainLogic\ObasDocumentCollection.js"/>
+		<import id="JSHelper" sourceFile="MainLogic\ObasHelper.js"/>
+		<import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js"/>
+		<import id="JSTable" sourceFile="MainLogic\FMain\FMain_TableRules.js"/>
+		<import id="JSInterface" sourceFile="MainLogic\FMain\FMain_InterfaceRules.js"/>
+		<import id="JSUpdate" sourceFile="MainLogic\FMain\FMain_UpdateRules.js"/>
+		<import id="JSEditor" sourceFile="MainLogic\FMain\FMain_EditorRules.js"/>
+		<import id="JSDocument" sourceFile="MainLogic\FMain\FMain_Document.js"/>
+	</rules>
+	<tables>
+		<linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="SPB_GRBS_LINKS" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="FK_SBP_GRBS_LINKS" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="OBAS_KBK_LINKS" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="Program" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="VR" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="VR_COSGUs" sourceFile="MainData\Spr_Forms_STAGE1.xml"/>
+		<linkedtable id="NationalProjects" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="MFDepartment" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="PNO" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="RecipientCategory" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="Outlay_Status" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="BudgetAuthority" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="AddAnalysisIndicator" isSaveWithDocument="true" sourceFile="MainData\Spr_Main_User.xml"/>
+		<linkedtable id="RRO_OBAS_KOSGU" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_Outlays" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_SumOutlays" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_DATA" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_SumDATA" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_NPA" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="KU_DataTypes" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_KU_Data" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_Expend_Shedule" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_Expend_Shedule_History" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="SELECTED_FOIV" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="BuildParams" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OBAS" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OBAS_VERSIONS" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_Outlay_KOSGU" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OBAS_AddAnalysisIndicator" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_SumOBAS" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_SumOBAS_VERSIONS" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_SumOBAS_AddAnalysisIndicator" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_LIMITS" isSaveWithDocument="true" sourceFile="MainData\PLAN_STAGE1.xml"/>
+		<linkedtable id="RRO_LIMITS_DETAIL" sourceFile="MainData\PLAN_STAGE1.xml"/>
+		<linkedtable id="RRO_PLAN" sourceFile="MainData\PLAN_STAGE1.xml"/>
+		<linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="RRO_OBAS_Recvisits" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OBAS_Numbers" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OBAS_SC" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_ExecutorRecvisits" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_FinanceChiefRecvisits" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OfficeChiefRecvisits" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="RRO_OutlayRecvisits" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="OutlayExchangeData" sourceFile="MainData\OutlayExchangeData.xml"/>
+		<linkedtable id="OutlayAnalysisIndicatorExchangeData" sourceFile="MainData\OutlayExchangeData.xml"/>
+		<linkedtable id="RRO_PartIndicateBudgetValues" isSaveWithDocument="true" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="OnlyParentRRO_Outlay_KOSGU" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="OnlyParentRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="OnlyParentRRO_OBAS_AddAnalysisIndicator" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="TotalRRO_SumOBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="OnlyParentTotalRRO_SumOBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="TotalRRO_SumOBAS_AddAnalysisIndicator" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="OnlyParentTotalRRO_SumOBAS_AddAnalysisIndicator" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="OnlyParentTotalRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="tSumRRO_OBAS_AddAnalysisIndicator" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="tSumRRO_Outlay_KOSGU" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml"/>
+		<linkedtable id="Files" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="dual" sourceFile="MainData\Spr_Main.xml"/>
+		<linkedtable id="OKPD" isSaveWithDocument="true" sourceFile="MainData\Spr_Forms_STAGE1.xml"/>
+		<table id="FakeDataset" readonly="true" canClear="false" filterKind="mainAndSpec" filterModel="commonDataset">
+			<fields>
+				<field name="Id" datatype="guid"/>
+				<field name="Key" datatype="integer"/>
+				<field name="FakeApproved_Y1" datatype="float" precision="2"/>
+				<field name="FakeApproved_Usd_Y1" datatype="float" precision="5"/>
+				<field name="FakeDelta_Y1" datatype="float" precision="2"/>
+				<field name="FakeDelta_Usd_Y1" datatype="float" precision="5"/>
+				<field name="Fake_Y1" datatype="float" precision="2"/>
+				<field name="Fake_Usd_Y1" datatype="float" precision="5"/>
+				<field name="FakeApproved_Y2" datatype="float" precision="2"/>
+				<field name="FakeApproved_Usd_Y2" datatype="float" precision="5"/>
+				<field name="FakeDelta_Y2" datatype="float" precision="2"/>
+				<field name="FakeDelta_Usd_Y2" datatype="float" precision="5"/>
+				<field name="Fake_Y2" datatype="float" precision="2"/>
+				<field name="Fake_Usd_Y2" datatype="float" precision="5"/>
+				<field name="FakeApproved_Y3" datatype="float" precision="2"/>
+				<field name="FakeApproved_Usd_Y3" datatype="float" precision="5"/>
+				<field name="FakeDelta_Y3" datatype="float" precision="2"/>
+				<field name="FakeDelta_Usd_Y3" datatype="float" precision="5"/>
+				<field name="Fake_Y3" datatype="float" precision="2"/>
+				<field name="Fake_Usd_Y3" datatype="float" precision="5"/>
+				<field name="FakeApproved_Y4" datatype="float" precision="2"/>
+				<field name="FakeApproved_Usd_Y4" datatype="float" precision="5"/>
+				<field name="FakeDelta_Y4" datatype="float" precision="2"/>
+				<field name="FakeDelta_Usd_Y4" datatype="float" precision="5"/>
+				<field name="Fake_Y4" datatype="float" precision="2"/>
+				<field name="Fake_Usd_Y4" datatype="float" precision="5"/>
+				<field name="Fake_OKV_Code" datatype="string" size="50"/>
+				<field name="Fake_DAP_Code" datatype="string" size="8"/>
+				<field name="Fake_Deviation_Y1" datatype="string" size="1"/>
+				<field name="Fake_Deviation_Y2" datatype="string" size="1"/>
+				<field name="Fake_Deviation_Y3" datatype="string" size="1"/>
+				<field name="Fake_Deviation_Y4" datatype="string" size="1"/>
+				<field name="Fake_Lbo_Y1" datatype="float" precision="2"/>
+				<field name="Fake_Lbo_Y2" datatype="float" precision="2"/>
+				<field name="Fake_Lbo_Y3" datatype="float" precision="2"/>
+				<field name="Fake_Lbo_Y4" datatype="float" precision="2"/>
+				<field name="Fake_Obas_Code" datatype="string" size="100"/>
+				<field name="Fake_KOSGU_Code" datatype="string" size="3"/>
+			</fields>
+		</table>
+		<table id="WorkParams" readonly="true" canClear="false" filterKind="mainAndSpec" filterModel="commonDataset">
+			<fields>
+				<field name="Key" datatype="integer"/>
+				<field name="Id" datatype="guid"/>
+				<field name="ReadOnly" datatype="boolean"/>
+			</fields>
+			<data>
+				<row>
+					<el><![CDATA[1]]></el>
+					<el><![CDATA[{CC195FC422994E938B5953BCF24B3645}]]></el>
+					<el><![CDATA[False]]></el>
+				</row>
+			</data>
+		</table>
+	</tables>
+	<sheets>
+		<groupsheet name="Outlays" caption="Ведение смет"/>
+		<gridsheet name="Versions" groupSheet="Outlays" title="Версии смет" isShowColumnNumbers="true" isFilteringAllowed="true">
+			<view table="RRO_Outlays">
+				<col width="200" readonly="true" caption="Наименование версии" name="Name"/>
+				<col width="100" readonly="true" caption="№ п/п" name="Key" align="center"/>
+				<col width="120" readonly="true" caption="Дата создания" name="CreateDate" align="center">
+					<buttons/>
+				</col>
+				<col width="120" readonly="true" caption="Дата утверждения" name="ApprovedDate" align="center">
+					<buttons/>
+				</col>
+				<col width="150" readonly="true" caption="Статус" name="Outlay_Status_ID">
+					<buttons/>
+				</col>
+				<editors>
+					<editor id="OutlayVersionsEditor" canAdd="true"/>
+				</editors>
+			</view>
+			<rules>
+				<rule name="ObasHelper.GetFalse" event="OnCanAdd"/>
+				<rule name="%Doc%.VersionsSheet.CanEditEventHandler" event="OnCanEdit"/>
+				<rule name="%Doc%.VersionsSheet.CanEditEventHandler" event="OnCanDelete"/>
+			</rules>
+			<menuitems>
+				<menu caption="Создать новую версию">
+					<rules>
+						<rule name="%Doc%.VersionsSheet.CreateVersionMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.VersionsSheet.CreateVersionMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Сформировать изменение">
+					<rules>
+						<rule name="%Doc%.VersionsSheet.CreateDeltaMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.VersionsSheet.IsApprovedVersion" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Сделать активной">
+					<rules>
+						<rule name="%Doc%.VersionsSheet.SetActiveMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.VersionsSheet.SetActiveMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Добавить в свод смет">
+					<rules>
+						<rule name="%Doc%.VersionsSheet.AddToSumOutlayMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.VersionsSheet.IsApprovedVersion" event="OnShow"/>
+						<rule name="%Doc%.InterfaceRules.IsNotRecipientAuth" event="OnGetIsVisible"/>
+					</rules>
+				</menu>
+				<menu caption="Сформировать пакет данных">
+					<rules>
+						<rule name="%Doc%.VersionsSheet.CreatePackMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.VersionsSheet.IsNotDraftVersion" event="OnShow"/>
+						<rule name="%Doc%.InterfaceRules.IsRecipientAuth" event="OnGetIsVisible"/>
+					</rules>
+				</menu>
+				<menu caption="Загрузить расходное расписание">
+					<rules>
+						<rule name="%Doc%.VersionsSheet.LoadExpendSheduleMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.VersionsSheet.LoadExpendSheduleMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+			</menuitems>
+		</gridsheet>
+		<gridsheet name="Main" groupSheet="Outlays" title="КБК" isShowColumnNumbers="true" isFilteringAllowed="true" isShowTotals="true">
+			<view table="RRO_DATA">
+				<view caption="Код по бюджетной классификации Российской Федерации">
+					<col width="100" readonly="true" caption="раздела" name="FCR_CodeSection" align="center" valign="center"/>
+					<col width="100" readonly="true" caption="подраздела" name="FCR_CodeSubSection" align="center" valign="center"/>
+					<col width="200" readonly="true" caption="целевой статьи" name="CSR_Code" align="center" valign="center"/>
+					<col width="100" readonly="true" caption="вида расходов" name="VR_CODE" align="center" valign="center"/>
+				</view>
+				<col width="80" readonly="true" caption="Гриф секретности" name="SecurityTypes_Code" align="center" valign="center"/>
+				<view table="RRO_Expend_Shedule" isNextViewAlwaysInsertRow="true">
+					<view table="FakeDataset">
+						<col width="90" readonly="true" caption="Код формы" name="Fake_Obas_Code" align="center" valign="center"/>
+						<template>
+							<view caption="Сумма на {caption} год">
+								<col width="120" readonly="true" caption="Доведенные ЛБО" name="Fake_Lbo_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+								<view caption="утверждено по смете">
+									<col width="120" readonly="true" caption="в рублях, (рублевой эквивалент)" name="FakeApproved_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+									<col width="120" readonly="true" caption="в валюте" name="FakeApproved_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+								</view>
+								<view caption="изменение (+,-)">
+									<col width="120" readonly="true" caption="в рублях, (рублевой эквивалент)" name="FakeDelta_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+									<col width="120" readonly="true" caption="в валюте" name="FakeDelta_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+								</view>
+								<view caption="проект сметы">
+									<col width="120" readonly="true" caption="в рублях, (рублевой эквивалент)" name="Fake_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+									<col width="120" readonly="true" caption="в валюте" name="Fake_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+								</view>
+								<col width="50" readonly="true" caption="!" name="Fake_Deviation_Y{fieldName}" align="center" valign="center"/>
+							</view>
+							<rules>
+								<rule name="%Doc%.ObasSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								<rule name="%Doc%.ObasSheet.GetYearsCaptionEventHandler" event="OnGetCaption"/>
+							</rules>
+						</template>
+					</view>
+					<template>
+						<col readonly="true" name="Y{fieldName}" columnName="Fake_Lbo_Y{columnName}"/>
+						<rules>
+							<rule name="%Doc%.ObasSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+						</rules>
+					</template>
+					<view masterKeys="RRO_Outlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID" detailKeys="RRO_Expend_Shedule.RRO_Outlays_ID;RRO_Expend_Shedule.MainAction_ID;RRO_Expend_Shedule.VR_ID;RRO_Expend_Shedule.DirectionCost_ID;RRO_Expend_Shedule.SubProgram_ID;RRO_Expend_Shedule.FCR_ID;RRO_Expend_Shedule.Program_ID" table="tRRO_OBAS_VERSIONS">
+						<template>
+							<col readonly="true" name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+							<col readonly="true" name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+							<rules>
+								<rule name="%Doc%.ObasSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+							</rules>
+						</template>
+						<view masterKeys="RRO_Outlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID" detailKeys="RRO_Expend_Shedule.SrcOutlayKey;RRO_Expend_Shedule.MainAction_ID;RRO_Expend_Shedule.VR_ID;RRO_Expend_Shedule.DirectionCost_ID;RRO_Expend_Shedule.SubProgram_ID;RRO_Expend_Shedule.FCR_ID;RRO_Expend_Shedule.Program_ID" table="OnlyParentTotalRRO_OBAS_VERSIONS">
+							<template>
+								<col readonly="true" name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+								<rules>
+									<rule name="%Doc%.ObasSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								</rules>
+							</template>
+						</view>
+					</view>
+				</view>
+				<view table="RRO_OBAS">
+					<col name="OBAS_CODE" columnName="Fake_Obas_Code"/>
+					<view table="RRO_OBAS_VERSIONS">
+						<template>
+							<col readonly="true" name="Y{fieldName}_LBO" columnName="Fake_Lbo_Y{columnName}"/>
+							<col readonly="true" name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+							<col readonly="true" name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+							<col readonly="true" name="Usd_Y{fieldName}" columnName="Fake_Usd_Y{columnName}"/>
+							<col readonly="true" name="Usd_Y{fieldName}_D" columnName="FakeDelta_Usd_Y{columnName}"/>
+							<rules>
+								<rule name="%Doc%.ObasSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+							</rules>
+						</template>
+						<view masterKeys="Key" detailKeys="RRO_OBAS_VERSIONS.PARENT_OBAS_VERSION_KEY" table="OnlyParentRRO_OBAS_VERSIONS">
+							<template>
+								<col readonly="true" name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+								<col readonly="true" name="Usd_Y{fieldName}" columnName="FakeApproved_Usd_Y{columnName}"/>
+								<rules>
+									<rule name="%Doc%.ObasSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								</rules>
+							</template>
+						</view>
+					</view>
+					<col width="120" readonly="true" caption="Код валюты" name="OKV_Code" align="center" valign="center"/>
+					<editors>
+						<editor id="OBASEditor" canAdd="true" isDefault="true"/>
+					</editors>
+				</view>
+				<editors>
+					<editor id="KBKEditor" canAdd="true" isDefault="true"/>
+				</editors>
+				<rules>
+					<rule name="ObasTableCollection.RroDataTable.IsActiveOutlayLoadEventHandler" event="OnLoad"/>
+				</rules>
+			</view>
+			<rules>
+				<rule name="%Doc%.ObasSheet.CanAddEventHandler" event="OnCanAdd"/>
+				<rule name="%Doc%.ObasSheet.ReadOnlyEventHandler" event="OnCanEdit"/>
+				<rule name="%Doc%.ObasSheet.ReadOnlyEventHandler" event="OnCanDelete"/>
+				<rule name="%Doc%.ObasSheet.ReadOnlyEventHandler" event="OnEditingCell"/>
+				<rule name="%Doc%.ObasSheet.CalcEventHandler" event="OnCalc"/>
+				<rule name="%Doc%.ObasSheet.FormatEventHandler" event="OnGetFormat"/>
+			</rules>
+			<menuitems>
+				<menu caption="Открыть сметный расчет">
+					<rules>
+						<rule name="%Doc%.ObasSheet.OpenObasMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.ObasSheet.IsObasHasVersion" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Изменить сумму сметного расчета">
+					<rules>
+						<rule name="%Doc%.ObasSheet.ChangeObasDataMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.ObasSheet.ChangeObasDataMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Ранее доведенные ЛБО">
+					<rules>
+						<rule name="%Doc%.ObasSheet.ChangeObasLBOMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.ObasSheet.ChangeObasLBOMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+			</menuitems>
+		</gridsheet>
+		<gridsheet name="DAP" groupSheet="Outlays" title="Аналитические показатели" isShowColumnNumbers="true" isFilteringAllowed="true" isShowTotals="true">
+			<view table="RRO_DATA" readonly="true">
+				<view caption="Код по бюджетной классификации Российской Федерации">
+					<col width="100" caption="раздела" name="FCR_CodeSection" sortIndex="0" sortOrder="1" align="center" valign="center"/>
+					<col width="100" caption="подраздела" name="FCR_CodeSubSection" sortIndex="1" sortOrder="1" align="center" valign="center"/>
+					<col width="200" caption="целевой статьи" name="CSR_Code" sortIndex="2" sortOrder="1" align="center" valign="center"/>
+					<col width="100" caption="вида расходов" name="VR_CODE" sortIndex="3" sortOrder="1" align="center" valign="center"/>
+				</view>
+				<col width="80" caption="Гриф секретности" name="SecurityTypes_Code" align="center" valign="center"/>
+				<view table="RRO_OBAS">
+					<col width="90" caption="Код формы" name="OBAS_CODE" sortIndex="4" sortOrder="1" align="center" valign="center"/>
+					<view table="RRO_OBAS_VERSIONS">
+						<view table="FakeDataset">
+							<col width="100" caption="КОСГУ" name="Fake_KOSGU_Code" sortIndex="5" sortOrder="1" align="center" valign="center"/>
+							<col width="100" caption="Код аналитического показателя" name="Fake_DAP_Code" sortIndex="6" sortOrder="1" align="center" valign="center"/>
+							<template>
+								<view caption="Сумма на {caption} год">
+									<view caption="утверждено по смете">
+										<col width="120" caption="в рублях, (рублевой эквивалент)" name="FakeApproved_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+										<col width="120" caption="в валюте" name="FakeApproved_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+									</view>
+									<view caption="изменение (+,-)">
+										<col width="120" caption="в рублях, (рублевой эквивалент)" name="FakeDelta_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+										<col width="120" caption="в валюте" name="FakeDelta_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+									</view>
+									<view caption="проект сметы">
+										<col width="120" caption="в рублях, (рублевой эквивалент)" name="Fake_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+										<col width="120" caption="в валюте" name="Fake_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+									</view>
+								</view>
+								<rules>
+									<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+									<rule name="%Doc%.DapSheet.GetYearsCaptionEventHandler" event="OnGetCaption"/>
+								</rules>
+							</template>
+						</view>
+						<template>
+							<col name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+							<col name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+							<col name="Usd_Y{fieldName}" columnName="Fake_Usd_Y{columnName}"/>
+							<col name="Usd_Y{fieldName}_D" columnName="FakeDelta_Usd_Y{columnName}"/>
+							<rules>
+								<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+							</rules>
+						</template>
+						<view masterKeys="Key" detailKeys="RRO_OBAS_VERSIONS.PARENT_OBAS_VERSION_KEY" table="OnlyParentRRO_OBAS_VERSIONS" isNextViewAlwaysInsertRow="true">
+							<template>
+								<col name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+								<col name="Usd_Y{fieldName}" columnName="FakeApproved_Usd_Y{columnName}"/>
+								<rules>
+									<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								</rules>
+							</template>
+						</view>
+						<view table="RRO_Outlay_KOSGU" readonly="false">
+							<col readonly="true" name="KOSGU_Code" columnName="Fake_KOSGU_Code"/>
+							<template>
+								<col readonly="true" name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+								<col readonly="true" name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+								<col readonly="true" name="Usd_Y{fieldName}" columnName="Fake_Usd_Y{columnName}"/>
+								<col readonly="true" name="Usd_Y{fieldName}_D" columnName="FakeDelta_Usd_Y{columnName}"/>
+								<rules>
+									<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								</rules>
+							</template>
+							<view masterKeys="RRO_OBAS_VERSIONS_ID" detailKeys="RRO_OBAS_VERSIONS.PARENT_OBAS_VERSION_KEY" table="OnlyParentRRO_Outlay_KOSGU" isNextViewAlwaysInsertRow="true" readonly="true">
+								<template>
+									<col name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+									<col name="Usd_Y{fieldName}" columnName="FakeApproved_Usd_Y{columnName}"/>
+									<rules>
+										<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+									</rules>
+								</template>
+							</view>
+							<view table="RRO_OBAS_AddAnalysisIndicator">
+								<col readonly="true" name="AddAnalysisIndicator_Code" columnName="Fake_DAP_Code"/>
+								<template>
+									<col readonly="true" name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+									<col readonly="true" name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+									<col readonly="true" name="Usd_Y{fieldName}" columnName="Fake_Usd_Y{columnName}"/>
+									<col readonly="true" name="Usd_Y{fieldName}_D" columnName="FakeDelta_Usd_Y{columnName}"/>
+									<rules>
+										<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+									</rules>
+								</template>
+								<view masterKeys="RRO_Outlay_KOSGU_ID" detailKeys="RRO_Outlay_KOSGU.PARENT_Outlay_KOSGU_KEY" table="OnlyParentRRO_OBAS_AddAnalysisIndicator" readonly="true">
+									<template>
+										<col name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+										<col name="Usd_Y{fieldName}" columnName="FakeApproved_Usd_Y{columnName}"/>
+										<rules>
+											<rule name="%Doc%.DapSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+										</rules>
+									</template>
+								</view>
+								<editors>
+									<editor id="RROAddAnalysisIndicatorEditor" canAdd="true" isDefault="true"/>
+								</editors>
+							</view>
+							<editors>
+								<editor id="RROAddAnalysisIndicatorEditor" canAdd="true"/>
+								<editor id="RROKosguEditor" canAdd="true" isDefault="true"/>
+							</editors>
+						</view>
+						<editors>
+							<editor id="RROKosguEditor" canAdd="true"/>
+						</editors>
+					</view>
+					<col width="120" caption="Код валюты" name="OKV_Code" align="center" valign="center"/>
+				</view>
+				<rules>
+					<rule name="ObasTableCollection.RroDataTable.IsActiveOutlayLoadEventHandler" event="OnLoad"/>
+				</rules>
+			</view>
+			<rules>
+				<rule name="%Doc%.DapSheet.CalcEventHandler" event="OnCalc"/>
+				<rule name="%Doc%.DapSheet.CanAddEventHandler" event="OnCanAdd"/>
+				<rule name="%Doc%.DapSheet.ReadOnlyEventHandler" event="OnCanEdit"/>
+				<rule name="%Doc%.DapSheet.ReadOnlyEventHandler" event="OnCanDelete"/>
+				<rule name="%Doc%.DapSheet.ReadOnlyEventHandler" event="OnEditingCell"/>
+			</rules>
+		</gridsheet>
+		<gridsheet name="ExpendSheduleHistory" groupSheet="Outlays" title="Журнал загрузки расходных расписаний" isShowColumnNumbers="true" isFilteringAllowed="true" isShowTotals="true">
+			<view table="RRO_DATA">
+				<view caption="Код по бюджетной классификации Российской Федерации">
+					<col width="100" readonly="true" caption="раздела" name="FCR_CodeSection" sortIndex="0" sortOrder="1" align="center" valign="center"/>
+					<col width="100" readonly="true" caption="подраздела" name="FCR_CodeSubSection" sortIndex="1" sortOrder="1" align="center" valign="center"/>
+					<col width="200" readonly="true" caption="целевой статьи" name="CSR_Code" sortIndex="2" sortOrder="1" align="center" valign="center"/>
+					<col width="100" readonly="true" caption="вида расходов" name="VR_CODE" sortIndex="3" sortOrder="1" align="center" valign="center"/>
+				</view>
+				<view masterKeys="RRO_DATA_ID" detailKeys="RRO_DATA.Key" table="RRO_Expend_Shedule_History">
+					<col width="150" readonly="true" caption="Дата документа" name="DocDate" align="center" valign="center">
+						<buttons/>
+					</col>
+					<col width="100" readonly="true" caption="№ документа" name="DocNumber" align="center" valign="center"/>
+					<col width="100" readonly="true" caption="Дата загрузки" name="LoadDate" sortIndex="4" sortOrder="0" align="center" valign="center">
+						<buttons/>
+					</col>
+					<template>
+						<view caption="Сумма на {caption} год">
+							<col width="120" readonly="true" caption="Доведенные ЛБО" name="Prev_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+							<col width="120" readonly="true" caption="Текущее изменение" name="Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+						</view>
+						<rules>
+							<rule name="%Doc%.ExpendSheduleSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+							<rule name="%Doc%.ExpendSheduleSheet.GetYearsCaptionEventHandler" event="OnGetCaption"/>
+						</rules>
+					</template>
+				</view>
+				<rules>
+					<rule name="ObasTableCollection.RroDataTable.IsActiveOutlayLoadEventHandler" event="OnLoad"/>
+				</rules>
+			</view>
+		</gridsheet>
+		<groupsheet name="SumOutlays" caption="Свод смет">
+			<rules>
+				<rule name="%Doc%.InterfaceRules.IsNotRecipientAuth" event="OnShow"/>
+			</rules>
+		</groupsheet>
+		<gridsheet name="SumOutlaysVersions" groupSheet="SumOutlays" title="Версии свода смет" isShowColumnNumbers="true" isFilteringAllowed="true">
+			<view table="RRO_SumOutlays">
+				<col width="200" readonly="true" caption="Наименование версии" name="Name"/>
+				<col width="100" readonly="true" caption="№ п/п" name="Key" align="center"/>
+				<col width="120" readonly="true" caption="Дата создания" name="CreateDate" align="center"/>
+				<col width="120" readonly="true" caption="Дата утверждения" name="ApprovedDate" align="center"/>
+				<col width="150" readonly="true" caption="Статус" name="Outlay_Status_ID"/>
+				<editors>
+					<editor id="SumOutlayVersionsEditor" canAdd="true"/>
+				</editors>
+			</view>
+			<rules>
+				<rule name="ObasHelper.GetFalse" event="OnCanAdd"/>
+				<rule name="%Doc%.SumOutlayVersionsSheet.CanEditEventHandler" event="OnCanEdit"/>
+				<rule name="%Doc%.SumOutlayVersionsSheet.CanEditEventHandler" event="OnCanDelete"/>
+			</rules>
+			<menuitems>
+				<menu caption="Создать новую версию">
+					<rules>
+						<rule name="%Doc%.SumOutlayVersionsSheet.CreateVersionMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+				<menu caption="Сформировать изменение">
+					<rules>
+						<rule name="%Doc%.SumOutlayVersionsSheet.CreateDeltaMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.SumOutlayVersionsSheet.CreateDeltaMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Сделать активной">
+					<rules>
+						<rule name="%Doc%.SumOutlayVersionsSheet.SetActiveMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.SumOutlayVersionsSheet.SetActiveMenuItemShowEventHandler" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Добавить сметы">
+					<rules>
+						<rule name="%Doc%.SumOutlayVersionsSheet.LoadOutlaysMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.SumOutlayVersionsSheet.IsDraftVersion" event="OnShow"/>
+					</rules>
+				</menu>
+				<menu caption="Сформировать пакет данных">
+					<rules>
+						<rule name="%Doc%.SumOutlayVersionsSheet.CreatePackMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="%Doc%.SumOutlayVersionsSheet.IsApprovedVersion" event="OnShow"/>
+						<rule name="%Doc%.InterfaceRules.IsManagerAuth" event="OnGetIsVisible"/>
+					</rules>
+				</menu>
+			</menuitems>
+		</gridsheet>
+		<gridsheet name="SumOutlaysMain" groupSheet="SumOutlays" title="Главная форма свода смет" isShowColumnNumbers="true" isFilteringAllowed="true" isShowTotals="true">
+			<view table="RRO_SumDATA" readonly="true">
+				<view caption="Код по бюджетной классификации Российской Федерации">
+					<col width="100" caption="раздела" name="FCR_CodeSection" sortIndex="0" sortOrder="1" align="center" valign="center"/>
+					<col width="100" caption="подраздела" name="FCR_CodeSubSection" sortIndex="1" sortOrder="1" align="center" valign="center"/>
+					<col width="200" caption="целевой статьи" name="CSR_Code" sortIndex="2" sortOrder="1" align="center" valign="center"/>
+					<col width="100" caption="вида расходов" name="VR_CODE" sortIndex="3" sortOrder="1" align="center" valign="center"/>
+				</view>
+				<col width="80" caption="Гриф секретности" name="SecurityTypes_Code" align="center" valign="center"/>
+				<view table="RRO_SumOBAS">
+					<col width="90" caption="Код формы" name="OBAS_CODE" sortIndex="7" sortOrder="1" align="center" valign="center"/>
+					<view masterKeys="RRO_SumOutlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID;OBAS_SPR_ID" detailKeys="RRO_SumOutlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID;OBAS_SPR_ID" table="TotalRRO_SumOBAS_VERSIONS">
+						<view table="FakeDataset">
+							<col width="100" caption="Код аналитического показателя" name="Fake_DAP_Code" sortIndex="5" sortOrder="1" align="center" valign="center"/>
+							<template>
+								<view caption="Сумма на {caption} год">
+									<view caption="утверждено по смете">
+										<col width="120" caption="в рублях, (рублевой эквивалент)" name="FakeApproved_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+										<col width="120" caption="в валюте" name="FakeApproved_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+									</view>
+									<view caption="изменение (+,-)">
+										<col width="120" caption="в рублях, (рублевой эквивалент)" name="FakeDelta_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+										<col width="120" caption="в валюте" name="FakeDelta_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+									</view>
+									<view caption="проект сметы">
+										<col width="120" caption="в рублях, (рублевой эквивалент)" name="Fake_Y{fieldName}" align="right" valign="center" displayFormat=",0.00"/>
+										<col width="120" caption="в валюте" name="Fake_Usd_Y{fieldName}" align="right" valign="center" displayFormat=",0.00000"/>
+									</view>
+								</view>
+								<rules>
+									<rule name="%Doc%.SumOutlaysMainSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+									<rule name="%Doc%.SumOutlaysMainSheet.GetYearsCaptionEventHandler" event="OnGetCaption"/>
+								</rules>
+							</template>
+						</view>
+						<template>
+							<col name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+							<col name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+							<col name="Usd_Y{fieldName}" columnName="Fake_Usd_Y{columnName}"/>
+							<col name="Usd_Y{fieldName}_D" columnName="FakeDelta_Usd_Y{columnName}"/>
+							<rules>
+								<rule name="%Doc%.SumOutlaysMainSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+							</rules>
+						</template>
+						<view masterKeys="RRO_SumOutlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID;OBAS_SPR_ID" detailKeys="RRO_SumOBAS.SrcOutlayKey;TotalRRO_SumOBAS_VERSIONS.MainAction_ID;TotalRRO_SumOBAS_VERSIONS.VR_ID;TotalRRO_SumOBAS_VERSIONS.DirectionCost_ID;TotalRRO_SumOBAS_VERSIONS.SubProgram_ID;TotalRRO_SumOBAS_VERSIONS.FCR_ID;TotalRRO_SumOBAS_VERSIONS.Program_ID;TotalRRO_SumOBAS_VERSIONS.OBAS_SPR_ID" table="OnlyParentTotalRRO_SumOBAS_VERSIONS" isNextViewAlwaysInsertRow="true">
+							<template>
+								<col name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+								<col name="Usd_Y{fieldName}" columnName="FakeApproved_Usd_Y{columnName}"/>
+								<rules>
+									<rule name="%Doc%.SumOutlaysMainSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								</rules>
+							</template>
+						</view>
+						<view masterKeys="RRO_SumOutlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID;OBAS_SPR_ID" detailKeys="RRO_SumOBAS.RRO_SumOutlays_ID;TotalRRO_SumOBAS_VERSIONS.MainAction_ID;TotalRRO_SumOBAS_VERSIONS.VR_ID;TotalRRO_SumOBAS_VERSIONS.DirectionCost_ID;TotalRRO_SumOBAS_VERSIONS.SubProgram_ID;TotalRRO_SumOBAS_VERSIONS.FCR_ID;TotalRRO_SumOBAS_VERSIONS.Program_ID;TotalRRO_SumOBAS_VERSIONS.OBAS_SPR_ID" table="TotalRRO_SumOBAS_AddAnalysisIndicator">
+							<view masterKeys="Key" detailKeys="TotalRRO_SumOBAS_AddAnalysisIndicator.AddAnalysisIndicator_ID" table="AddAnalysisIndicator">
+								<col name="FullCode" columnName="Fake_DAP_Code"/>
+								<view masterKeys="RRO_SumOutlays_ID;MainAction_ID;VR_ID;DirectionCost_ID;SubProgram_ID;FCR_ID;Program_ID;OBAS_SPR_ID;AddAnalysisIndicator_ID" detailKeys="RRO_SumOBAS.SrcOutlayKey;TotalRRO_SumOBAS_AddAnalysisIndicator.MainAction_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.VR_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.DirectionCost_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.SubProgram_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.FCR_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.Program_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.OBAS_SPR_ID;TotalRRO_SumOBAS_AddAnalysisIndicator.AddAnalysisIndicator_ID" table="OnlyParentTotalRRO_SumOBAS_AddAnalysisIndicator">
+									<template>
+										<col name="Y{fieldName}" columnName="FakeApproved_Y{columnName}"/>
+										<col name="Usd_Y{fieldName}" columnName="FakeApproved_Usd_Y{columnName}"/>
+										<rules>
+											<rule name="%Doc%.SumOutlaysMainSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+										</rules>
+									</template>
+								</view>
+							</view>
+							<template>
+								<col name="Y{fieldName}" columnName="Fake_Y{columnName}"/>
+								<col name="Y{fieldName}_D" columnName="FakeDelta_Y{columnName}"/>
+								<col name="Usd_Y{fieldName}" columnName="Fake_Usd_Y{columnName}"/>
+								<col name="Usd_Y{fieldName}_D" columnName="FakeDelta_Usd_Y{columnName}"/>
+								<rules>
+									<rule name="%Doc%.SumOutlaysMainSheet.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange"/>
+								</rules>
+							</template>
+							<editors>
+								<editor id="RROAddAnalysisIndicatorEditor" canAdd="true" isDefault="true"/>
+							</editors>
+						</view>
+					</view>
+					<col width="120" caption="Код валюты" name="OKV_Code" align="center" valign="center"/>
+				</view>
+				<rules>
+					<rule name="ObasTableCollection.RroSumDataTable.IsActiveOutlayLoadEventHandler" event="OnLoad"/>
+				</rules>
+			</view>
+			<rules>
+				<rule name="%Doc%.SumOutlaysMainSheet.CalcEventHandler" event="OnCalc"/>
+			</rules>
+		</gridsheet>
+		<rules>
+			<rule name="%Doc%.InterfaceRules.SelectFoiv" event="OnBeforeRenderDoc"/>
+			<rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate"/>
+		</rules>
+	</sheets>
+	<editors>
+		<editor id="OutlayVersionsEditor" caption="Смета">
+			<fieldssheet table="RRO_Outlays">
+				<rules>
+					<rule name="%Doc%.OutlayVersionsEditor.EditFieldEventHandler" event="OnEditField" table="RRO_Outlays"/>
+				</rules>
+				<field name="Name"/>
+				<field name="Outlay_Status_ID" filterRule="%Doc%.OutlayVersionsEditor.FilterStatuses">
+					<buttons/>
+				</field>
+				<field name="ApprovedDate">
+					<rules>
+						<rule name="%Doc%.OutlayVersionsEditor.IsApproved" event="OnGetIsRequired"/>
+						<rule name="%Doc%.OutlayVersionsEditor.IsApproved" event="OnGetIsVisible"/>
+					</rules>
+					<buttons/>
+				</field>
+				<field name="AgreedDate">
+					<rules>
+						<rule name="%Doc%.OutlayVersionsEditor.IsAgreed" event="OnGetIsRequired"/>
+						<rule name="%Doc%.OutlayVersionsEditor.IsAgreed" event="OnGetIsVisible"/>
+					</rules>
+					<buttons/>
+				</field>
+			</fieldssheet>
+			<buttons/>
+			<rules>
+				<rule name="%Doc%.OutlayVersionsEditor.CloseEventHandler" event="OnClose"/>
+			</rules>
+		</editor>
+		<editor id="SumOutlayVersionsEditor" caption="Свод смет">
+			<fieldssheet table="RRO_SumOutlays">
+				<field name="Name"/>
+				<field name="Outlay_Status_ID" filterRule="%Doc%.SumOutlayVersionsEditor.FilterStatuses"/>
+				<field name="ApprovedDate">
+					<rules>
+						<rule name="%Doc%.SumOutlayVersionsEditor.IsApproved" event="OnGetIsRequired"/>
+						<rule name="%Doc%.SumOutlayVersionsEditor.IsApproved" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+			</fieldssheet>
+			<buttons/>
+			<rules>
+				<rule name="%Doc%.SumOutlayVersionsEditor.CloseEventHandler" event="OnClose"/>
+			</rules>
+		</editor>
+		<editor id="SumOutlayVersionsListEditor" caption="Версии свода смет">
+			<fieldssheet table="RRO_Outlays">
+				<field name="LastSumOutlayRecipientKey" caption="Версия свода смет" filterRule="ObasTableCollection.RroSumOutlayTable.IsDraft">
+					<rules>
+						<rule name="ObasHelper.GetTrue" event="OnGetIsRequired"/>
+					</rules>
+				</field>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="KBKEditor" caption="КБК" width="450">
+			<fieldssheet title="КБК" table="RRO_DATA">
+				<group caption="Раздел/подраздел">
+					<field name="FCR_Code" width="70" caption="Код">
+						<buttons/>
+					</field>
+					<field name="FCR_ID" caption="Наименование">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Целевая статья">
+					<group caption="Программа">
+						<field name="Program_Code" width="70" caption="Код">
+							<buttons/>
+						</field>
+						<field name="Program_ID" caption="Наименование">
+							<buttons/>
+						</field>
+					</group>
+					<group caption="Подпрограмма">
+						<field name="SubProgram_FullCode" width="70" caption="Код">
+							<buttons/>
+						</field>
+						<field name="SubProgram_ID" caption="Наименование">
+							<buttons/>
+						</field>
+					</group>
+					<group caption="Основное мероприятие">
+						<field name="MainAction_FullCode" width="70" caption="Код (полный)">
+							<buttons/>
+						</field>
+						<field name="MainAction_Name" caption="Наименование">
+							<buttons/>
+						</field>
+					</group>
+					<group caption="Направление расходов">
+						<field name="DirectionCost_Code" width="70" caption="Код">
+							<buttons/>
+						</field>
+						<field name="DirectionCost_ID" caption="Наименование">
+							<buttons/>
+						</field>
+					</group>
+				</group>
+				<group caption="Вид расходов">
+					<field name="VR_Code" width="70" caption="Код">
+						<buttons/>
+					</field>
+					<field name="VR_ID" caption="Наименование">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Гриф секретности">
+					<field name="SecurityTypes_Code" width="70" caption="Аббревиатура">
+						<buttons/>
+					</field>
+					<field name="SecurityTypes_ID" caption="Наименование">
+						<buttons/>
+					</field>
+				</group>
+			</fieldssheet>
+			<buttons/>
+			<rules>
+				<rule name="%Doc%.KbkEditor.OnCanCloseEventHandler" event="OnCanClose"/>
+				<rule name="%Doc%.KbkEditor.CloseEventHandler" event="OnClose"/>
+			</rules>
+		</editor>
+		<editor id="AddAnalysisIndicator" caption="Аналитический показатель">
+			<fieldssheet table="AddAnalysisIndicator">
+				<group caption="КОСГУ">
+					<field name="KOSGU_Code" width="70" caption="Код" filterRule="ObasTableCollection.KosguSprTable.IsChild">
+						<buttons/>
+					</field>
+					<field name="KOSGU_ID" caption="Наименование" filterRule="ObasTableCollection.KosguSprTable.IsChild">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Аналитический показатель">
+					<field name="Code" width="70" caption="Код" editMask=".{3,8}" errorMessage="Длина вводимого значения должна составлять от 3 до 8 знаков"/>
+					<field name="Name" caption="Наименование"/>
+				</group>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="AddAnalysisIndicatorListEditor" caption="Справочник кодов аналитических показателей">
+			<gridsheet name="AddAnalysisIndicatorListSheet" title="Справочник кодов аналитических показателей">
+				<view table="AddAnalysisIndicator">
+					<col width="150" readonly="true" caption="Код КОСГУ" name="KOSGU_Code"/>
+					<col width="300" readonly="true" caption="Наименование КОСГУ" name="KOSGU_ID">
+						<buttons/>
+					</col>
+					<col width="150" readonly="true" caption="Код аналитического показателя" name="Code"/>
+					<col width="300" readonly="true" caption="Наименование аналитического показателя" name="Name"/>
+					<editors>
+						<editor id="AddAnalysisIndicator" canAdd="true"/>
+					</editors>
+				</view>
+			</gridsheet>
+			<buttons/>
+		</editor>
+		<editor id="RROKosguEditor" caption="КОСГУ">
+			<fieldssheet table="RRO_Outlay_KOSGU">
+				<group caption="КОСГУ">
+					<field name="KOSGU_Code" width="70" caption="Код" filterRule="ObasTableCollection.RroOutlayKosguTable.FilterKosgu">
+						<buttons/>
+					</field>
+					<field name="KOSGU_Id" caption="Наименование" filterRule="ObasTableCollection.RroOutlayKosguTable.FilterKosgu">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Проект сметы">
+					<field name="Y1" width="100" caption="2018 год"/>
+					<field name="Y2" width="100" caption="2019 год"/>
+					<field name="Y3" width="100" caption="2020 год"/>
+				</group>
+			</fieldssheet>
+			<buttons/>
+			<rules>
+				<rule name="%Doc%.OutlayKosguSumEditor.CanCloseEventHandler" event="OnCanClose"/>
+			</rules>
+		</editor>
+		<editor id="RROAddAnalysisIndicatorEditor" caption="Аналитический показатель">
+			<fieldssheet table="RRO_OBAS_AddAnalysisIndicator">
+				<group caption="Аналитический показатель">
+					<field name="AddAnalysisIndicator_Code" width="70" caption="Код" filterRule="ObasTableCollection.RroObasAddAnalysisIndicatorTable.IsKosguChild">
+						<buttons/>
+					</field>
+					<field name="AddAnalysisIndicator_ID" caption="Наименование" filterRule="ObasTableCollection.RroObasAddAnalysisIndicatorTable.IsKosguChild">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Проект сметы">
+					<field name="Y1" width="100" caption="2018 год"/>
+					<field name="Y2" width="100" caption="2019 год"/>
+					<field name="Y3" width="100" caption="2020 год"/>
+				</group>
+			</fieldssheet>
+			<buttons/>
+			<rules>
+				<rule name="%Doc%.ObasAddAnalysisIndicatorSumEditor.CanCloseEventHandler" event="OnCanClose"/>
+			</rules>
+		</editor>
+		<editor id="OBASEditor" caption="Сметный расчет">
+			<fieldssheet table="RRO_OBAS">
+				<field name="OBAS_SPR_ID" caption="Сметный расчет"/>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="SELECTED_FOIVEditor" caption="Полномочия и реквизиты" width="620" height="520">
+			<fieldssheet table="SELECTED_FOIV">
+				<field name="BudgetAuthority_ID" caption="Полномочия">
+					<buttons/>
+				</field>
+				<group caption="Получатель бюджетных средств">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+					<field name="Recipient_Name" caption="Полное наименование">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsRequired"/>
+						</rules>
+					</field>
+					<field name="Recipient_RegCode" width="185" caption="Код по перечню (реестру)">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsRequired"/>
+						</rules>
+					</field>
+					<field name="Recipient_OktmoCode" width="185" caption="Код по ОКТМО">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsRequired"/>
+						</rules>
+					</field>
+					<field name="Recipient_Code" width="185" caption="Код по ОКПО">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsRequired"/>
+						</rules>
+					</field>
+				</group>
+				<field name="LegalForm" width="450" caption="Организационно-правовая форма">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="OKOPF" caption="ОКОПФ" editMask="\d{5}" errorMessage="ОКОПФ должен содержать 5 знаков">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="OwnershipForm" width="450" caption="Форма собственности">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="OKFS" caption="ОКФС" editMask="\d{2}" errorMessage="ОКФС должен содержать 2 знака">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="Address" width="450" caption="Местонахождение (адрес)">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="Telefon" caption="Номер телефона">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="Email" width="260" caption="Электронный адрес">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="INN" width="150" caption="ИНН" editMask="\d{10}" errorMessage="ИНН должен содержать 10 знаков">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<field name="KPP" width="150" caption="КПП" editMask="\d{9}" errorMessage="КПП должен содержать 9 знаков">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsRecipient" event="OnGetIsVisible"/>
+					</rules>
+				</field>
+				<group caption="Распорядитель бюджетных средств">
+					<rules>
+						<rule name="%Doc%.RecipientDetailsEditor.IsManager" event="OnGetIsVisible"/>
+					</rules>
+					<field name="Manager_Name" caption="Полное наименование">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsManager" event="OnGetIsRequired"/>
+						</rules>
+					</field>
+					<field name="Manager_RegCode" width="185" breakLine="true" caption="Код по перечню (реестру)">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsManager" event="OnGetIsRequired"/>
+						</rules>
+					</field>
+					<field name="Manager_OktmoCode" width="185" caption="Код по ОКТМО">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsManager" event="OnGetIsRequired"/>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsManager" event="OnGetIsVisible"/>
+						</rules>
+					</field>
+				</group>
+				<group caption="Главный распорядитель бюджетных средств">
+					<field name="FOIV_Name" width="400" caption="Полное наименование">
+						<buttons/>
+					</field>
+					<field name="FOIV_ID" caption="Код по БК">
+						<buttons/>
+					</field>
+					<field name="FOIV_RegCode" width="185" breakLine="true" caption="Код по перечню (реестру)">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsMainManager" event="OnGetIsRequired"/>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsMainManager" event="OnGetIsVisible"/>
+						</rules>
+					</field>
+					<field name="FOIV_OktmoCode" width="185" caption="Код по ОКТМО">
+						<rules>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsMainManager" event="OnGetIsRequired"/>
+							<rule name="%Doc%.RecipientDetailsEditor.SourceTable.IsMainManager" event="OnGetIsVisible"/>
+						</rules>
+					</field>
+				</group>
+				<field name="BudgetName" width="400" caption="Наименование бюджета" breakLine="true">
+					<rules>
+						<rule name="ObasHelper.GetTrue" event="OnGetIsReadOnly"/>
+					</rules>
+				</field>
+			</fieldssheet>
+			<buttons>
+				<rules>
+					<rule name="%Doc%.RecipientDetailsEditor.GetMainButtonVisible" event="OnCommonGetIsVisible"/>
+				</rules>
+			</buttons>
+			<rules>
+				<rule name="%Doc%.RecipientDetailsEditor.CanCloseEventHandler" event="OnCanClose"/>
+				<rule name="%Doc%.RecipientDetailsEditor.CloseEventHandler" event="OnClose"/>
+			</rules>
+		</editor>
+		<editor id="RRO_OBAS_Recvisits" caption="Справочник подписантов">
+			<fieldssheet table="RRO_OBAS_Recvisits">
+				<field name="RRO_OfficeChiefRecvisits_ID" isShowAddEditButton="true">
+					<buttons/>
+				</field>
+				<field name="RRO_FinanceChiefRecvisits_ID" isShowAddEditButton="true">
+					<buttons/>
+				</field>
+				<field name="RRO_ExecutorRecvisits_ID" isShowAddEditButton="true">
+					<buttons/>
+				</field>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="PrintSettingsEditor" caption="Настройка реквизитов для печати">
+			<fieldssheet title="Подписанты" table="RRO_OBAS_Recvisits">
+				<group caption="Руководитель (уполномоченное лицо)">
+					<field name="RRO_OfficeChiefRecvisits_ID" caption="ФИО">
+						<buttons/>
+					</field>
+					<field name="RRO_OfficeChiefRecvisits_Post" caption="Должность">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Руководитель финансового подразделения">
+					<field name="RRO_FinanceChiefRecvisits_ID" caption="ФИО">
+						<buttons/>
+					</field>
+				</group>
+				<group caption="Исполнитель">
+					<field name="RRO_ExecutorRecvisits_ID" caption="ФИО">
+						<buttons/>
+					</field>
+					<field name="RRO_ExecutorRecvisits_Post" caption="Должность">
+						<buttons/>
+					</field>
+					<field name="RRO_ExecutorRecvisits_Phone" caption="Телефон">
+						<buttons/>
+					</field>
+				</group>
+			</fieldssheet>
+			<fieldssheet title="Реквизиты приложений" table="RRO_OBAS_Recvisits">
+				<group caption="Согласующий смету">
+					<field name="OutlayAgreedRecvisits_Name" caption="ФИО"/>
+					<field name="OutlayAgreedRecvisits_Post" caption="Должность"/>
+				</group>
+				<group caption="Утверждающий смету">
+					<field name="OutlayApprovedRecvisits_Name" caption="ФИО"/>
+					<field name="OutlayApprovedRecvisits_Post" caption="Должность"/>
+				</group>
+			</fieldssheet>
+			<fieldssheet title="Специальные номера" table="RRO_OBAS_Numbers">
+				<field name="CopyNumber" caption="Номер экземпляра"/>
+				<field name="StrNumber" caption="Строковый номер"/>
+			</fieldssheet>
+			<fieldssheet title="Гриф секретности" table="RRO_OBAS_SC">
+				<field name="SecurityTypes_ID" caption="Гриф секретности">
+					<buttons/>
+				</field>
+				<field name="SecBase" caption="Основание"/>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="OBASSumEditor" caption="Данные сметного расчета">
+			<fieldssheet table="RRO_OBAS_VERSIONS">
+				<group caption="Проект сметы">
+					<field name="Y1" width="100" caption="2018 год"/>
+					<field name="Y2" width="100" caption="2019 год"/>
+					<field name="Y3" width="100" caption="2020 год"/>
+				</group>
+				<group caption="Изменение (+,-)">
+					<field name="Y1_D" width="100" caption="2018 год"/>
+					<field name="Y2_D" width="100" caption="2019 год"/>
+					<field name="Y3_D" width="100" caption="2020 год"/>
+				</group>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="LBOSumEditor" caption="Раннее доведенные ЛБО" width="300" height="150">
+			<fieldssheet table="RRO_Expend_Shedule">
+				<field name="Y1" caption="Сумма на 2018 год:"/>
+				<field name="Y2" caption="Сумма на 2019 год:"/>
+			</fieldssheet>
+			<buttons/>
+		</editor>
+		<editor id="OKPDListEditor" caption="Справочник ОКПД" width="750" height="400">
+			<gridsheet name="OKPDListSheet" title="Справочник ОКПД">
+				<view table="OKPD" readonly="true">
+					<col width="150" readonly="true" caption="Код" name="Code"/>
+					<col width="500" readonly="true" caption="Наименование" name="Name"/>
+				</view>
+			</gridsheet>
+			<buttons/>
+		</editor>
+	</editors>
+	<menu>
+		<menu caption="Справочники">
+			<menu caption="Справочник полномочий и реквизитов">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.AuthDetailsSprMenuItemClick" event="OnClick"/>
+				</rules>
+			</menu>
+			<menu caption="Справочник кодов аналитических показателей">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.AnalyticIndicatorsSprMenuItemClick" event="OnClick"/>
+				</rules>
+			</menu>
+			<menu caption="Справочник подписантов">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.SignsSprMenuItemClick" event="OnClick"/>
+				</rules>
+			</menu>
+			<menu caption="Справочник ОКПД">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.OKPDSprMenuItemClick" event="OnClick"/>
+				</rules>
+			</menu>
+		</menu>
+		<menu caption="Сервис">
+			<menu caption="Экспорт в MS Excel">
+				<menu caption="Смета">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ExportAttach1ToExcelMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+				<menu caption="Изменение">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ExportAttach2ToExcelMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+				<menu caption="Массовая печать ОПСП">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ExportAllToExcelMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+				<menu caption="Массовая печать дельта-ОПСП">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ExportAllDeltaToExcelMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+				<menu caption="Свод смет">
+					<rules>
+						<rule name="ObasHelper.GetFalse" event="OnGetIsVisible"/>
+					</rules>
+				</menu>
+				<menu caption="Справочник кодов аналитических показателей">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ExportAddAnalysisIndicatorToExcelMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+			</menu>
+			<menu caption="Импорт данных">
+				<menu caption="Справочник кодов аналитических показателей">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ImportToAddAnalysisIndicatorMenuItemClickEventHandler" event="OnClick"/>
+					</rules>
+				</menu>
+				<menu caption="Справочник ОКПД">
+					<rules>
+						<rule name="%Doc%.InterfaceRules.ImportToOKPDMenuItemClickEventHandler" event="OnClick"/>
+						<rule name="ObasHelper.GetFalse" event="OnGetIsVisible"/>
+					</rules>
+				</menu>
+			</menu>
+			<menu caption="Применение обновлений к документам реестра">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.UpdateAllObasFilesMenuItemClickEventHandler" event="OnClick"/>
+				</rules>
+			</menu>
+		</menu>
+		<menu caption="Печать">
+			<menu caption="Настройка реквизитов для печати">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.PrintSettingsMenuItemClickEventHandler" event="OnClick"/>
+				</rules>
+			</menu>
+		</menu>
+		<menu caption="Разработчик">
+			<menu caption="Обновить файл шаблоном вручную">
+				<rules>
+					<rule name="%Doc%.InterfaceRules.UpdateFormMenuItemClickEventHandler" event="OnClick"/>
+				</rules>
+			</menu>
+		</menu>
+	</menu>
+</document>

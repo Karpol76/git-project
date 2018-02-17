@@ -1,0 +1,1307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" version="1.0.14" CRC="683453222" javascriptDocumentClassName="F08410.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSParentUpdate" sourceFile="Templates\Logic\Current\F04_111\F04_111_UpdateRules.js" />
+    <import id="JSParentInterface" sourceFile="Templates\Logic\Current\F04_111\F04_111_InterfaceRules.js" />
+    <import id="JSParentTable" sourceFile="Templates\Logic\Current\F04_111\F04_111_TableRules.js" />
+    <import id="JSParentExport" sourceFile="Templates\Logic\Current\F04_111\F04_111_ExportRules.js" />
+    <import id="JSParentDocument" sourceFile="Templates\Logic\Current\F04_111\F04_111_Document.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F08_410\F08_410_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F08_410\F08_410_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F08_410\F08_410_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F08_410\F08_410_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F08_410\F08_410_Document.js" />
+  </rules>
+  <tables>
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="InvestigationTypes" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="FAIPs" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="OKVED" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="OKEI" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="FCP" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F04_100_R1_SumValues]]></el>
+          <el><![CDATA[KOSGU_Data]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="GovernmentCustomers" caption="Справочник государственных заказчиков">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Name" datatype="string" size="1000" caption="Наименование" isUnique="true" isNull="false" />
+      </fields>
+    </table>
+    <table id="F04_110_Customers">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="Customer_ID" isUnique="true" caption="Наименование государственного заказчика" table="GovernmentCustomers" tableKeyField="Key" tableFields="Name" />
+      </fields>
+    </table>
+    <table id="F04_100_R1_SumTypes" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="CodeForBars" datatype="string" size="50" />
+        <field name="Name" datatype="string" size="1000" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[010]]></el>
+          <el><![CDATA[010]]></el>
+          <el><![CDATA[Объекты, мероприятия (укрупненные инвестиционные проекты), всего]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[011]]></el>
+          <el><![CDATA[011]]></el>
+          <el><![CDATA[   в том числе:
+   включенные в федеральную адресную инвестиционную программу (далее - ФАИП)]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[012]]></el>
+          <el><![CDATA[012]]></el>
+          <el><![CDATA[   предлагаемые к включению в ФАИП]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[013]]></el>
+          <el><![CDATA[013]]></el>
+          <el><![CDATA[   не включенные в ФАИП]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[Корректировка в связи с округлением]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[900]]></el>
+          <el><![CDATA[900]]></el>
+          <el><![CDATA[Всего]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F04_110_r1_CustomerValues">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="StrKey" syncKey="true" table="F04_100_R1_SumTypes" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="OwnerKey" syncKey="true" table="F04_110_Customers" tableKeyField="Key" tableFields="Key" />
+        <field name="Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="ObasHelper.Get0" event="OnInit" />
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="ObasHelper.Get0" event="OnInit" />
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="ObasHelper.Get0" event="OnInit" />
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="ObasHelper.Get0" event="OnInit" />
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="ObasHelper.Get0" event="OnInit" />
+            <rule name="%Doc%.P1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+    </table>
+    <table id="F04_100_R1_SumValues" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveTotalTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F04_110_Customers_R2R3_V2">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="Customer_ID" uniqueLabel="1" caption="Наименование ПБС" isNull="false" table="GovernmentCustomers" tableKeyField="Key" tableFields="Name">
+          <rules>
+            <rule name="%Doc%.CustomerTable.UniqKeyChangeEventHandler" event="OnChange" />
+          </rules>
+        </sourcefield>
+        <field name="is_accepted_type" datatype="boolean" uniqueLabel="1" caption="Признак включения в ФАИП" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CustomerTable.DeleteEventHandler" event="OnDelete" />
+        <rule name="%Doc%.CustomerTable.AfterDeleteEventHandler" event="OnAfterDelete" />
+      </rules>
+    </table>
+    <table id="F04_100_R2_V4">
+      <fields>
+        <field name="Id" datatype="guid" caption="Идентификатор" />
+        <field name="Key" datatype="integer" caption="ключ" />
+        <field name="StrCode" datatype="string" size="4" caption="Код строки" />
+        <field name="Code" datatype="string" size="14" isNull="false" isUnique="true" syncKey="true" caption="Уникальный код объекта " />
+        <field name="Name" datatype="string" size="1000" isNull="false" caption="Наименование объекта" />
+        <field name="is_Program_part" datatype="boolean" isNull="false" caption="Признак включения в ФАИП">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Customer" datatype="string" size="1000" caption="Государственная корпорация (компания)" />
+        <field name="Developer" datatype="string" size="1000" isNull="false" caption="Застройщик" />
+        <field name="Branch" datatype="string" size="1000" caption="Отрасль" />
+        <field name="EventGroup" datatype="string" size="1000" caption="Группа мероприятий" />
+        <field name="ObjectGroup" datatype="string" size="1000" caption="Группа объектов ФАИП" />
+        <sourcefield name="FAIP_ID" isNull="false" caption="Раздел ФАИП" table="FAIPs" tableKeyField="Key" tableFields="Name" />
+        <sourcefield name="FCP_SubProgram_ID" caption="Подпрограмма федеральной целевой программы" table="FCP" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="FCP_ID" caption="Федеральная целевая программа" keys="FCP_SubProgram_ID" lookupTable="FCP" lookupKeys="Key" lookupFields="Owner" />
+        <field name="Y1" datatype="float" size="1000" caption="на текущий финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="1000" caption="на очередной финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="1000" caption="на первый год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="1000" caption="на второй год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" size="1000" caption="Сумма, подлежащих исполнению за пределами планового периода, тыс руб" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.SumChangeEventHandler" event="OnChange" />
+            <rule name="ObasHelper.Get0" event="OnInit" />
+          </rules>
+        </field>
+        <lookupfield name="FAIP_Name" keys="FAIP_ID" lookupTable="FAIPs" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="FCP_Name" keys="FCP_ID" lookupTable="FCP" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="FCP_SubProgram_Name" keys="FCP_SubProgram_ID" lookupTable="FCP" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="Customer_ID" table="F04_110_Customers_R2R3_V2" syncKey="true" tableKeyField="Key" tableFields="Customer_ID">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="CustomerSprKey" keys="Customer_ID" lookupTable="F04_110_Customers_R2R3_V2" lookupKeys="Key" lookupFields="Customer_ID" />
+        <lookupfield name="CustomerSprName" keys="CustomerSprKey" lookupTable="GovernmentCustomers" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="is_accepted_type" keys="Customer_ID" lookupTable="F04_110_Customers_R2R3_V2" lookupKeys="Key" lookupFields="is_accepted_type" />
+      </fields>
+    </table>
+    <table id="F04_100_R2_1_V2">
+      <fields>
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" caption="Ключ строки-владельца из таблицы 2" uniqueLabel="1" table="F04_100_R2_V4" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.InvestInfoTable.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="Investigation_ID" uniqueLabel="1" isNull="false" caption="Вид" table="InvestigationTypes" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="Investigation_Name" caption="Направление инвестирования" keys="Investigation_ID" lookupTable="InvestigationTypes" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="Investigation_Code" caption="Направление инвестирования. Код" keys="Investigation_ID" lookupTable="InvestigationTypes" lookupKeys="Key" lookupFields="Code" />
+        <sourcefield name="OKVED_ID" isNull="true" caption="Вид" table="OKVED" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="OKVEDCode" caption="Код ОКВЭД" keys="OKVED_ID" lookupTable="OKVED" lookupKeys="Key" lookupFields="Code" />
+        <sourcefield name="OKEI_ID" isNull="false" caption="Вид" table="OKEI" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="OKEI_CODE" caption="Код ОКЕИ" keys="OKEI_ID" lookupTable="OKEI" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="OKEI_Name" caption="Наименование ОКЕИ" keys="OKEI_ID" lookupTable="OKEI" lookupKeys="Key" lookupFields="Name" />
+        <field name="g6" datatype="float" precision="2" size="1000" isDeltaValue="false" />
+        <field name="Y1" datatype="float" size="1000" caption="на текущий финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="1000" caption="на очередной финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="1000" caption="на первый год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="1000" caption="на второй год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" size="1000" caption="Сумма, подлежащих исполнению за пределами планового периода, тыс руб" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Id" datatype="guid" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="UnitCode" datatype="string" size="1000" caption="Код учетной единицы" />
+        <field name="Year" datatype="integer" isDeltaValue="false" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.InvestInfoTable.AfterDeleteChildsEventHandler" event="OnAfterDeleteChilds" />
+      </rules>
+    </table>
+    <table id="F04_110_Customers_R4_V2">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="Customer_ID" isUnique="true" caption="Наименование ПБС" isNull="false" table="GovernmentCustomers" tableKeyField="Key" tableFields="Name">
+          <rules>
+            <rule name="%Doc%.CustomerP4Table.UniqKeyChangeEventHandler" event="OnChange" />
+          </rules>
+        </sourcefield>
+      </fields>
+      <rules>
+        <rule name="%Doc%.CustomerP4Table.DeleteEventHandler" event="OnDelete" />
+        <rule name="%Doc%.CustomerP4Table.AfterDeleteEventHandler" event="OnAfterDelete" />
+      </rules>
+    </table>
+    <table id="F04_100_R4_V2">
+      <fields>
+        <field name="Id" datatype="guid" caption="Идентификатор" />
+        <field name="Key" datatype="integer" caption="ключ" />
+        <field name="StrCode" datatype="string" size="4" caption="Код строки" />
+        <field name="Code" datatype="string" size="14" isNull="false" isUnique="true" syncKey="true" caption="Уникальный код объекта " />
+        <field name="Name" datatype="string" size="1000" isNull="false" caption="Наименование объекта" />
+        <field name="Customer" datatype="string" size="1000" caption="Государственная корпорация (компания)" />
+        <field name="Developer" datatype="string" size="1000" isNull="false" caption="Застройщик" />
+        <field name="Y1" datatype="float" size="1000" caption="на текущий финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="1000" caption="на очередной финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="1000" caption="на первый год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="1000" caption="на второй год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" size="1000" caption="Сумма, подлежащих исполнению за пределами планового периода, тыс руб" precision="2">
+          <rules>
+            <rule name="%Doc%.ProjectInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <sourcefield name="Customer_ID" table="F04_110_Customers_R4_V2" syncKey="true" tableKeyField="Key" tableFields="Customer_ID">
+          <rules>
+            <rule name="%Doc%.ProjectInfoP4Table.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+      </fields>
+    </table>
+    <table id="F04_100_R4_2_V2">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="3" />
+        <sourcefield name="OwnerKey" caption="Ключ строки-владельца" uniqueLabel="1" table="F04_100_R4_V2" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.InvestInfoP4Table.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="Investigation_ID" uniqueLabel="1" isNull="false" caption="Направление инвестирования" table="InvestigationTypes" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="Investigation_Name" caption="Направление инвестирования" keys="Investigation_ID" lookupTable="InvestigationTypes" lookupKeys="Key" lookupFields="Name" />
+        <field name="UnitCode" datatype="string" size="1000" />
+        <sourcefield name="OKVED_ID" isNull="false" caption="Вид" table="OKVED" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="OKEI_ID" isNull="false" caption="Вид" table="OKEI" tableKeyField="Key" tableFields="Name" />
+        <field name="g6" datatype="float" precision="2" caption="Мощность" isDeltaValue="false" />
+        <field name="Y1" datatype="float" caption="на текущий финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" caption="на очередной финансовый год" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" caption="на первый год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" caption="на второй год планового периода" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y5" datatype="float" caption="Сумма, подлежащих исполнению за пределами планового периода, тыс руб" precision="2">
+          <rules>
+            <rule name="%Doc%.InvestInfoP4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Year" datatype="integer" isDeltaValue="false" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.InvestInfoP4Table.AfterDeleteChildsEventHandler" event="OnAfterDeleteChilds" />
+      </rules>
+    </table>
+    <!--Раздел 2.3-->
+    <table id="F08_410_2_3" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="InvestmentProjectCode" datatype="string" size="50" />
+        <field name="InvestmentProjectName" datatype="string" size="5000" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActAreaReg" datatype="string" size="250" />
+      </fields>
+    </table>
+    <!--Раздел 3.3-->
+    <table id="F08_410_3_3" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="InvestmentProjectCode" datatype="string" size="50" />
+        <field name="InvestmentProjectName" datatype="string" size="5000" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActAreaReg" datatype="string" size="250" />
+      </fields>
+    </table>
+    <!--Раздел 4.3-->
+    <table id="F08_410_4_3" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="InvestmentProjectCode" datatype="string" size="50" />
+        <field name="InvestmentProjectName" datatype="string" size="5000" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActAreaReg" datatype="string" size="250" />
+      </fields>
+    </table>
+    <table id="KOSGU_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="SrcKey" datatype="integer" isDeltaValue="false" />
+        <field name="Y1" datatype="float" precision="2" />
+        <field name="Y2" datatype="float" precision="2" />
+        <field name="Y3" datatype="float" precision="2" />
+        <field name="Y4" datatype="float" precision="2" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[27561076]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet name="sheet1" exportable="false" title="Раздел 1" caption="1. Расходы на предоставление субсидий государственным корпорациям (компаниям) в виде имущественного взноса на осуществление капитальных вложений" isShowColumnNumbers="true">
+      <view table="F04_100_R1_SumTypes" readonly="true">
+        <col name="Name" caption="Наименование показателя" width="300" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+        <view table="F04_100_R1_SumValues" masterKeys="StrKey" detailKeys="F04_100_R1_SumTypes.Key" readonly="false">
+          <view caption="Сумма">
+            <template>
+              <col width="130" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <template>
+            <col width="170" name="Y{fieldName}" caption="Сумма, подлежащих исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            </rules>
+          </template>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetP1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP1EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R2_Group" caption="Раздел 2" />
+    <gridsheet name="sheet_2_1" groupSheet="R2_Group" isShowColumnNumbers="true" title="Раздел 2.1" caption="2. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), включенных в ФАИП&#xD;&#xA;2.1 Расчет объема расходов">
+      <view table="F04_110_Customers_R2R3_V2" readonly="true">
+        <col width="200" name="Customer_ID" caption="Наименование государственной корпорации (компании)" readonly="true" isMergeCells="true" />
+        <view table="F04_100_R2_V4" readonly="true" levelModifier="1">
+          <col width="200" name="Developer" caption="Наименование застройщика" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+          <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+            <col width="200" caption="наименование" name="Name" readonly="true" />
+            <col width="100" caption="уникальный код" name="Code" align="center" readonly="true" />
+          </view>
+          <view caption="Сумма">
+            <template>
+              <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <template>
+            <col width="170" name="Y{fieldName}" caption="Сумма, подлежащих исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            </rules>
+          </template>
+        </view>
+        <view table="dual" readonly="true" />
+        <rules>
+          <rule name="%Doc%.CustomerTable.CheckIsAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetPXSp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetPXSp1CalcEventHandler" event="OnCalc" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_2_2" groupSheet="R2_Group" isShowColumnNumbers="true" exportable="false" title="Раздел 2.2.1" caption="2. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), включенных в ФАИП&#xD;&#xA;2.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах)&#xD;&#xA;2.2.1 Сведения об объекте капитального строительства, мероприятии (укрупненном инвестиционном проекте)">
+      <view table="F04_110_Customers_R2R3_V2">
+        <col width="150" name="Customer_ID" caption="Государственная корпорация (компания)" isMergeCells="true" />
+        <view table="F04_100_R2_V4">
+          <col width="200" name="Name" caption="Наименование объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта)" readonly="true" />
+          <col width="150" name="FAIP_Name" caption="Раздел ФАИП" readonly="true" />
+          <col width="100" name="is_Program_part" caption="Признак включения в ФАИП" readonly="true" />
+          <col width="150" name="FCP_Name" caption="Федеральная целевая программа" readonly="true" />
+          <col width="150" name="FCP_SubProgram_Name" caption="Подпрограмма федеральной целевой программы" readonly="true" />
+          <col width="150" name="Branch" caption="Отрасль" />
+          <col width="150" name="EventGroup" caption="Группа мероприятий" />
+          <col width="150" name="Developer" caption="Застройщик" readonly="true" />
+          <col width="150" name="ObjectGroup" caption="Группа объектов" />
+          <col width="100" name="Code" caption="Уникальный код объекта" readonly="true" />
+          <editors>
+            <editor id="F04_100_R2_2_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <editors>
+          <editor id="F04_110_Customer_R2_Editor" canAdd="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.CustomerTable.CheckIsAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoFormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoEditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoCanDeleteEventHandler" event="OnCanDelete" />
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_2_2_1" groupSheet="R2_Group" title="Раздел 2.2.1.1" exportable="false" caption="2. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), включенных в ФАИП&#xD;&#xA;2.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах)&#xD;&#xA;2.2.1.1 Сведения о расходах по направлениям инвестирования объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта)" isShowColumnNumbers="true" appendMode="false">
+      <view table="F04_110_Customers_R2R3_V2" readonly="true">
+        <col width="150" name="Customer_ID" caption="Государственная корпорация (компания)" isMergeCells="true" />
+        <view table="F04_100_R2_V4" readonly="true">
+          <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+            <col width="100" caption="уникальный код" name="Code" isMergeCells="true" align="center" />
+            <col width="200" caption="наименование" name="Name" isMergeCells="true" />
+          </view>
+          <view table="F04_100_R2_1_V2" readonly="false" levelModifier="1">
+            <col width="191" caption="Направление инвестирования" name="Investigation_Name" readonly="true" />
+            <col width="100" caption="Код учетной единицы" name="UnitCode" readonly="true" />
+            <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+            <col width="110" caption="Код вида экономической деятельности по ОКВЭД" name="OKVED_ID" dropDownWidth="600" align="center" readonly="true" />
+            <col width="206" caption="Наименование единицы измерения" name="OKEI_ID" readonly="true" />
+            <col width="130" caption="Мощность" name="g6" align="right" displayFormat=",0.00" />
+            <view caption="Сумма">
+              <template>
+                <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                <rules>
+                  <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                  <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  <rule name="%Doc%.CommonRules.GetYearsIsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+                </rules>
+              </template>
+            </view>
+            <template>
+              <col width="170" name="Y{fieldName}" caption="Сумма, подлежащих исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              </rules>
+            </template>
+            <editors>
+              <editor id="F04_100_R3_1_Editor" canAdd="true" />
+            </editors>
+          </view>
+          <view table="dual" readonly="true" />
+          <editors>
+            <editor id="F04_100_R3_1_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true" />
+        <rules>
+          <rule name="%Doc%.CustomerTable.CheckIsAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true">
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetInvestInfoPxSp2Sp1Sp1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetInvestInfoPxSp2Sp1Sp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2P3CanEditEventHandler" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_2_2_1_1" groupSheet="R2_Group" title="Раздел 2.2.1.1.1" exportable="false" caption="2. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), включенных в ФАИП&#xD;&#xA;2.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах)&#xD;&#xA;2.2.1.1 Сведения о расходах по направлениям инвестирования объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта)" isShowColumnNumbers="true" appendMode="false">
+      <view table="F04_100_R2_V4" readonly="true">
+        <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+          <col width="100" caption="уникальный код" name="Code" isMergeCells="true" align="center" />
+          <col width="200" caption="наименование" name="Name" isMergeCells="true" />
+        </view>
+        <view table="F04_100_R2_1_V2" isMain="true" readonly="false" levelModifier="1">
+          <col width="191" caption="Направление инвестирования" name="Investigation_Name" readonly="true" />
+          <col width="100" caption="Код учетной единицы" name="UnitCode" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+          <col width="110" caption="Код вида экономической деятельности по ОКВЭД" name="OKVED_ID" dropDownWidth="600" align="center" readonly="true" />
+          <col width="206" caption="Наименование единицы измерения" name="OKEI_ID" readonly="true" />
+          <col width="130" caption="Мощность" name="g6" align="right" displayFormat=",0.00" />
+          <view caption="Сумма">
+            <template>
+              <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <template>
+            <col width="170" name="Y{fieldName}" caption="Сумма, подлежащих исполнению за пределами планового периода" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.AddYearsHelper.GetAddYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            </rules>
+          </template>
+          <col width="47" caption="Ключ строки-владельца" name="OwnerKey" align="center" readonly="true" visible="false" />
+        </view>
+        <view table="dual" readonly="true" />
+        <rules>
+          <rule name="%Doc%.ProjectInfoTable.CheckIsAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true">
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp2SpecCalcEventHandler" event="OnCalc" />
+        <rule name="ObasHelper.GetFalse" event="OnShow" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 2.3-->
+    <gridsheet name="SHT_F08_410_R2_3" title="Раздел 2.3" caption="2. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), включенных в ФАИП&#xD;&#xA;2.3. Сведения о нормативных правовых (правовых) актах, в соответствии с которыми объект капитального строительства, мероприятие (укрупненный инвестиционный проект) включен в федеральную адресную инвестиционную программу" isShowColumnNumbers="true" groupSheet="R2_Group">
+      <view table="F08_410_2_3" canAdd="true" readonly="false">
+        <view caption="Объект, мероприятие (укрупненный инвестиционный проект)">
+          <col width="120" caption="уникальный код" name="InvestmentProjectCode" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="InvestmentProjectName" align="left" readonly="true" />
+        </view>
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <col width="250" caption="сфера регулирования" name="ActAreaReg" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F08_410_2_3Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <groupsheet name="R3_Group" caption="Раздел 3" />
+    <gridsheet name="sheet_3_1" groupSheet="R3_Group" isShowColumnNumbers="true" title="Раздел 3.1" caption="3. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), предлагаемых к включению в ФАИП&#xD;&#xA;3.1 Расчет объема расходов">
+      <view table="F04_110_Customers_R2R3_V2" readonly="true">
+        <col width="150" name="Customer_ID" caption="Наименование государственной корпорации (компании)" readonly="true" isMergeCells="true" />
+        <view table="F04_100_R2_V4" readonly="true" levelModifier="1">
+          <col width="150" name="Developer" caption="Наименование застройщика" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+          <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+            <col width="200" caption="наименование" name="Name" />
+            <col width="100" caption="уникальный код" name="Code" align="center" />
+          </view>
+          <view caption="Сумма">
+            <template>
+              <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+        </view>
+        <view table="dual" readonly="true" />
+        <rules>
+          <rule name="%Doc%.CustomerTable.CheckIsNotAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetPXSp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetPXSp1CalcEventHandler" event="OnCalc" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_3_2" groupSheet="R3_Group" isShowColumnNumbers="true" exportable="false" title="Раздел 3.2.1" caption="3. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), предлагаемых к включению в ФАИП&#xD;&#xA;3.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах)&#xD;&#xA;3.2.1 Сведения об объекте капитального строительства, мероприятии (укрупненном инвестиционном проекте)">
+      <view table="F04_110_Customers_R2R3_V2">
+        <col width="150" name="Customer_ID" caption="Государственная корпорация (компания)" isMergeCells="true" />
+        <view table="F04_100_R2_V4">
+          <col width="200" name="Name" caption="Наименование объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта)" readonly="true" />
+          <col width="150" name="FAIP_Name" caption="Раздел ФАИП" readonly="true" />
+          <col width="100" name="is_Program_part" caption="Признак включения в ФАИП" readonly="true" />
+          <col width="150" name="FCP_Name" caption="Федеральная целевая программа" readonly="true" />
+          <col width="150" name="FCP_SubProgram_Name" caption="Подпрограмма федеральной целевой программы" readonly="true" />
+          <col width="150" name="Branch" caption="Отрасль" />
+          <col width="150" name="EventGroup" caption="Группа мероприятий" />
+          <col width="150" name="Developer" caption="Застройщик" readonly="true" />
+          <col width="150" name="ObjectGroup" caption="Группа объектов" />
+          <col width="100" name="Code" caption="Уникальный код объекта" readonly="true" />
+          <editors>
+            <editor id="F04_100_R2_2_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <editors>
+          <editor id="F04_110_Customer_R3_Editor" canAdd="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.CustomerTable.CheckIsNotAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoFormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoEditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoCanDeleteEventHandler" event="OnCanDelete" />
+        <rule name="%Doc%.InterfaceRules.SheetProjectInfoEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_3_2_1" groupSheet="R3_Group" title="Раздел 3.2.1.1" exportable="false" caption="3. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), предлагаемых к включению в ФАИП&#xD;&#xA;3.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах)&#xD;&#xA;3.2.1.1 Сведения о расходах по направлениям инвестирования объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта)" isShowColumnNumbers="true" appendMode="false">
+      <view table="F04_110_Customers_R2R3_V2" readonly="true">
+        <col width="150" name="Customer_ID" caption="Государственная корпорация (компания)" isMergeCells="true" />
+        <view table="F04_100_R2_V4" readonly="true">
+          <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+            <col width="100" caption="уникальный код" name="Code" isMergeCells="true" align="center" />
+            <col width="200" caption="наименование" name="Name" isMergeCells="true" />
+          </view>
+          <view table="F04_100_R2_1_V2" readonly="false" levelModifier="1">
+            <col width="191" caption="Направление инвестирования" name="Investigation_Name" readonly="true" />
+            <col width="100" caption="Код учетной единицы" name="UnitCode" readonly="true" />
+            <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+            <col width="110" caption="Код вида экономической деятельности по ОКВЭД" name="OKVED_ID" dropDownWidth="600" align="center" readonly="true" />
+            <col width="206" caption="Наименование единицы измерения" name="OKEI_ID" readonly="true" />
+            <col width="130" caption="Мощность" name="g6" align="right" displayFormat=",0.00" />
+            <view caption="Сумма" readonly="false">
+              <template>
+                <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                <rules>
+                  <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                  <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  <rule name="%Doc%.CommonRules.GetYearsIsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+                </rules>
+              </template>
+            </view>
+            <editors>
+              <editor id="F04_100_R3_1_Editor" canAdd="true" />
+            </editors>
+          </view>
+          <view table="dual" readonly="true">
+            <editors>
+              <editor id="F04_100_R3_1_Editor" canAdd="true" />
+            </editors>
+          </view>
+          <editors>
+            <editor id="F04_100_R3_1_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true" />
+        <rules>
+          <rule name="%Doc%.CustomerTable.CheckIsNotAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetInvestInfoPxSp2Sp1Sp1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetInvestInfoPxSp2Sp1Sp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2P3CanEditEventHandler" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_3_2_1_1" groupSheet="R3_Group" title="Раздел 3.2.1.1.1" exportable="false" caption="3. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), предлагаемых к включению в ФАИП&#xD;&#xA;3.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах)&#xD;&#xA;3.2.1.1 Сведения о расходах по направлениям инвестирования объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта)" isShowColumnNumbers="true" appendMode="false">
+      <view table="F04_100_R2_V4" readonly="true">
+        <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+          <col width="100" caption="уникальный код" name="Code" isMergeCells="true" align="center" />
+          <col width="200" caption="наименование" name="Name" isMergeCells="true" />
+        </view>
+        <view table="F04_100_R2_1_V2" isMain="true" readonly="false" levelModifier="1">
+          <col width="191" caption="Направление инвестирования" name="Investigation_Name" readonly="true" />
+          <col width="100" caption="Код учетной единицы" name="UnitCode" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+          <col width="110" caption="Код вида экономической деятельности по ОКВЭД" name="OKVED_ID" dropDownWidth="600" align="center" readonly="true" />
+          <col width="206" caption="Наименование единицы измерения" name="OKEI_ID" readonly="true" />
+          <col width="130" caption="Мощность" name="g6" align="right" displayFormat=",0.00" />
+          <view caption="Сумма" readonly="false">
+            <template>
+              <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <col width="47" caption="Ключ строки-владельца" name="OwnerKey" align="center" readonly="true" visible="false" />
+        </view>
+        <view table="dual" readonly="true" />
+        <rules>
+          <rule name="%Doc%.ProjectInfoTable.CheckIsNotAccepted" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp2SpecCalcEventHandler" event="OnCalc" />
+        <rule name="ObasHelper.GetFalse" event="OnShow" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 3.3-->
+    <gridsheet name="SHT_F08_410_R3_3" title="Раздел 3.3" caption="3. Расходы в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), предлагаемых к включению в ФАИП&#xD;&#xA;3.3. Сведения о нормативных правовых (правовых) актах (проектах актов), в соответствии с которыми объект капитального строительства, мероприятие (укрупненный инвестиционный проект) предлагается к включению в федеральную адресную инвестиционную программу" isShowColumnNumbers="true" groupSheet="R3_Group">
+      <view table="F08_410_3_3" canAdd="true" readonly="false">
+        <view caption="Объект, мероприятие (укрупненный инвестиционный проект)">
+          <col width="120" caption="уникальный код" name="InvestmentProjectCode" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="InvestmentProjectName" align="left" readonly="true" />
+        </view>
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <col width="250" caption="сфера регулирования" name="ActAreaReg" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F08_410_3_3Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <groupsheet name="R4_Group" caption="Раздел 4" />
+    <gridsheet name="sheet_4_1" groupSheet="R4_Group" isShowColumnNumbers="true" title="Раздел 4.1" caption="4. Расчет объема расходов в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), объектов недвижимого имущества, не включенных в федеральную адресную инвестиционную программу&#xD;&#xA;4.1. Расчет объема расходов">
+      <view table="F04_110_Customers_R4_V2">
+        <col width="150" name="Customer_ID" caption="Наименование государственной корпорации (компании)" readonly="true" isMergeCells="true" />
+        <view table="F04_100_R4_V2" levelModifier="1">
+          <col width="150" name="Developer" caption="Наименование застройщика" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+          <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+            <col width="200" caption="наименование" name="Name" readonly="true" />
+            <col width="100" caption="уникальный код" name="Code" align="center" readonly="true" />
+          </view>
+          <view caption="Сумма">
+            <template>
+              <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" readonly="true" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <editors>
+            <editor id="F04_100_R4_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true">
+          <editors>
+            <editor id="F04_100_R4_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <editors>
+          <editor id="F04_110_Customer_R4_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F04_110_Customer_R4_Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP4Sp1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetP4Sp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP4Sp1EditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.InterfaceRules.SheetP4Sp1EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_4_2" groupSheet="R4_Group" title="Раздел 4.2" exportable="false" caption="4. Расчет объема расходов в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), объектов недвижимого имущества, не включенных в федеральную адресную инвестиционную программу&#xD;&#xA;4.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах), объектах недвижимого имущества" isShowColumnNumbers="true" appendMode="false">
+      <view table="F04_110_Customers_R4_V2" readonly="true">
+        <col width="150" name="Customer_ID" caption="Наименование государственной корпорации (компании)" readonly="true" isMergeCells="true" />
+        <view table="F04_100_R4_V2" readonly="true">
+          <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+            <col width="100" caption="уникальный код" name="Code" isMergeCells="true" align="center" />
+            <col width="200" caption="наименование" name="Name" isMergeCells="true" />
+          </view>
+          <view table="F04_100_R4_2_V2" readonly="false" levelModifier="1">
+            <col width="191" caption="Направление инвестирования" name="Investigation_Name" readonly="true" />
+            <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+            <col width="110" caption="Код вида экономической деятельности по ОКВЭД" name="OKVED_ID" align="center" readonly="true" />
+            <col width="206" caption="Наименование единицы измерения" name="OKEI_ID" readonly="true" />
+            <col width="130" caption="Мощность" name="g6" align="right" displayFormat=",0.00" />
+            <view caption="Сумма">
+              <template>
+                <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+                <rules>
+                  <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                  <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                  <rule name="%Doc%.CommonRules.GetYearsIsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+                </rules>
+              </template>
+            </view>
+            <editors>
+              <editor id="F04_100_R4_2_Editor" canAdd="true" />
+            </editors>
+          </view>
+          <view table="dual" readonly="true" />
+          <editors>
+            <editor id="F04_100_R4_2_Editor" canAdd="true" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true" />
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.InterfaceRules.F08410SheetP4Sp2CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.F08410SheetP4Sp2FormatEventHandler" event="OnGetFormat" />
+      </rules>
+    </gridsheet>
+    <gridsheet name="sheet_4_2_1" groupSheet="R4_Group" title="Раздел 4.2.1" caption="4. Расчет объема расходов в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), объектов недвижимого имущества, не включенных в федеральную адресную инвестиционную программу&#xD;&#xA;4.2. Сведения об объектах капитального строительства, мероприятиях (укрупненных инвестиционных проектах), объектах недвижимого имущества&#xD;&#xA;4.2.1.1. Сведения об объеме расходов по направлениям инвестирования объекта капитального строительства, мероприятия (укрупненного инвестиционного проекта), объекта недвижимого имущества, не включенных в федеральную адресную инвестиционную программу" exportable="false" isShowColumnNumbers="true" appendMode="false">
+      <view table="F04_100_R4_V2" readonly="true">
+        <view width="365" caption=" Объект, мероприятие (укрупненный инвестиционный проект)">
+          <col width="100" caption="уникальный код" name="Code" isMergeCells="true" align="center" />
+          <col width="200" caption="наименование" name="Name" isMergeCells="true" />
+        </view>
+        <view table="F04_100_R4_2_V2" readonly="false" levelModifier="1">
+          <col width="191" caption="Направление инвестирования" name="Investigation_Name" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" />
+          <col width="110" caption="Код вида экономической деятельности по ОКВЭД" name="OKVED_ID" align="center" readonly="true" />
+          <col width="206" caption="Наименование единицы измерения" name="OKEI_ID" readonly="true" />
+          <col width="130" caption="Мощность" name="g6" align="right" displayFormat=",0.00" />
+          <view caption="Сумма">
+            <template>
+              <col width="104" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.AddYearsHelper.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+              </rules>
+            </template>
+          </view>
+          <col width="47" caption="Ключ строки-владельца" name="OwnerKey" align="center" readonly="true" visible="false" />
+        </view>
+        <view table="dual" readonly="true" />
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP4Sp2SpecCalcEventHandler" event="OnCalc" />
+        <rule name="ObasHelper.GetFalse" event="OnShow" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 4.3-->
+    <gridsheet name="SHT_F08_410_R4_3" title="Раздел 4.3" caption="4. Расчет объема расходов в части объектов капитального строительства, мероприятий (укрупненных инвестиционных проектов), объектов недвижимого имущества, не включенных в федеральную адресную инвестиционную программу&#xD;&#xA;4.3. Сведения о нормативных правовых (правовых) актах по объектам капитального строительства, мероприятиям (укрупненным инвестиционным проектам), объектам недвижимого имущества, не включенным в федеральную адресную инвестиционную программу" isShowColumnNumbers="true" groupSheet="R4_Group">
+      <view table="F08_410_4_3" canAdd="true" readonly="false">
+        <view caption="Объект, мероприятие (укрупненный инвестиционный проект)">
+          <col width="120" caption="уникальный код" name="InvestmentProjectCode" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="InvestmentProjectName" align="left" readonly="true" />
+        </view>
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <col width="250" caption="сфера регулирования" name="ActAreaReg" align="left" readonly="true" />
+        </view>
+        <editors>
+          <editor id="F08_410_4_3Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.CommonRules.KosguDocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+      <rule name="%Doc%.ImportRules.ImportBarsData" event="OnDataImport" />
+    </rules>
+  </sheets>
+  <editors>
+    <editor id="F04_100_R2_2_Editor" caption="Сведения об объекте капитального строительства, мероприятии (укрупненном инвестиционном проекте)" width="800" height="375">
+      <fieldssheet title="Основная информация" name="F04_100_R2_1_Editor_1" table="F04_100_R2_V4">
+        <field name="Code" width="110" caption="Код:" editMask="\d\d\d\d\d\d\d\d\d\d\d\d\d\d" errorMessage="Код должен составлять 14 знаков" />
+        <field name="Name" caption="Наименование:" />
+        <field name="is_Program_part" caption="Программная часть:" breakLine="true" />
+        <field name="FAIP_ID" caption="Раздел ФАИП:" />
+        <field name="FCP_SubProgram_ID" caption="Наименование подпрограммы ФЦП:" filterRule="ObasTableCollection.FcpSprTable.HasOwner">
+          <rules>
+            <rule name="%Doc%.ProjectInfoTable.IsProgramPartIsRequired" event="OnGetIsRequired" />
+          </rules>
+        </field>
+        <field name="Developer" caption="Застройщик:" />
+      </fieldssheet>
+      <fieldssheet title="Дополнительная информация" name="F04_100_R2_1_Editor_2" table="F04_100_R2_V4">
+        <field name="Branch" caption="Отрасль:" />
+        <field name="EventGroup" caption="Группа мероприятий:" />
+        <field name="ObjectGroup" caption="Группа объектов ФАИП:" />
+      </fieldssheet>
+    </editor>
+    <editor id="F04_100_R2_1_Editor" caption="Факторы расчета" width="530" height="330">
+      <fieldssheet name="F04_100_R2_1_Editor_1" table="F04_100_R2_1_V2">
+        <field name="Investigation_ID" caption="Направление инвестирования" />
+        <field name="OKVED_ID" caption="Код по ОКВЭД" />
+        <field name="OKEI_ID" caption="Наименование единицы измерения" />
+        <field name="G6" caption="Мощность">
+          <rules>
+            <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+          </rules>
+        </field>
+      </fieldssheet>
+    </editor>
+    <editor id="F04_100_R3_1_Editor" caption="Факторы расчета" width="530" height="330">
+      <fieldssheet name="F04_100_R3_1_Editor_1" table="F04_100_R2_1_V2">
+        <field name="Investigation_ID" caption="Направление инвестирования" />
+        <field name="UnitCode" caption="Код учетной единицы">
+          <rules>
+            <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+          </rules>
+        </field>
+        <field name="OKVED_ID" caption="Код по ОКВЭД" />
+        <field name="OKEI_ID" caption="Наименование единицы измерения" />
+        <field name="G6" caption="Мощность">
+          <rules>
+            <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+          </rules>
+        </field>
+      </fieldssheet>
+    </editor>
+    <editor id="F04_100_R4_Editor" caption="Сведения об объекте капитального строительства, мероприятии (укрупненном инвестиционном проекте)" width="400" height="225">
+      <fieldssheet name="F04_100_R4_Editor_1" table="F04_100_R4_V2">
+        <field name="Code" width="110" caption="Код:" editMask="\d\d\d\d\d\d\d\d\d\d\d\d\d\d" errorMessage="Код должен составлять 14 знаков" />
+        <field name="Name" caption="Наименование:" />
+        <field name="Developer" caption="Застройщик:" />
+      </fieldssheet>
+    </editor>
+    <editor id="F04_100_R4_2_Editor" caption="Факторы расчета" width="530" height="330">
+      <fieldssheet name="F04_100_R4_2_Editor_1" table="F04_100_R4_2_V2">
+        <field name="Investigation_ID" caption="Направление инвестирования" />
+        <field name="OKVED_ID" caption="Код по ОКВЭД" />
+        <field name="OKEI_ID" caption="Наименование единицы измерения" />
+        <field name="G6" caption="Мощность">
+          <rules>
+            <rule name="ObasHelper.GetTrue" event="OnGetIsRequired" />
+          </rules>
+        </field>
+      </fieldssheet>
+    </editor>
+    <editor id="F04_110_Customer_R2_Editor" caption="Государственная корпорация (компания)">
+      <fieldssheet name="F04_110_Customer_R2_Editor1" table="F04_110_Customers_R2R3_V2">
+        <field name="Customer_ID" caption="Наименование государтсвенной корпорации (компании)" isShowAddEditButton="true" />
+        <rules>
+          <rule name="%Doc%.InterfaceRules.SetCustomerAcceptedFaip" event="OnEditField" />
+        </rules>
+      </fieldssheet>
+    </editor>
+    <editor id="F04_110_Customer_R3_Editor" caption="Государственная корпорация (компания)">
+      <fieldssheet name="F04_110_Customer_R3_Editor1" table="F04_110_Customers_R2R3_V2">
+        <field name="Customer_ID" caption="Наименование государтсвенной корпорации (компании)" isShowAddEditButton="true" />
+        <rules>
+          <rule name="%Doc%.InterfaceRules.SetCustomerNotAcceptedFaip" event="OnEditField" />
+        </rules>
+      </fieldssheet>
+    </editor>
+    <editor id="F04_110_Customer_R4_Editor" caption="Государственная корпорация (компания)">
+      <fieldssheet name="F04_110_Customer_R4_Editor1" table="F04_110_Customers_R4_V2">
+        <field name="Customer_ID" caption="Наименование государтсвенной корпорации (компании)" isShowAddEditButton="true" />
+      </fieldssheet>
+    </editor>
+    <editor id="GovernmentCustomers" caption="Государственная корпорация (компания)" height="130" width="600">
+      <fieldssheet name="GovernmentCustomers" table="GovernmentCustomers">
+        <field name="Name" />
+      </fieldssheet>
+    </editor>
+    <editor id="F08_410_2_3Editor" caption="Нормативный правовой (правовой) акт" width="650" height="410">
+      <fieldssheet name="VREditor1" table="F08_410_2_3">
+        <group caption=" Объект, мероприятие (укрупненный инвестиционный проект) ">
+          <field name="InvestmentProjectCode" caption="Уникальный код" />
+          <field name="InvestmentProjectName" caption="Наименование" />
+        </group>
+        <field name="ActKind" width="350" caption="Вид" />
+        <field name="ActDate" width="110" caption="Дата" />
+        <field name="ActNum" caption="Номер" />
+        <field name="ActName" caption="Наименование" />
+        <field name="ActAreaReg" caption="Сфера регулирования" />
+      </fieldssheet>
+    </editor>
+    <editor id="F08_410_3_3Editor" caption="Нормативный правовой (правовой) акт" width="650" height="410">
+      <fieldssheet name="VREditor1" table="F08_410_3_3">
+        <group caption=" Объект, мероприятие (укрупненный инвестиционный проект) ">
+          <field name="InvestmentProjectCode" caption="Уникальный код" />
+          <field name="InvestmentProjectName" caption="Наименование" />
+        </group>
+        <field name="ActKind" width="350" caption="Вид" />
+        <field name="ActDate" width="110" caption="Дата" />
+        <field name="ActNum" caption="Номер" />
+        <field name="ActName" caption="Наименование" />
+        <field name="ActAreaReg" caption="Сфера регулирования" />
+      </fieldssheet>
+    </editor>
+    <editor id="F08_410_4_3Editor" caption="Нормативный правовой (правовой) акт" width="650" height="410">
+      <fieldssheet name="VREditor1" table="F08_410_4_3">
+        <group caption=" Объект, мероприятие (укрупненный инвестиционный проект) ">
+          <field name="InvestmentProjectCode" caption="Уникальный код" />
+          <field name="InvestmentProjectName" caption="Наименование" />
+        </group>
+        <field name="ActKind" width="350" caption="Вид" />
+        <field name="ActDate" width="110" caption="Дата" />
+        <field name="ActNum" caption="Номер" />
+        <field name="ActName" caption="Наименование" />
+        <field name="ActAreaReg" caption="Сфера регулирования" />
+      </fieldssheet>
+    </editor>
+  </editors>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+  <files />
+</document>

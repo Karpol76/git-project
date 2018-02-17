@@ -1,0 +1,1905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<document caption="Формирование данных по требованиям Минфина России" version="1.0.12" CRC="3481825374" javascriptDocumentClassName="F01409.FDocument">
+  <rules>
+    <import id="JSHandlebars" sourceFile="Scripts\handlebars-v4.0.5.js" />
+    <import id="JSStageSettings" sourceFile="MainLogic\ObasStageSettings.js" />
+    <import id="JSTableFieldInfo" sourceFile="MainLogic\TableFieldInfo.js" />
+    <import id="JSEvents" sourceFile="MainLogic\Events.js" />
+    <import id="JSTableInfo" sourceFile="MainLogic\TableInfo.js" />
+    <import id="JSRROTables" sourceFile="MainLogic\RROTables.js" />
+    <import id="JSSprTables" sourceFile="MainLogic\SprTables.js" />
+    <import id="JSObasTableCollection" sourceFile="MainLogic\ObasTableCollection.js" />
+    <import id="JSHelper" sourceFile="MainLogic\ObasHelper.js" />
+    <import id="JSFormatCollection" sourceFile="MainLogic\SheetFormatCollection.js" />
+    <import id="JSCommon" sourceFile="MainLogic\CommonRules.js" />
+    <import id="JSSettings" sourceFile="MainLogic\DocumentSettings.js" />
+    <import id="JSBaseDocument" sourceFile="MainLogic\BaseDocumentObject.js" />
+    <import id="JSObasTableWithKeys" sourceFile="MainLogic\ObasTableWithKeys.js" />
+    <import id="JSGroupSheet" sourceFile="MainLogic\GroupSheet.js" />
+    <import id="JSSingleSheet" sourceFile="MainLogic\SingleSheet.js" />
+    <import id="JSInsuranceTable" sourceFile="MainLogic\InsuranceTable.js" />
+    <import id="JSInsuranceSheet" sourceFile="MainLogic\InsuranceSheet.js" />
+    <import id="JSParentUpdate" sourceFile="Templates\Logic\Current\F01_400\F01_400_UpdateRules.js" />
+    <import id="JSParentInterface" sourceFile="Templates\Logic\Current\F01_400\F01_400_InterfaceRules.js" />
+    <import id="JSParentTable" sourceFile="Templates\Logic\Current\F01_400\F01_400_TableRules.js" />
+    <import id="JSParentExport" sourceFile="Templates\Logic\Current\F01_400\F01_400_ExportRules.js" />
+    <import id="JSParentDocument" sourceFile="Templates\Logic\Current\F01_400\F01_400_Document.js" />
+    <import id="JSUpdate" sourceFile="Templates\Logic\Current\F01_409\F01_409_UpdateRules.js" />
+    <import id="JSInterface" sourceFile="Templates\Logic\Current\F01_409\F01_409_InterfaceRules.js" />
+    <import id="JSTable" sourceFile="Templates\Logic\Current\F01_409\F01_409_TableRules.js" />
+    <import id="JSExport" sourceFile="Templates\Logic\Current\F01_409\F01_409_ExportRules.js" />
+    <import id="JSDocument" sourceFile="Templates\Logic\Current\F01_409\F01_409_Document.js" />
+  </rules>
+  <tables>
+    <linkedtable id="FOIV" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="FCR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="CSR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="Program" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="SubProgram" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="DirectionCost" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="MainAction" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OBAS_SPR" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="NPAType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="OtherPayments" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="KOSGU" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="InsuranceRows" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RateDollarActual" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Recvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_SC" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_Numbers" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SecurityTypes" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="VR_COSGUs" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OBAS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_DATA" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="ChangeType" sourceFile="MainData\Spr_Ped.xml" />
+    <linkedtable id="RRO_KU_Data" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="FileType" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="BuildParams" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_Expend_Shedule" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="SELECTED_FOIV" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_OfficeChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_FinanceChiefRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="RRO_ExecutorRecvisits" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRRO_OBAS_VERSIONS" sourceFile="MainData\RRO_STAGE1.xml" />
+    <linkedtable id="tRateDollarActual" sourceFile="MainData\Spr_Forms_STAGE1.xml" />
+    <linkedtable id="Files" sourceFile="MainData\Spr_Main.xml" />
+    <linkedtable id="dual" sourceFile="MainData\Spr_Main.xml" />
+    <table id="MainParameters" readonly="true" caption="Основные параметры" canAdd="false" canClear="false" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="FOIV_ID" table="FOIV" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="FCR_ID" table="FCR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="VR_ID" table="VR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="CSR_ID" table="CSR" tableKeyField="Key" tableFields="Code;Name" />
+        <sourcefield name="MainAction_ID" table="MainAction" tableKeyField="Key" tableFields="Code;Name" />
+        <lookupfield name="FCR_NAME" keys="FCR_ID" lookupTable="FCR" lookupKeys="Key" lookupFields="Name" />
+        <sourcefield name="RRO_OBAS_VERSIONS_ID" table="RRO_OBAS_VERSIONS" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="FileType_ID" table="FileType" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="Program_ID" table="Program" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="SubProgram_ID" table="SubProgram" tableKeyField="Key" tableFields="Key" />
+        <sourcefield name="DirectionCost_ID" table="DirectionCost" tableKeyField="Key" tableFields="Key" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="FormParameters" caption="Параметры формы" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="FormSecretType" datatype="integer" caption="Признак гостайны" />
+        <field name="TableNameWithTotals" datatype="string" size="50" />
+        <field name="TableWithKOSGU" datatype="string" size="50" />
+        <field name="AnalyticsTable" datatype="string" size="50" />
+        <field name="AnalyticsStartF" datatype="integer" caption="Начальный индекс обработки полей" />
+        <field name="AnalyticsEndF" datatype="integer" caption="Конечный идекс обработки полей" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[0]]></el>
+          <el><![CDATA[F01_400_R1_Values]]></el>
+          <el><![CDATA[F01_400_KOSGU]]></el>
+        </row>
+      </data>
+    </table>
+    <!--Ф01.400-->
+    <!--Раздел 1-->
+    <table id="F01_400_R1_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="OwnerKey" datatype="integer" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="Name" datatype="string" size="1000" />
+        <field name="BarsCode" datatype="string" size="3" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[16]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[Выплаты персоналу, за исключением фонда оплаты труда, всего]]></el>
+          <el><![CDATA[01]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[100]]></el>
+          <el><![CDATA[16]]></el>
+          <el><![CDATA[900]]></el>
+          <el><![CDATA[корректировка в связи с округлением]]></el>
+          <el><![CDATA[]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[16]]></el>
+          <el><![CDATA[110]]></el>
+          <el><![CDATA[в том числе:
+в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также подведомственных казенных учреждений]]></el>
+          <el><![CDATA[02]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[111]]></el>
+          <el><![CDATA[    в том числе:
+    компенсация работникам расходов по проезду к месту командировки и обратно]]></el>
+          <el><![CDATA[03]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[112]]></el>
+          <el><![CDATA[   компенсация работникам расходов по найму жилого помещения в период командирования]]></el>
+          <el><![CDATA[04]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[113]]></el>
+          <el><![CDATA[   компенсация работникам расходов по обслуживанию в залах официальных лиц и делегаций и в иных залах, организованных в пределах железнодорожных и автомобильных вокзалов (станций), морских и речных портов, аэропортов (аэродромов)]]></el>
+          <el><![CDATA[10]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[114]]></el>
+          <el><![CDATA[   иные выплаты персоналу, за исключением фонда оплаты труда, работающему в федеральных государственных органах и федеральных государственных учреждениях, расположенных в районах Крайнего Севера и приравненных к ним местностях]]></el>
+          <el><![CDATA[11]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[115]]></el>
+          <el><![CDATA[   выплата суточных при служебных командировках работникам организаций, финансируемых за счет средств федерального бюджета ]]></el>
+          <el><![CDATA[12]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[116]]></el>
+          <el><![CDATA[   иные выплаты]]></el>
+          <el><![CDATA[05]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[16]]></el>
+          <el><![CDATA[120]]></el>
+          <el><![CDATA[ в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов в иностранной валюте]]></el>
+          <el><![CDATA[06]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[121]]></el>
+          <el><![CDATA[    в том числе:
+    компенсация работникам расходов по проезду к месту командировки и обратно]]></el>
+          <el><![CDATA[07]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[8]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[122]]></el>
+          <el><![CDATA[   компенсация работникам расходов по найму жилого помещения в период командирования]]></el>
+          <el><![CDATA[08]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[14]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[123]]></el>
+          <el><![CDATA[   выплата суточных в иностранной валюте и надбавок к суточным в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета]]></el>
+          <el><![CDATA[09]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[9]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[124]]></el>
+          <el><![CDATA[   иные выплаты]]></el>
+          <el><![CDATA[09]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[15]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[200]]></el>
+          <el><![CDATA[Страховые взносы в государственные внебюджетные фонды в части иных выплат персоналу, подлежащих обложению страховыми взносами, за исключением фонда оплаты труда]]></el>
+          <el><![CDATA[]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[300]]></el>
+          <el><![CDATA[Всего]]></el>
+          <el><![CDATA[]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_400_R1_Values" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="IsTotal" datatype="integer" syncKey="true" />
+        <field name="StrKey" datatype="integer" syncKey="true" />
+        <field name="Y1" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P1TotalTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveTotalTable" event="OnSave" />
+      </rules>
+    </table>
+    <!--Раздел 2-->
+    <!--Раздел 2.1-->
+    <table id="F01_400_R2_1_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="StrName" datatype="string" size="1000" caption="Заголовок" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Компенсации работникам расходов по проезду к месту командировки и обратно, всего]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[из них: 
+руководители]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_400_R2_1_Data" caption="Расчет фонда оплаты труда" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" table="F01_400_R2_1_Rows" uniqueLabel="1" tableKeyField="Key" tableFields="Key" />
+        <field name="g3" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" size="20" caption="Среднее количество выплат в год, ед">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P2Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2Sp1Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2Sp1Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 2.2-->
+    <table id="F01_400_R2_2_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="StrName" datatype="string" size="1000" caption="Заголовок" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Компенсации работникам расходов по найму жилого помещения в период командирования, всего]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[
+            из них:
+руководители
+          ]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_400_R2_2_Data" caption="Расчет фонда оплаты труда" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" table="F01_400_R2_2_Rows" uniqueLabel="1" tableKeyField="Key" tableFields="Key" />
+        <field name="g3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g6" datatype="float" size="20" precision="2" caption="Среднее количество выплат в год, ед">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P2Sp2Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2Sp2Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2Sp2Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Расчет компенсации работникам расходов по обслуживанию в залах-->
+    <table id="F01_400_R2_HallComp_Rows" caption="Расчет компенсации работникам расходов по обслуживанию в залах" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="StrName" datatype="string" size="1000" caption="Наименование показателя" />
+        <field name="BarsCode" datatype="string" size="2" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Лица, замещающие государственные должности]]></el>
+          <el><![CDATA[01]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[11]]></el>
+          <el><![CDATA[Высшая группа должностей федеральных государственных гражданских служащих, всего]]></el>
+          <el><![CDATA[02]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[12]]></el>
+          <el><![CDATA[из них:
+руководители федеральной службы (агентства)]]></el>
+          <el><![CDATA[03]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[5]]></el>
+          <el><![CDATA[13]]></el>
+          <el><![CDATA[ заместители федерального министра, руководителя федеральной службы (агентства)]]></el>
+          <el><![CDATA[04]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[6]]></el>
+          <el><![CDATA[14]]></el>
+          <el><![CDATA[ помощники федерального министра]]></el>
+          <el><![CDATA[05]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[7]]></el>
+          <el><![CDATA[15]]></el>
+          <el><![CDATA[Иные категории работников федеральных государственных органов ]]></el>
+          <el><![CDATA[07]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_400_R2_HallComp_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" uniqueLabel="1" table="F01_400_R2_HallComp_Rows" tableKeyField="Key" tableFields="Key" />
+        <field name="g3" datatype="float" precision="2" caption="Количество обслуживаний - всего" />
+        <field name="g4" datatype="float" precision="2" caption="Количество обслуживаний - ЗОЛД" />
+        <field name="g5" datatype="float" precision="2" caption="Количество обслуживаний - иные" />
+        <field name="g6" datatype="float" precision="2" caption="Средняя стоимость - ЗОЛД" />
+        <field name="g7" datatype="float" precision="2" caption="Средняя стоимость - иные" />
+        <field name="ObasSum" datatype="float" precision="2" caption="всего">
+          <rules>
+            <rule name="%Doc%.P2Sp3Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g9" datatype="float" precision="2" caption="ЗОЛД">
+          <rules>
+            <rule name="%Doc%.P2Sp3Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g10" datatype="float" precision="2" caption="иные">
+          <rules>
+            <rule name="%Doc%.P2Sp3Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g11" datatype="float" precision="2" caption="Численность рабоников - установленная" />
+        <field name="g12" datatype="float" precision="2" caption="Численность рабоников - обслуживаемые в залах" />
+        <field name="g13" datatype="float" precision="2" caption="Численность рабоников - доля обслуживаемых в залах" />
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2Sp3Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2Sp3Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 2.3-->
+    <table id="F01_400_R2_3_Kosgu">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="KOSGU_ID" caption="КОСГУ" uniqueLabel="1" isNull="false" table="KOSGU" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="KOSGU_Code" caption="КОСГУ код" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="KOSGU_Name" caption="КОСГУ наименование" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Name" />
+      </fields>
+    </table>
+    <table id="F01_400_R2_3_Data" caption="Расчет смет на осуществление иных выплат персоналу, за исключением фонда оплаты труда">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" uniqueLabel="1" table="F01_400_R2_3_Kosgu" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.P2Sp5Table.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="Year" keys="OwnerKey" lookupTable="F01_400_R2_3_Kosgu" lookupKeys="Key" lookupFields="Year" />
+        <lookupfield name="KOSGU_ID" caption="КОСГУ" keys="OwnerKey" lookupTable="F01_400_R2_3_Kosgu" lookupKeys="Key" lookupFields="KOSGU_ID" />
+        <lookupfield name="KOSGU_Code" caption="КОСГУ код" keys="OwnerKey" lookupTable="F01_400_R2_3_Kosgu" lookupKeys="Key" lookupFields="KOSGU_Code" />
+        <sourcefield name="OtherPayments_ID" caption="Выплата" isNull="false" uniqueLabel="1" table="OtherPayments" tableKeyField="Key" tableFields="Name" />
+        <field name="StrCode" datatype="string" size="4" />
+        <lookupfield name="OtherPayments_Name" caption="Наименование выплаты" keys="OtherPayments_ID" lookupTable="OtherPayments" lookupKeys="Key" lookupFields="Name" />
+        <lookupfield name="OtherPayments_Code" caption="Код выплаты" keys="OtherPayments_ID" lookupTable="OtherPayments" lookupKeys="Key" lookupFields="Code" />
+        <field name="g3" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.P2Sp5Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.P2Sp5Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" size="20" caption="Среднее количество выплат в год, ед">
+          <rules>
+            <rule name="%Doc%.P2Sp5Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P2Sp5Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2Sp5Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2Sp5Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Расчет иных выплат персоналу, за исключением фонда оплаты труда по направлениям 93987 или 93974-->
+    <table id="F01_400_SpecPaymentsSpr" caption="справочник соответствующих выплат">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Name" syncKey="true" datatype="string" size="1000" isUnique="true" isNull="false" caption="Наименование выплаты" />
+      </fields>
+    </table>
+    <table id="F01_400_R2_SpecOtherPay_Data" caption="Расчет иных выплат персоналу, за исключением фонда оплаты труда по направлениям 93987 или 93974">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" caption="Выплата" isNull="false" uniqueLabel="1" table="F01_400_SpecPaymentsSpr" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="g1" caption="Наименование выплаты" keys="StrKey" lookupTable="F01_400_SpecPaymentsSpr" lookupKeys="Key" lookupFields="Name" />
+        <field name="g2" datatype="float" precision="2" caption="на 1 сотрудника">
+          <rules>
+            <rule name="%Doc%.P2Sp4Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g3" datatype="float" precision="2" caption="на 1 члена семьи">
+          <rules>
+            <rule name="%Doc%.P2Sp4Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" caption="работников">
+          <rules>
+            <rule name="%Doc%.P2Sp4Table.EmplCountChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" caption="членов семьи">
+          <rules>
+            <rule name="%Doc%.P2Sp4Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g6" datatype="float" caption="Количество выплат" />
+        <field name="ObasSum" datatype="float" precision="1" caption="ОБАС">
+          <rules>
+            <rule name="%Doc%.P2Sp4Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g8" datatype="float" caption="всего приобретены по льготным тарифам" />
+        <field name="g9" datatype="float" caption="бесплатно приобретены по льготным тарифам" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2Sp4Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2Sp4Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 2.4-->
+    <!--Раздел 2.Расчет суточных при служебных командировках-->
+    <table id="F01_400_R2_DailyPay_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="StrName" datatype="string" size="1000" caption="Наименование показателя" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Выплата суточных при служебных командировках работникам организаций, финансируемых за счет средств федерального бюджета ]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_400_R2_DailyPay_Data" caption="Расчет суточных при служебных командировках работникам организаций, финансируемых за счет средств федерального бюджета ">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" table="F01_400_R2_DailyPay_Rows" tableKeyField="Key" tableFields="Key" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.P2DailyPayDataTable.StrKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="KOSGU_ID" caption="КОСГУ" isNull="false" table="KOSGU" tableKeyField="Key" tableFields="Name" uniqueLabel="1" />
+        <lookupfield name="KOSGU_Code" caption="КОСГУ код" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Code" uniqueLabel="1" />
+        <lookupfield name="KOSGU_Name" caption="КОСГУ наименование" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Name" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="g3" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.P2DailyPayDataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" size="20">
+          <rules>
+            <rule name="%Doc%.P2DailyPayDataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" size="20" caption="Среднее количество выплат в год, ед">
+          <rules>
+            <rule name="%Doc%.P2DailyPayDataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P2DailyPayDataTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P2DailyPayDataTable.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P2DailyPayDataTable.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--раздел 2.7-->
+    <table id="F01_409_2_7" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="PaymentName" datatype="string" size="250" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActRefChapter" datatype="string" size="100" />
+        <field name="ActRefArticle" datatype="string" size="100" />
+        <field name="ActRefParagraph" datatype="string" size="100" />
+        <field name="ActRefItem" datatype="string" size="100" />
+        <field name="ActRefIndent" datatype="string" size="100" />
+      </fields>
+    </table>
+    <!--Раздел 3-->
+    <!--Раздел 3.1-->
+    <table id="F01_400_R3_1_Data" caption="Расчет сумм на компенсацию оплаты проезда сотрудников к месту командировки и обратно" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" uniqueLabel="1" table="F01_400_R2_1_Rows" tableKeyField="Key" tableFields="Key" />
+        <field name="g2" datatype="float" size="20" precision="5">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageUsdCount" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageRubCount" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdSum" datatype="float" size="20" precision="5">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp1Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P3Sp1Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P3Sp1Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 3.2-->
+    <table id="F01_400_R3_2_Data" caption="Расчет сумм компенсации на проживание сотрудников при нахождении в командировках" canDelete="false">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" uniqueLabel="1" table="F01_400_R2_2_Rows" tableKeyField="Key" tableFields="Key" />
+        <field name="g2" datatype="float" size="20" precision="5">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g6" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g7" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageUsdCount" datatype="float" size="20" precision="2" caption="Среднее количество выплат в год, ед в долл. США">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageRubCount" datatype="float" size="20" precision="2" caption="Среднее количество выплат в год, ед в рублях">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdSum" datatype="float" size="20" precision="5" caption="Среднее количество выплат в год, ед в рублях">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp2Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P3Sp2Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P3Sp2Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--Раздел 2.Расчет суточных при служебных командировках-->
+    <table id="F01_400_R3_DailyPay_Rows" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="StrName" datatype="string" size="1000" caption="Наименование показателя" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Суточные в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[20]]></el>
+          <el><![CDATA[Надбавки к суточным в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета]]></el>
+        </row>
+      </data>
+    </table>
+    <table id="F01_400_R3_DailyPay_Data" caption="Расчет сумм компенсации на проживание сотрудников при нахождении в командировках">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="StrKey" table="F01_400_R3_DailyPay_Rows" tableKeyField="Key" tableFields="Key" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.StrKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <sourcefield name="KOSGU_ID" caption="КОСГУ" isNull="false" table="KOSGU" tableKeyField="Key" tableFields="Name" uniqueLabel="1" />
+        <lookupfield name="KOSGU_Code" caption="КОСГУ код" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="KOSGU_Name" caption="КОСГУ наименование" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Name" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="g2" datatype="float" size="20" precision="5">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g6" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g7" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageUsdCount" datatype="float" size="20" precision="2" caption="Среднее количество выплат в год, ед в долл. США">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageRubCount" datatype="float" size="20" precision="2" caption="Среднее количество выплат в год, ед в рублях">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdSum" datatype="float" size="20" precision="5" caption="Среднее количество выплат в год, ед в рублях">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3DailyPayDataTable.DataTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P3DailyPayDataTable.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P3DailyPayDataTable.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <table id="F01_400_R3_TotalRow" readonly="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="StrCode" datatype="string" size="4" />
+        <field name="StrName" datatype="string" size="1000" caption="Наименование показателя" />
+        <field name="IsTotal" datatype="integer" />
+      </fields>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[10]]></el>
+          <el><![CDATA[Итого суточные в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[20]]></el>
+          <el><![CDATA[Итого надбавки к суточным в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета]]></el>
+          <el><![CDATA[0]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[900]]></el>
+          <el><![CDATA[Всего]]></el>
+          <el><![CDATA[1]]></el>
+        </row>
+      </data>
+    </table>
+    <!--Раздел 3.3-->
+    <table id="F01_400_R3_3_Kosgu">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="Year" datatype="integer" uniqueLabel="1">
+          <rules>
+            <rule name="%Doc%.CommonRules.YearInitEventHandler" event="OnInit" />
+          </rules>
+        </field>
+        <sourcefield name="KOSGU_ID" caption="КОСГУ" uniqueLabel="1" isNull="false" table="KOSGU" tableKeyField="Key" tableFields="Name" />
+        <lookupfield name="KOSGU_Code" caption="КОСГУ код" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Code" />
+        <lookupfield name="KOSGU_Name" caption="КОСГУ наименование" isNull="false" keys="KOSGU_ID" lookupTable="KOSGU" lookupKeys="Key" lookupFields="Name" />
+      </fields>
+    </table>
+    <table id="F01_400_R3_3_Data" caption="Расчет смет на осуществление иных выплат персоналу, за исключением фонда оплаты труда">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="OwnerKey" uniqueLabel="1" table="F01_400_R3_3_Kosgu" tableKeyField="Key" tableFields="Key">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.OwnerKey.InitEventHandler" event="OnInit" />
+          </rules>
+        </sourcefield>
+        <lookupfield name="Year" keys="OwnerKey" lookupTable="F01_400_R3_3_Kosgu" lookupKeys="Key" lookupFields="Year" />
+        <lookupfield name="KOSGU_ID" caption="КОСГУ" keys="OwnerKey" lookupTable="F01_400_R3_3_Kosgu" lookupKeys="Key" lookupFields="KOSGU_ID" />
+        <lookupfield name="KOSGU_Code" caption="КОСГУ код" isNull="false" keys="OwnerKey" lookupTable="F01_400_R3_3_Kosgu" lookupKeys="Key" lookupFields="KOSGU_Code" />
+        <sourcefield name="OtherPayments_ID" caption="Выплата" isNull="false" uniqueLabel="1" table="OtherPayments" tableKeyField="Key" tableFields="Name" />
+        <field name="StrCode" datatype="string" size="4" />
+        <lookupfield name="OtherPayments_Name" caption="Наименование выплаты" keys="OtherPayments_ID" lookupTable="OtherPayments" lookupKeys="Key" lookupFields="Name" />
+        <field name="g2" datatype="float" size="20" precision="5">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g3" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g4" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="g5" datatype="float" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageUsdCount" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.UsdPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="AverageRubCount" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.RubPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdSum" datatype="float" size="20" precision="5">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.DataTable.UsdChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasUsdRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasRubSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.SumPartsChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="ObasSum" datatype="float" size="20" precision="2">
+          <rules>
+            <rule name="%Doc%.P3Sp3Table.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="IsCopied" datatype="boolean">
+          <rules>
+            <rule name="ObasHelper.GetFalse" event="OnInit" />
+          </rules>
+        </field>
+      </fields>
+      <rules>
+        <rule name="%Doc%.P3Sp3Table.AfterDeleteEventHandler" event="OnAfterDeleteChilds" />
+        <rule name="%Doc%.P3Sp3Table.EditEventHandler" event="OnEdit" />
+      </rules>
+    </table>
+    <!--раздел 3.6-->
+    <table id="F01_409_3_6" canAdd="true" canDelete="true">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <field name="PaymentName" datatype="string" size="250" />
+        <field name="StrCode" datatype="string" size="3" />
+        <field name="ActKind" datatype="string" size="250" />
+        <field name="ActDate" datatype="datetime" />
+        <field name="ActNum" datatype="string" size="50" />
+        <field name="ActName" datatype="string" size="5000" />
+        <field name="ActRefChapter" datatype="string" size="100" />
+        <field name="ActRefArticle" datatype="string" size="100" />
+        <field name="ActRefParagraph" datatype="string" size="100" />
+        <field name="ActRefItem" datatype="string" size="100" />
+        <field name="ActRefIndent" datatype="string" size="100" />
+      </fields>
+    </table>
+    <!--Раздел 4-->
+    <table id="F01_409_R4_Data">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="StrKey" syncKey="true" table="InsuranceRows" tableKeyField="Key" tableFields="Key" />
+        <lookupfield name="Rate" keys="StrKey" lookupTable="InsuranceRows" lookupKeys="Key" lookupFields="Rate" />
+        <field name="Tax_Y1" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tax_Y2" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tax_Y3" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Tax_Y4" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.TaxBaseChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y1" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y2" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y3" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <field name="Y4" datatype="float" size="20" precision="1">
+          <rules>
+            <rule name="%Doc%.P4DataTable.SumChangeEventHandler" event="OnChange" />
+          </rules>
+        </field>
+        <lookupfield name="StrType" keys="StrKey" lookupTable="InsuranceRows" lookupKeys="Key" lookupFields="StrType" />
+        <lookupfield name="IsCalc" keys="StrKey" lookupTable="InsuranceRows" lookupKeys="Key" lookupFields="IsCalc" />
+      </fields>
+    </table>
+    <table id="F01_400_KOSGU">
+      <fields>
+        <field name="Id" datatype="guid" />
+        <field name="Key" datatype="integer" />
+        <sourcefield name="KOSGU_Id" table="KOSGU" tableKeyField="Key" tableFields="Key" syncKey="true" />
+        <field name="Y1" datatype="float" precision="1" />
+        <field name="Y2" datatype="float" precision="1" />
+        <field name="Y3" datatype="float" precision="1" />
+        <field name="Y4" datatype="float" precision="1" />
+      </fields>
+      <rules>
+        <rule name="%Doc%.CommonRules.SaveKosguTable" event="OnSave" />
+      </rules>
+      <data>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[1]]></el>
+          <el><![CDATA[3401802]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[2]]></el>
+          <el><![CDATA[3401808]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[3]]></el>
+          <el><![CDATA[3401814]]></el>
+        </row>
+        <row>
+          <el><![CDATA[]]></el>
+          <el><![CDATA[4]]></el>
+          <el><![CDATA[27561076]]></el>
+        </row>
+      </data>
+    </table>
+  </tables>
+  <sheets>
+    <gridsheet title="Раздел 1" name="SHT_F04_100_R1" exportable="false" caption="1. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда" isShowColumnNumbers="true">
+      <view table="F01_400_R1_Rows" readonly="true">
+        <col width="200" caption="Наименование показателя" name="Name" align="left" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" />
+        <view width="600" caption="Сумма" table="F01_400_R1_Values" masterKeys="StrKey" detailKeys="Key" readonly="false">
+          <template>
+            <col width="75" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+            <rules>
+              <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+              <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+            </rules>
+          </template>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP1EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R2_Group" caption="Раздел 2" />
+    <groupsheet name="R2_1_YearGroup" caption="Раздел 2.1" groupSheet="R2_Group" />
+    <gridsheet groupSheet="R2_1_YearGroup" title="Раздел 2.1.#Year" name="SHT_F04_100_R2_1_Y1" exportable="false" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.1 Расчет компенсации работникам расходов по проезду к месту командировки и обратно&#xD;&#xA;2.1.#Index Расчет компенсации работникам расходов по проезду к месту командировки и обратно на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_1_Rows">
+        <col width="150" caption="Наименование показателя" name="StrName" readonly="true" />
+        <col width="50" caption="Код строки" readonly="true" align="center" name="StrCode" />
+        <view table="F01_400_R2_1_Data" masterKeys="StrKey" detailKeys="F01_400_R2_1_Rows.Key" readonly="false">
+          <col width="155" caption="Средний размер выплаты на 1 сотрудника, руб" name="g3" align="right" displayFormat=",0.00" readonly="false" />
+          <col width="150" caption="Количество получателей выплаты, чел." name="g4" align="right" displayFormat=",0.00" readonly="false" />
+          <col width="155" caption="Среднее количество выплат в год, ед" name="g5" align="right" displayFormat=",0.00" readonly="false" />
+          <col width="150" caption="Сумма&#xA;(гр.3 * гр.4 * гр.5)" name="ObasSum" align="right" readonly="true" displayFormat=",0.00" />
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R2_1_Y2" templateSheetName="SHT_F04_100_R2_1_Y1" />
+    <generatedsheet name="SHT_F04_100_R2_1_Y3" templateSheetName="SHT_F04_100_R2_1_Y1" />
+    <groupsheet name="R2_2_YearGroup" caption="Раздел 2.2" groupSheet="R2_Group" />
+    <gridsheet groupSheet="R2_2_YearGroup" title="Раздел 2.2.#Year" name="SHT_F04_100_R2_2_Y1" exportable="false" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.2 Расчет компенсации работникам расходов по найму жилого помещения в период командирования&#xD;&#xA;2.2.#Index Расчет компенсации работникам расходов по найму жилого помещения в период командирования на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_2_Rows">
+        <col width="150" caption="Наименование показателя" name="StrName" readonly="true" />
+        <col width="50" caption="Код строки" readonly="true" align="center" name="StrCode" />
+        <view table="F01_400_R2_2_Data" masterKeys="StrKey" detailKeys="F01_400_R2_2_Rows.Key" readonly="false">
+          <col width="150" caption="Средний размер выплаты&#xA;на 1 сотрудника в 1 день, руб" name="g5" align="right" displayFormat=",0.00" readonly="false" />
+          <col width="150" caption="Количество дней" name="g3" align="right" readonly="false" displayFormat=",0.00" />
+          <col width="150" caption="Количество получателей выплаты, чел" name="g4" align="right" displayFormat=",0.00" readonly="false" />
+          <col width="155" caption="Среднее количество выплат в год, ед" name="g6" align="right" displayFormat=",0.00" readonly="false" />
+          <col width="160" caption="Сумма&#xA;(гр.3 * гр.4 * гр.5* гр.6)" name="ObasSum" align="right" displayFormat=",0.00" readonly="true" />
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp2FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp2CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R2_2_Y2" templateSheetName="SHT_F04_100_R2_2_Y1" />
+    <generatedsheet name="SHT_F04_100_R2_2_Y3" templateSheetName="SHT_F04_100_R2_2_Y1" />
+    <groupsheet name="R2_HallComp_YearGroup" caption="Раздел 2.3" groupSheet="R2_Group" />
+    <gridsheet groupSheet="R2_HallComp_YearGroup" title="Раздел 2.3.#Year" name="SHT_F04_100_R2_HallComp_Y1" exportable="false" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.3. Расчет компенсации работникам расходов по обслуживанию в ЗОЛД и в иных залах, организованных в пределах железнодорожных и автомобильных вокзалов (станций), морских и речных портов, аэропортов (аэродромов)&#xD;&#xA;2.3.#Index Расчет компенсации работникам расходов по обслуживанию в залах официальных лиц и делегаций и в иных залах, организованных в пределах железнодорожных и автомобильных вокзалов (станций), морских и речных портов, аэропортов (аэродромов) на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_HallComp_Rows">
+        <col width="150" caption="Наименование показателя" name="StrName" align="left" readonly="true" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+        <view table="F01_400_R2_HallComp_Data" masterKeys="StrKey" detailKeys="F01_400_R2_HallComp_Rows.Key" readonly="false">
+          <view caption="Количество обслуживаний в ЗОЛД и иных залах,&#xA;ед">
+            <col width="100" name="g3" align="right" readonly="true" displayFormat=",0.00" caption="всего,&#xA;(гр 4 + гр 5)" />
+            <view caption="в том числе:">
+              <col width="100" name="g4" align="right" readonly="false" displayFormat=",0.00" caption="ЗОЛД" />
+              <col width="100" name="g5" align="right" readonly="false" displayFormat=",0.00" caption="иные залы" />
+            </view>
+          </view>
+          <view caption="Справочно: Средняя стоимость 1 обслуживания в ЗОЛД и иных залах,&#xA;руб">
+            <col width="100" name="g6" align="right" readonly="true" displayFormat=",0.00" caption="ЗОЛД&#xA;(гр 9 / гр 4)" />
+            <col width="100" name="g7" align="right" readonly="true" displayFormat=",0.00" caption="иные залы&#xA;(гр 10 / гр 5)" />
+          </view>
+          <view caption="Сумма">
+            <col width="100" name="ObasSum" align="right" readonly="true" displayFormat=",0.00" caption="всего,&#xA;(гр 9 + гр 10)" />
+            <view caption="в том числе:">
+              <col width="100" name="g9" align="right" readonly="false" displayFormat=",0.00" caption="ЗОЛД" />
+              <col width="100" name="g10" align="right" readonly="false" displayFormat=",0.00" caption="иные залы" />
+            </view>
+          </view>
+          <view caption="Справочно: Численность рабоников">
+            <col width="100" name="g11" align="right" readonly="false" displayFormat=",0.00" caption="установленная численность,&#xA;ед" />
+            <col width="100" name="g12" align="right" readonly="false" displayFormat=",0.00" caption="количество лиц, обслуживаемых в залах,&#xA;ед" />
+            <col width="100" name="g13" align="right" readonly="true" displayFormat=",0.00" caption="доля лиц, обслуживаемых в залах, в установленной численности,&#xA;%&#xA;(гр 12 / гр 11)" />
+          </view>
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+      </view>
+      <view table="dual" readonly="true" />
+      <rules>
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp3CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp3FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnCanEdit" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R2_HallComp_Y2" templateSheetName="SHT_F04_100_R2_HallComp_Y1" />
+    <generatedsheet name="SHT_F04_100_R2_HallComp_Y3" templateSheetName="SHT_F04_100_R2_HallComp_Y1" />
+    <groupsheet name="R2_SpecOtherPay_YearGroup" caption="Раздел 2.4" groupSheet="R2_Group" />
+    <gridsheet groupSheet="R2_SpecOtherPay_YearGroup" name="SHT_F04_100_R2_SpecOtherPay_Y1" title="Раздел 2.4.#Year" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.4. Расчет иных выплат персоналу, за исключением фонда оплаты труда, работающему в федеральных государственных органах и федеральных государственных учреждениях, расположенных в районах Крайнего Севера и приравненных к ним местностях&#xD;&#xA;2.4.#Index Расчет иных выплат персоналу, за исключением фонда оплаты труда, работающему в федеральных государственных органах и федеральных государственных учреждениях, расположенных в районах Крайнего Севера и приравненных к ним местностях, на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_SpecOtherPay_Data" levelModifier="1">
+        <col width="350" caption="Наименование выплаты" name="g1" align="left" readonly="true" />
+        <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+        <view caption="Размер стоимости проезда и провоза багажа, руб">
+          <col width="150" name="g2" align="right" displayFormat=",0.00" caption="на 1 сотрудника" />
+          <col width="150" name="g3" align="right" displayFormat=",0.00" caption="на 1 члена семьи" />
+        </view>
+        <view caption="Количество получателей выплаты, чел">
+          <col width="150" name="g4" align="right" displayFormat=",0.00" caption="работников" />
+          <col width="150" name="g5" align="right" displayFormat=",0.00" caption="членов семьи" />
+        </view>
+        <col width="150" name="g6" align="right" displayFormat=",0.00" readonly="true" caption="Количество выплат в год, ед&#xA;( гр.7= гр.5)" />
+        <col width="150" name="ObasSum" align="right" displayFormat=",0.00" readonly="true" caption="Сумма&#xA;(гр.3 * гр.5 + гр.4 * гр.6)" />
+        <view caption="Справочно: Количество человек, проездные билеты которым приобретены по льготным тарифам">
+          <col width="150" name="g8" align="right" displayFormat=",0.00" caption="всего" />
+          <col width="150" name="g9" align="right" displayFormat=",0.00" caption="из них&#xA;бесплатно" />
+        </view>
+        <editors>
+          <editor id="F04_100_R2_SpecOtherPay_Editor_L2" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" canAdd="true">
+        <editors>
+          <editor id="F04_100_R2_SpecOtherPay_Editor_L2" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp4FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp4CalcEventHandler" event="OnCalc" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp4AddCellEventHandler" event="onEditingCell" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp4AddCellEventHandler" event="onCanAdd" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp4AddCellEventHandler" event="onCanDelete" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="onCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="onCreateCaption" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="onActivateSheet" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R2_SpecOtherPay_Y2" templateSheetName="SHT_F04_100_R2_SpecOtherPay_Y1" />
+    <generatedsheet name="SHT_F04_100_R2_SpecOtherPay_Y3" templateSheetName="SHT_F04_100_R2_SpecOtherPay_Y1" />
+    <groupsheet name="R2_DailyPay_YearGroup" caption="Раздел 2.5" groupSheet="R2_Group" />
+    <gridsheet groupSheet="R2_DailyPay_YearGroup" title="Раздел 2.5.#Year" name="SHT_F04_100_R2_DailyPay_Y1" exportable="false" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.5 Расчет суточных при служебных командировках работникам организаций, финансируемых за счет средств федерального бюджета&#xD;&#xA;2.5.#Index Расчет суточных при служебных командировках работникам организаций, финансируемых за счет средств федерального бюджета на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_DailyPay_Rows">
+        <col width="350" caption="Наименование выплаты" name="StrName" align="left" readonly="true" isMergeCells="true" />
+        <view table="F01_400_R2_DailyPay_Data" masterKeys="StrKey" detailKeys="F01_400_R2_DailyPay_Rows.Key">
+          <col width="47" caption="Код по КОСГУ" name="KOSGU_Code" align="center" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" align="center" name="StrCode" />
+          <col width="150" caption="Размер выплаты на 1 сотрудника, руб" name="g3" align="right" displayFormat=",0.00" />
+          <col width="150" caption="Количество получателей выплаты, чел." name="g4" align="right" displayFormat=",0.00" />
+          <col width="155" caption="Среднее количество выплат в год, ед" name="g5" align="right" displayFormat=",0.00" />
+          <col width="150" caption="Сумма&#xA;(гр.4 * гр.5 * гр.6)" name="ObasSum" align="right" displayFormat=",0.00" readonly="true" />
+          <editors>
+            <editor id="F01_400_R2_DailyPay_Editor_L3" />
+          </editors>
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+      </view>
+      <view table="dual">
+        <editors>
+          <editor id="F01_400_R2_DailyPay_Editor_L3" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP2DailyPayFormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2DailyPayCalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetP2DailyPayEditingCellEventHandler" event="OnCanDelete" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+        <rule name="%Doc%.InterfaceRules.SheetP2DailyPayEditingCellEventHandler" event="OnEditingCell" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R2_DailyPay_Y2" templateSheetName="SHT_F04_100_R2_DailyPay_Y1" />
+    <generatedsheet name="SHT_F04_100_R2_DailyPay_Y3" templateSheetName="SHT_F04_100_R2_DailyPay_Y1" />
+    <groupsheet name="R2_3_YearGroup" caption="Раздел 2.6" groupSheet="R2_Group" />
+    <gridsheet groupSheet="R2_3_YearGroup" title="Раздел 2.6.#Year" name="SHT_F04_100_R2_3_Y1" exportable="false" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.6 Расчет иных выплат персоналу, за исключением фонда оплаты труда&#xD;&#xA;2.6.#Index Расчет иных выплат персоналу, за исключением фонда оплаты труда на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_3_Kosgu">
+        <col width="47" caption="Код по КОСГУ" name="KOSGU_Code" align="center" isMergeCells="true" readonly="true" />
+        <view table="F01_400_R2_3_Data" levelModifier="1">
+          <col width="350" caption="Наименование выплаты" name="OtherPayments_Name" align="left" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+          <col width="150" caption="Размер выплаты на 1 сотрудника, руб" name="g3" align="right" displayFormat=",0.00" />
+          <col width="150" caption="Количество получателей выплаты, чел." name="g4" align="right" displayFormat=",0.00" />
+          <col width="155" caption="Среднее количество выплат в год, ед" name="g5" align="right" displayFormat=",0.00" />
+          <col width="150" caption="Сумма&#xA;(гр.4 * гр.5 * гр.6)" name="ObasSum" align="right" displayFormat=",0.00" readonly="true" />
+          <editors>
+            <editor id="F01_400_R2_3_Editor_L3" canAdd="true" />
+          </editors>
+        </view>
+        <view table="dual">
+          <editors>
+            <editor id="F01_400_R2_3_Editor_L3" canAdd="true" />
+          </editors>
+        </view>
+        <editors>
+          <editor id="F01_400_R2_3_Editor_L2" canAdd="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual">
+        <editors>
+          <editor id="F01_400_R2_3_Editor_L2" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp5FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP2Sp5CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+        <rule name="%Doc%.CommonRules.CantEditPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R2_3_Y2" templateSheetName="SHT_F04_100_R2_3_Y1" />
+    <generatedsheet name="SHT_F04_100_R2_3_Y3" templateSheetName="SHT_F04_100_R2_3_Y1" />
+    <!--Раздел 2.7-->
+    <gridsheet name="SHT_F01_409_r2_7" title="Раздел 2.7" caption="2. Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов, а также казенных учреждений&#xD;&#xA;2.7. Сведения о нормативных правовых (правовых) актах, устанавливающих размер выплаты и (или) порядок расчета выплат" isShowColumnNumbers="true" groupSheet="R2_Group">
+      <view table="F01_409_2_7" canAdd="true" readonly="false">
+        <col width="250" caption="Наименование выплаты" name="PaymentName" align="left" readonly="true" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" readonly="true" />
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <view caption="ссылка">
+            <col width="150" caption="раздел/глава" name="ActRefChapter" align="left" readonly="true" />
+            <col width="150" caption="статья" name="ActRefArticle" align="left" readonly="true" />
+            <col width="120" caption="часть/пункт" name="ActRefParagraph" align="left" readonly="true" />
+            <col width="120" caption="подпункт" name="ActRefItem" align="left" readonly="true" />
+            <col width="120" caption="абзац" name="ActRefIndent" align="left" readonly="true" />
+          </view>
+        </view>
+        <editors>
+          <editor id="F01_409_2_7Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.P2Sp7SheetCalcEventHandler" event="OnCalc" />
+      </rules>
+    </gridsheet>
+    <groupsheet name="R3_Group" caption="Раздел 3" />
+    <groupsheet name="R3_1_YearGroup" caption="Раздел 3.1" groupSheet="R3_Group" />
+    <gridsheet groupSheet="R3_1_YearGroup" title="Раздел 3.1.#Year" name="SHT_F04_100_R3_1_Y1" exportable="false" caption="3.Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов за пределами территории Российской Федерации в иностранной валюте&#xD;&#xA;3.1 Расчет компенсации работникам расходов по проезду к месту командировки и обратно&#xD;&#xA;3.1.#Index Расчет компенсации работникам расходов по проезду к месту командировки и обратно на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_1_Rows">
+        <col width="150" caption="Наименование показателя" name="StrName" readonly="true" columnNumber="1" />
+        <col width="50" caption="Код строки" readonly="true" align="center" name="StrCode" />
+        <view table="F01_400_R3_1_Data" readonly="false" masterKeys="StrKey" detailKeys="F01_400_R2_1_Rows.Key">
+          <view caption="Средний размер выплаты на 1 сотрудника" readonly="false">
+            <col width="85" caption="в иностранной валюте,&#xA;долл США" name="g2" align="right" displayFormat=",0.00000" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации,руб" name="g3" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Количество получателей выплаты, чел" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="g4" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="g5" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Среднее количество выплат в год, ед" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="AverageUsdCount" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="AverageRubCount" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Сумма" readonly="true">
+            <col width="150" caption="в иностранной валюте,&#xA;долл США&#xA;(гр.3 * гр.5 * гр.7)" name="ObasUsdSum" align="right" displayFormat=",0.00000" readonly="true" />
+            <col width="150" caption="рублевый эквивалент по курсу долл США,&#xA; руб" name="ObasUsdRubSum" align="right" displayFormat=",0.00" />
+            <col width="150" caption="в валюте Российской Федерации,&#xA;в руб&#xA;(гр.4 * гр.6 * гр.8)" name="ObasRubSum" align="right" displayFormat=",0.00" readonly="true" />
+            <col width="150" caption="всего,&#xA;руб&#xA;(гр.10+ гр.11)" name="ObasSum" align="right" displayFormat=",0.00" />
+          </view>
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp1FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R3_1_Y2" templateSheetName="SHT_F04_100_R3_1_Y1" />
+    <generatedsheet name="SHT_F04_100_R3_1_Y3" templateSheetName="SHT_F04_100_R3_1_Y1" />
+    <groupsheet name="R3_2_YearGroup" caption="Раздел 3.2" groupSheet="R3_Group" />
+    <gridsheet groupSheet="R3_2_YearGroup" title="Раздел 3.2.#Year" name="SHT_F04_100_R3_2_Y1" exportable="false" caption="3.Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов за пределами территории Российской Федерации в иностранной валюте&#xD;&#xA;3.2 Расчет компенсации работникам расходов по найму жилого помещения в период командирования&#xD;&#xA;3.2.#Index Расчет компенсации работникам расходов по найму жилого помещения в период командирования на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R2_2_Rows">
+        <col width="150" caption="Наименование показателя" name="StrName" readonly="true" columnNumber="1" />
+        <col width="50" caption="Код строки" readonly="true" align="center" name="StrCode" />
+        <view table="F01_400_R3_2_Data" readonly="false" masterKeys="StrKey" detailKeys="F01_400_R2_2_Rows.Key">
+          <view caption="Средний размер выплаты&#xA;на 1 сотрудника" readonly="false">
+            <col width="85" caption="в иностранной валюте,&#xA;долл США" name="g2" align="right" displayFormat=",0.00000" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации,&#xA;руб" name="g3" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Количество дней" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="g4" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="g5" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Количество получателей выплаты, чел" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="g6" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="g7" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Среднее количество выплат в год, ед" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="AverageUsdCount" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="AverageRubCount" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Сумма" readonly="true">
+            <col width="160" caption="в иностранной валюте,&#xA; долл США&#xA;(гр.3 * гр.5 * гр.7 * гр.9)" name="ObasUsdSum" align="right" displayFormat=",0.00000" readonly="true" />
+            <col width="150" caption="рублевый эквивалент по курсу долл США,&#xA;руб" name="ObasUsdRubSum" align="right" displayFormat=",0.00" />
+            <col width="200" caption="в валюте Российской Федерации,&#xA;в руб&#xA;(гр.4 * гр.6 * гр.8 * гр.10)" name="ObasRubSum" align="right" displayFormat=",0.00" readonly="true" />
+            <col width="150" caption="всего,&#xA;руб&#xA;(гр.12 + гр.13)" name="ObasSum" align="right" displayFormat=",0.00" />
+          </view>
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp2FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp1CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnCanEdit" />
+        <rule name="%Doc%.CommonRules.CantAddPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp2EditCellEventHandler" event="OnEditCell" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R3_2_Y2" templateSheetName="SHT_F04_100_R3_2_Y1" />
+    <generatedsheet name="SHT_F04_100_R3_2_Y3" templateSheetName="SHT_F04_100_R3_2_Y1" />
+    <groupsheet name="R3_DailyPay_YearGroup" caption="Раздел 3.3" groupSheet="R3_Group" />
+    <gridsheet groupSheet="R3_DailyPay_YearGroup" title="Раздел 3.3.#Year" name="SHT_F04_100_R3_DailyPay_Y1" exportable="false" caption="3.Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов за пределами территории Российской Федерации в иностранной валюте&#xD;&#xA;3.3 Расчет суточных в иностранной валюте и надбавок к суточным в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета&#xD;&#xA;3.3.#Index Расчет суточных в иностранной валюте и надбавок к суточным в иностранной валюте при служебных командировках на территории иностранных государств работников организаций, финансируемых за счет средств федерального бюджета на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R3_DailyPay_Rows">
+        <col width="400" caption="Наименование показателя" name="StrName" readonly="true" isMergeCells="true" columnNumber="1" />
+        <view table="F01_400_R3_DailyPay_Data" readonly="false" masterKeys="StrKey" detailKeys="F01_400_R3_DailyPay_Rows.Key">
+          <col width="47" caption="Код по КОСГУ" name="KOSGU_Code" align="center" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" align="center" name="StrCode" />
+          <view caption="Средний размер выплаты&#xA;на 1 сотрудника" readonly="false">
+            <col width="85" caption="в иностранной валюте,&#xA;долл США" name="g2" align="right" displayFormat=",0.00000" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации,&#xA;руб" name="g3" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Количество дней" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="g4" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="g5" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Количество получателей выплаты, чел" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="g6" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="g7" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Среднее количество выплат в год, ед" readonly="false">
+            <col width="85" caption="в иностранной валюте" name="AverageUsdCount" align="right" displayFormat=",0.00" readonly="false" />
+            <col width="85" caption="в валюте Российской Федерации" name="AverageRubCount" align="right" displayFormat=",0.00" readonly="false" />
+          </view>
+          <view caption="Сумма" readonly="true">
+            <col width="160" caption="в иностранной валюте,&#xA;долл США&#xA;( гр.4 * гр.6 * гр.8 * гр.10)" name="ObasUsdSum" align="right" displayFormat=",0.00000" readonly="true" />
+            <col width="150" caption="рублевый эквивалент по курсу долл США,&#xA;руб" name="ObasUsdRubSum" align="right" displayFormat=",0.00" />
+            <col width="200" caption="в валюте Российской Федерации,&#xA;в руб&#xA;( гр.5 * гр.7 * гр.9 * гр.11)" name="ObasRubSum" align="right" displayFormat=",0.00" readonly="true" />
+            <col width="150" caption="всего,&#xA;руб&#xA;(гр.13 + гр.14)" name="ObasSum" align="right" displayFormat=",0.00" />
+          </view>
+          <col width="47" caption="строка" name="StrKey" readonly="true" visible="false" />
+          <editors>
+            <editor id="F01_400_R3_DailyPay_Editor_L3" />
+          </editors>
+          <rules>
+            <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+          </rules>
+        </view>
+        <editors>
+          <editor id="F01_400_R3_DailyPay_Editor_L3" />
+        </editors>
+      </view>
+      <view table="F01_400_R3_TotalRow">
+        <col name="StrName" columnName="StrName" readonly="true" columnNumber="1" />
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP3DailyPayFormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP3DailyPayCalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.InterfaceRules.SheetP3DailyPayEditingCellEventHandler" event="OnCanDelete" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+        <rule name="%Doc%.InterfaceRules.SheetP3DailyPayEditingCellEventHandler" event="OnEditingCell" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R3_DailyPay_Y2" templateSheetName="SHT_F04_100_R3_DailyPay_Y1" />
+    <generatedsheet name="SHT_F04_100_R3_DailyPay_Y3" templateSheetName="SHT_F04_100_R3_DailyPay_Y1" />
+    <groupsheet name="R3_3_YearGroup" caption="Раздел 3.4" groupSheet="R3_Group" />
+    <gridsheet groupSheet="R3_3_YearGroup" title="Раздел 3.4.#Year" name="SHT_F04_100_R3_3_Y1" exportable="false" caption="3.Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов за пределами территории Российской Федерации в иностранной валюте&#xD;&#xA;3.4 Расчет иных выплат персоналу, за исключением фонда оплаты труда&#xD;&#xA;3.4.#Index Расчет иных выплат персоналу, за исключением фонда оплаты труда на #Year год" isShowColumnNumbers="true">
+      <view table="F01_400_R3_3_Kosgu">
+        <col width="47" caption="Код по КОСГУ" name="KOSGU_Code" align="center" isMergeCells="true" readonly="true" />
+        <view table="F01_400_R3_3_Data" levelModifier="1">
+          <col width="350" caption="Наименование выплаты" name="OtherPayments_Name" align="left" readonly="true" />
+          <col width="50" caption="Код строки" readonly="true" name="StrCode" align="center" />
+          <view caption="Размер выплаты на 1 сотрудника">
+            <col width="75" caption="в иностранной валюте,&#xA;долл США" name="g2" align="right" displayFormat=",0.00000" />
+            <col width="75" caption="в валюте Российской Федерации,&#xA;руб" name="g3" align="right" displayFormat=",0.00" />
+          </view>
+          <view caption="Количество получателей выплаты, чел.">
+            <col width="75" caption="в иностранной валюте" name="g4" align="right" displayFormat=",0.00" />
+            <col width="75" caption="в валюте Российской Федерации" name="g5" align="right" displayFormat=",0.00" />
+          </view>
+          <view caption="Среднее количество выплат в год, ед">
+            <col width="85" caption="в иностранной валюте" name="AverageUsdCount" align="right" displayFormat=",0.00" />
+            <col width="85" caption="в валюте Российской Федерации" name="AverageRubCount" align="right" displayFormat=",0.00" />
+          </view>
+          <view caption="Сумма" readonly="true">
+            <col width="150" caption="в иностранной валюте,&#xA;долл США&#xA;(гр.4* гр.6 * гр.8)" name="ObasUsdSum" align="right" displayFormat=",0.00000" />
+            <col width="150" caption="рублевый эквивалент по курсу долл США,&#xA;руб" name="ObasUsdRubSum" align="right" displayFormat=",0.00" />
+            <col width="150" caption="в валюте Российской Федерации,&#xA;руб&#xA;(гр.5 * гр.7 * гр.9)" name="ObasRubSum" align="right" displayFormat=",0.00" />
+            <col width="150" caption="всего,&#xA;руб&#xA;(гр.11 + гр.12)" name="ObasSum" align="right" displayFormat=",0.00" />
+          </view>
+          <editors>
+            <editor id="F01_400_R3_3_Editor_L3" canAdd="true" />
+          </editors>
+        </view>
+        <view table="dual" readonly="true" />
+        <editors>
+          <editor id="F01_400_R3_3_Editor_L2" canAdd="true" />
+        </editors>
+        <rules>
+          <rule name="%Doc%.CommonRules.ViewYearLoadEventHandler" event="OnLoad" />
+        </rules>
+      </view>
+      <view table="dual" readonly="true">
+        <editors>
+          <editor id="F01_400_R3_3_Editor_L2" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp3FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.InterfaceRules.SheetP3Sp3CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.CommonRules.ActivateSheetEventHandler" event="OnActivateSheet" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateTitle" />
+        <rule name="%Doc%.CommonRules.GetSheetYearText" event="OnCreateCaption" />
+        <rule name="%Doc%.CommonRules.SheetByYearsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+        <rule name="ObasHelper.GetFalse" event="OnCanEdit" />
+        <rule name="%Doc%.CommonRules.CantEditPrevCurYearsEditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <generatedsheet name="SHT_F04_100_R3_3_Y2" templateSheetName="SHT_F04_100_R3_3_Y1" />
+    <generatedsheet name="SHT_F04_100_R3_3_Y3" templateSheetName="SHT_F04_100_R3_3_Y1" />
+    <gridsheet groupSheet="R3_Group" title="Раздел 3.5" name="SHT_F01_400_SRP" exportable="false" caption="3.Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов за пределами территории Российской Федерации в иностранной валюте&#xD;&#xA;3.5. Справочно: курс доллара США, учтенный при сметном расчете, руб за 1 долл США" isShowColumnNumbers="true">
+      <view table="tRateDollarActual" canAdd="false" readonly="true">
+        <template>
+          <col width="150" name="Val{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+          <rules>
+            <rule name="%Doc%.CommonRules.GetDollarRateYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+            <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+          </rules>
+        </template>
+      </view>
+      <rules>
+        <rule name="%Doc%.CommonRules.GetDollarRateFormat" event="OnGetFormat" />
+      </rules>
+    </gridsheet>
+    <!--Раздел 3.6-->
+    <gridsheet name="SHT_F01_409_r3_6" title="Раздел 3.6" caption="3.Расчет на осуществление иных выплат персоналу, за исключением фонда оплаты труда, в части обеспечения выполнения функций зарубежного аппарата федеральных органов исполнительной власти и иных государственных органов, а также обеспечения выполнения функций федеральных органов исполнительной власти и иных государственных органов за пределами территории Российской Федерации в иностранной валюте&#xD;&#xA;3.6. Сведения о нормативных правовых (правовых) актах, устанавливающих размер выплаты и (или) порядок расчета выплат" isShowColumnNumbers="true" groupSheet="R3_Group">
+      <view table="F01_409_3_6" canAdd="true" readonly="false">
+        <col width="250" caption="Наименование выплаты" name="PaymentName" align="left" readonly="true" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" readonly="true" />
+        <view caption="Нормативный правовой (правовой) акт">
+          <col width="250" caption="вид" name="ActKind" align="left" readonly="true" />
+          <col width="75" caption="дата" name="ActDate" align="left" readonly="true" />
+          <col width="75" caption="номер" name="ActNum" align="left" readonly="true" />
+          <col width="350" caption="наименование" name="ActName" align="left" readonly="true" />
+          <view caption="ссылка">
+            <col width="150" caption="раздел/глава" name="ActRefChapter" align="left" readonly="true" />
+            <col width="150" caption="статья" name="ActRefArticle" align="left" readonly="true" />
+            <col width="120" caption="часть/пункт" name="ActRefParagraph" align="left" readonly="true" />
+            <col width="120" caption="подпункт" name="ActRefItem" align="left" readonly="true" />
+            <col width="120" caption="абзац" name="ActRefIndent" align="left" readonly="true" />
+          </view>
+        </view>
+        <editors>
+          <editor id="F01_409_3_6Editor" canAdd="true" />
+        </editors>
+      </view>
+      <rules>
+        <rule name="%Doc%.InterfaceRules.P2Sp7SheetCalcEventHandler" event="OnCalc" />
+      </rules>
+    </gridsheet>
+    <gridsheet isShowColumnNumbers="true" name="SHT_F04_109_R4" title="Раздел 4" caption="4. Расчет на страховые взносы в государственные внебюджетные фонды в части иных выплат персоналу, подлежащих обложению страховыми взносами, за исключением фонда оплаты труда">
+      <view table="InsuranceRows">
+        <col width="200" caption="Наименование показателя" name="StrName" align="left" readonly="true" />
+        <col width="50" caption="Код строки" name="StrCode" align="center" readonly="true" />
+        <view table="F01_409_R4_Data" masterKeys="StrKey" detailKeys="InsuranceRows.Key">
+          <view width="600" caption="Размер базы для начисления страховых взносов">
+            <template>
+              <col width="75" name="Tax_Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                <rule name="%Doc%.CommonRules.GetYearsIsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+              </rules>
+            </template>
+          </view>
+          <view width="600" caption="Сумма взноса" canAdd="false" readonly="false">
+            <template>
+              <col width="75" name="Y{fieldName}" caption="на {caption} год" align="right" displayFormat=",0.00" />
+              <rules>
+                <rule name="%Doc%.CommonRules.GetYearsFieldRangeEventHandler" event="OnGetFieldsRange" />
+                <rule name="%Doc%.CommonRules.GetYearsCaptionEventHandler" event="OnGetCaption" />
+                <rule name="%Doc%.CommonRules.GetYearsIsReadOnlyEventHandler" event="OnGetIsReadOnly" />
+              </rules>
+            </template>
+          </view>
+        </view>
+      </view>
+      <rules>
+        <rule name="%Doc%.P4Sheet.CalcEventHandler" event="OnCalc" />
+        <rule name="%Doc%.P4Sheet.FormatEventHandler" event="OnGetFormat" />
+        <rule name="%Doc%.P4Sheet.EditingCellEventHandler" event="OnEditingCell" />
+      </rules>
+    </gridsheet>
+    <rules>
+      <rule name="%Doc%.CommonRules.GetExcelFileName" event="OnGetExportFileName" />
+      <rule name="%Doc%.CommonRules.GetExcelTemplateFileName" event="OnGetTemplateFileName" />
+      <rule name="%Doc%.UpdateRules.UpdateTemplate" event="OnUpdateTemplate" />
+      <rule name="%Doc%.CommonRules.CheckChangeType" event="OnBeforeDocumentSave" />
+      <rule name="%Doc%.InterfaceRules.DocumentSaveEventHandler" event="OnDocumentSave" />
+      <rule name="%Doc%.CommonRules.GetExportDirectory" event="OnGetDefaultExportDirectory" />
+    </rules>
+  </sheets>
+  <editors>
+    <editor id="F01_400_R2_3_Editor_L2" caption="КОСГУ">
+      <fieldssheet name="F01_400_R2_3_Editor_L2_1" table="F01_400_R2_3_Kosgu">
+        <group caption="КОСГУ">
+          <field name="KOSGU_Code" caption="Код:" filterRule="%Doc%.CommonRules.FilterKosgu" width="50" />
+          <field name="KOSGU_ID" caption="Наименование:" />
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F01_400_R2_3_Editor_L3" caption="Выплата">
+      <fieldssheet name="F01_400_R2_3_Editor_L3_1" table="F01_400_R2_3_Data">
+        <field name="OtherPayments_ID" caption="Наименование:" />
+      </fieldssheet>
+    </editor>
+    <editor id="F01_400_R2_DailyPay_Editor_L3" caption="КОСГУ">
+      <fieldssheet name="F01_400_R2_DailyPay_Editor_L3_1" table="F01_400_R2_DailyPay_Data">
+        <group caption="КОСГУ">
+          <field name="KOSGU_Code" caption="Код:" filterRule="%Doc%.CommonRules.FilterKosgu" width="50" />
+          <field name="KOSGU_ID" caption="Наименование:" />
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F01_400_R3_3_Editor_L2" caption="КОСГУ">
+      <fieldssheet name="F01_400_R3_3_Editor_L2_1" table="F01_400_R3_3_Kosgu">
+        <group caption="КОСГУ">
+          <field name="KOSGU_Code" caption="Код:" filterRule="%Doc%.CommonRules.FilterKosgu" width="50" />
+          <field name="KOSGU_ID" caption="Наименование:" />
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F01_400_R3_DailyPay_Editor_L3" caption="КОСГУ">
+      <fieldssheet name="F01_400_R3_DailyPay_Editor_L3_1" table="F01_400_R3_DailyPay_Data">
+        <group caption="КОСГУ">
+          <field name="KOSGU_Code" caption="Код:" filterRule="%Doc%.CommonRules.FilterKosgu" width="50" />
+          <field name="KOSGU_ID" caption="Наименование:" />
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F01_400_R3_3_Editor_L3" caption="Выплата">
+      <fieldssheet name="F01_400_R3_3_Editor_L3_1" table="F01_400_R3_3_Data">
+        <field name="OtherPayments_ID" caption="Наименование:" />
+      </fieldssheet>
+    </editor>
+    <editor id="F04_100_R2_SpecOtherPay_Editor_L2" caption="Наименование выплаты">
+      <fieldssheet name="F04_100_R2_SpecOtherPay_Editor_L2_2" table="F01_400_R2_SpecOtherPay_Data">
+        <field name="StrKey" caption="Наименование выплаты" isShowAddEditButton="true" />
+      </fieldssheet>
+    </editor>
+    <editor id="F01_400_SpecPaymentsSpr" caption="Справочник соответствующих выплат" height="130" width="600">
+      <fieldssheet name="F01_400_SpecPaymentsSpr" table="F01_400_SpecPaymentsSpr">
+        <field name="Name" />
+      </fieldssheet>
+    </editor>
+    <editor id="F01_409_2_7Editor" caption="Выплата" width="650" height="390">
+      <fieldssheet name="VREditor1" table="F01_409_2_7">
+        <field name="PaymentName" caption="Наименование выплаты" />
+        <group caption=" Нормативный правовой (правовой) акт ">
+          <field name="ActKind" width="350" caption="Вид" />
+          <field name="ActDate" width="110" caption="Дата" />
+          <field name="ActNum" caption="Номер" />
+          <field name="ActName" caption="Наименование" />
+        </group>
+        <group caption=" Ссылка ">
+          <field name="ActRefChapter" width="320" caption="Раздел/глава" />
+          <field name="ActRefArticle" caption="Статья" />
+          <field name="ActRefParagraph" width="211" caption="Часть/пункт" />
+          <field name="ActRefItem" width="211" caption="Подпункт" />
+          <field name="ActRefIndent" caption="Абзац" />
+        </group>
+      </fieldssheet>
+    </editor>
+    <editor id="F01_409_3_6Editor" caption="Выплата" width="650" height="390">
+      <fieldssheet name="VREditor1" table="F01_409_3_6">
+        <field name="PaymentName" caption="Наименование выплаты" />
+        <group caption=" Нормативный правовой (правовой) акт ">
+          <field name="ActKind" width="350" caption="Вид" />
+          <field name="ActDate" width="110" caption="Дата" />
+          <field name="ActNum" caption="Номер" />
+          <field name="ActName" caption="Наименование" />
+        </group>
+        <group caption=" Ссылка ">
+          <field name="ActRefChapter" width="320" caption="Раздел/глава" />
+          <field name="ActRefArticle" caption="Статья" />
+          <field name="ActRefParagraph" width="211" caption="Часть/пункт" />
+          <field name="ActRefItem" width="211" caption="Подпункт" />
+          <field name="ActRefIndent" caption="Абзац" />
+        </group>
+      </fieldssheet>
+    </editor>
+  </editors>
+  <menu>
+    <menu caption="Сервис">
+      <menu caption="Выполнить пересчет данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.RecalcDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+    <menu caption="Разработчик">
+      <menu caption="Выполнить сдвиг данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.ShiftDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+      <menu caption="Выполнить копирование данных">
+        <rules>
+          <rule name="%Doc%.InterfaceRules.CopyDataMenuItemClickEventHandler" event="OnClick" />
+        </rules>
+      </menu>
+    </menu>
+  </menu>
+  <files />
+</document>

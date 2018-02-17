@@ -1,0 +1,19 @@
+<c ID="Учреждение">{{Foiv}}</c>
+<c ID="Гостайна">{{IsSecret}}</c>
+{{#if AuthType}}
+<c ID="ТипТерОргана">{{AuthType}}</c>
+{{/if}}
+{{#Tables}}
+<Таблица ID="{{Id}}">
+    {{#each Data}}
+	{{{this}}}
+    {{/each}}
+</Таблица>
+{{/Tables}}
+{{#if IsIssuesStage1Obas}}
+ <НесогласованныеВопросы>
+	<Содержание val="{{IssueContent}}"/>
+	<Обоснование val="{{IssueJustification}}"/>
+	<Комментарий val="{{IssueComment}}"/>
+ </НесогласованныеВопросы>
+{{/if}}
